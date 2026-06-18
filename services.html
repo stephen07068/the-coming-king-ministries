@@ -1,0 +1,369 @@
+﻿<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Services &amp; Programs | The Coming King Ministries</title>
+<meta name="description" content="Join us for worship — weekly services, monthly programs, and quarterly Jehovah Night at The Coming King Ministries."/>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/><link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Inter:wght@400;500;600&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        colors: {
+          "primary": "#e31b23","on-primary": "#ffffff","primary-container": "#ffe0e0",
+          "secondary": "#2d3132","on-secondary": "#ffffff","surface": "#f9f9f9",
+          "on-surface": "#1a1c1d","surface-variant": "#f1f0f0","on-surface-variant": "#444748",
+          "outline": "#747778","background": "#ffffff","on-background": "#1a1c1d",
+          "surface-container-low": "#f3f3f3","surface-container": "#ededed","surface-container-high": "#e7e7e7"
+        },
+        borderRadius: {"DEFAULT":"8px","lg":"8px","xl":"12px","full":"9999px"},
+        spacing: {"margin-desktop":"80px","safe-area":"16px","gutter-desktop":"32px","section-gap":"120px","margin-mobile":"24px"},
+        fontFamily: {"display":["Montserrat","sans-serif"],"body":["Inter","sans-serif"],"label":["Montserrat","sans-serif"]},
+        fontSize: {
+          "display-lg":["48px",{lineHeight:"1.1",letterSpacing:"-0.02em",fontWeight:"700"}],
+          "headline-md":["32px",{lineHeight:"1.3",fontWeight:"600"}],
+          "headline-sm":["24px",{lineHeight:"1.4",fontWeight:"600"}],
+          "body-lg":["18px",{lineHeight:"1.7",fontWeight:"400"}],
+          "body-md":["16px",{lineHeight:"1.6",fontWeight:"400"}],
+          "label-md":["14px",{lineHeight:"1.4",fontWeight:"600"}],
+          "label-caps":["12px",{lineHeight:"1.0",letterSpacing:"0.1em",fontWeight:"700"}]
+        }
+      }
+    }
+  }
+</script>
+<style>
+  .material-symbols-outlined{font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24;}
+  body{font-family:'Inter',sans-serif;}
+  h1,h2,h3,h4,.font-display{font-family:'Montserrat',sans-serif;}
+  @keyframes slideUp{from{transform:translateY(40px);opacity:0;}to{transform:translateY(0);opacity:1;}}
+  .animate-slide-up{animation:slideUp 0.8s cubic-bezier(0.4,0,0.2,1) forwards;}
+  @keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
+  .animate-fade-in{animation:fadeIn 1.2s ease-out forwards;}
+  .page-hero{background:linear-gradient(rgba(0,0,0,0.65),rgba(0,0,0,0.72)),url('https://images.unsplash.com/photo-1438232992991-995b7058bbb3?q=80&w=2073&auto=format&fit=crop');background-size:cover;background-position:center;}
+</style>
+</head>
+<body class="bg-background text-on-background selection:bg-primary selection:text-white">
+
+<!-- Header -->
+<header class="fixed top-0 w-full z-50 flex justify-between items-center px-margin-desktop h-20 bg-white border-b border-surface-container-high shadow-sm">
+  <div class="flex items-center gap-3">
+    <img src="IMG_7893.PNG" alt="Logo" class="h-12 w-12 object-contain rounded-full"/>
+    <span class="text-headline-sm font-bold text-primary tracking-tight">The Coming King Ministries</span>
+  </div>
+  <nav class="hidden md:flex items-center gap-8">
+    <a class="text-label-md text-on-surface-variant hover:text-primary transition-colors" href="home_page_the_coming_king_ministries.html">Home</a>
+    <a class="text-label-md text-on-surface-variant hover:text-primary transition-colors" href="about.html">About</a>
+    <a class="text-label-md text-on-surface-variant hover:text-primary transition-colors" href="leadership.html">Leadership</a>
+    <a class="text-label-md text-on-surface-variant hover:text-primary transition-colors" href="sermons.html">Sermons</a>
+    <a class="text-label-md text-primary border-b-2 border-primary pb-1" href="services.html">Services</a>
+    <a class="text-label-md text-on-surface-variant hover:text-primary transition-colors" href="events.html">Events</a>
+    <a class="text-label-md text-on-surface-variant hover:text-primary transition-colors" href="bible-school.html">Bible School</a>
+    <a class="text-label-md text-on-surface-variant hover:text-primary transition-colors" href="gallery.html">Gallery</a>
+  </nav>
+  <div class="flex items-center gap-4">
+    <a href="giving.html" class="px-6 py-2 rounded-lg bg-primary text-white text-label-md hover:opacity-90 transition-all shadow-sm">Giving</a>
+    <a href="contact.html" class="px-6 py-2 rounded-lg border border-primary text-primary text-label-md hover:bg-primary hover:text-white transition-all">Contact</a>
+  </div>
+</header>
+
+<main class="pt-20">
+
+<!-- Page Hero -->
+<section class="page-hero relative h-[420px] flex items-center justify-center text-center px-margin-mobile md:px-margin-desktop">
+  <div class="relative z-10 animate-fade-in">
+    <p class="text-label-caps text-white/70 mb-4 tracking-widest">JOIN US IN WORSHIP</p>
+    <h1 class="text-display-lg text-white mb-4">Services &amp; Programs</h1>
+    <p class="text-body-lg text-white/85 max-w-2xl mx-auto">Come, let us worship together — every gathering is an encounter with the living God</p>
+  </div>
+</section>
+
+<!-- Weekly Services -->
+<section class="py-section-gap px-margin-mobile md:px-margin-desktop bg-white">
+  <div class="max-w-[1440px] mx-auto">
+    <div class="text-center mb-16">
+      <div class="inline-flex items-center gap-2 px-4 py-1 bg-primary/10 rounded-full mb-6">
+        <span class="material-symbols-outlined text-primary text-sm" style="font-variation-settings:'FILL' 1;">calendar_today</span>
+        <span class="text-label-caps text-primary">WEEKLY GATHERINGS</span>
+      </div>
+      <h2 class="text-headline-md text-on-background">Weekly Services</h2>
+      <p class="text-body-lg text-on-surface-variant max-w-2xl mx-auto mt-4">Every week is an opportunity to grow in faith, fellowship, and the Word of God.</p>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+      <div class="bg-surface-container-low p-8 rounded-xl hover:shadow-xl transition-all border-t-4 border-primary group">
+        <div class="flex justify-between items-start mb-6">
+          <span class="material-symbols-outlined text-primary text-4xl group-hover:scale-110 transition-transform" style="font-variation-settings:'FILL' 1;">self_improvement</span>
+          <span class="bg-primary/10 px-3 py-1 rounded-full text-label-caps text-primary">Monday</span>
+        </div>
+        <h3 class="text-headline-sm text-on-background mb-2">Prayer Team</h3>
+        <p class="text-body-md text-on-surface-variant mb-6">Corporate prayer and intercession — standing in the gap for the church, the community, and the nations.</p>
+        <div class="flex items-center gap-2 text-primary font-bold mt-auto">
+          <span class="material-symbols-outlined">schedule</span>
+          <span class="text-label-md">5:00 PM</span>
+        </div>
+        <div class="flex items-center gap-2 text-on-surface-variant mt-2">
+          <span class="material-symbols-outlined text-sm">location_on</span>
+          <span class="text-body-md">Main Auditorium, HQ</span>
+        </div>
+      </div>
+      <div class="bg-surface-container-low p-8 rounded-xl hover:shadow-xl transition-all border-t-4 border-secondary group">
+        <div class="flex justify-between items-start mb-6">
+          <span class="material-symbols-outlined text-secondary text-4xl group-hover:scale-110 transition-transform" style="font-variation-settings:'FILL' 1;">auto_stories</span>
+          <span class="bg-secondary/10 px-3 py-1 rounded-full text-label-caps text-secondary">Wednesday</span>
+        </div>
+        <h3 class="text-headline-sm text-on-background mb-2">Bible Study</h3>
+        <p class="text-body-md text-on-surface-variant mb-6">Deeper exploration of the Holy Scriptures — building faith, understanding doctrine, and equipping for life.</p>
+        <div class="flex items-center gap-2 text-secondary font-bold mt-auto">
+          <span class="material-symbols-outlined">schedule</span>
+          <span class="text-label-md">5:00 PM — 7:00 PM</span>
+        </div>
+        <div class="flex items-center gap-2 text-on-surface-variant mt-2">
+          <span class="material-symbols-outlined text-sm">location_on</span>
+          <span class="text-body-md">Main Auditorium, HQ</span>
+        </div>
+      </div>
+      <div class="bg-surface-container-low p-8 rounded-xl hover:shadow-xl transition-all border-t-4 border-primary group">
+        <div class="flex justify-between items-start mb-6">
+          <span class="material-symbols-outlined text-primary text-4xl group-hover:scale-110 transition-transform" style="font-variation-settings:'FILL' 1;">directions_walk</span>
+          <span class="bg-primary/10 px-3 py-1 rounded-full text-label-caps text-primary">Thursday</span>
+        </div>
+        <h3 class="text-headline-sm text-on-background mb-2">Evangelism</h3>
+        <p class="text-body-md text-on-surface-variant mb-6">Taking the Gospel to the streets — reaching souls for Christ in our communities and neighbourhoods.</p>
+        <div class="flex items-center gap-2 text-primary font-bold mt-auto">
+          <span class="material-symbols-outlined">schedule</span>
+          <span class="text-label-md">5:00 PM</span>
+        </div>
+        <div class="flex items-center gap-2 text-on-surface-variant mt-2">
+          <span class="material-symbols-outlined text-sm">location_on</span>
+          <span class="text-body-md">Community Outreach</span>
+        </div>
+      </div>
+      <div class="bg-surface-container-low p-8 rounded-xl hover:shadow-xl transition-all border-t-4 border-secondary group">
+        <div class="flex justify-between items-start mb-6">
+          <span class="material-symbols-outlined text-secondary text-4xl group-hover:scale-110 transition-transform" style="font-variation-settings:'FILL' 1;">church</span>
+          <span class="bg-secondary/10 px-3 py-1 rounded-full text-label-caps text-secondary">Sunday</span>
+        </div>
+        <h3 class="text-headline-sm text-on-background mb-2">Sunday Service</h3>
+        <div class="space-y-3 mb-6">
+          <div class="bg-white rounded-lg p-3"><p class="text-label-md text-primary">Bible School</p><p class="text-body-md text-on-surface-variant">7:45 AM – 9:00 AM</p></div>
+          <div class="bg-white rounded-lg p-3"><p class="text-label-md text-secondary">Main Service</p><p class="text-body-md text-on-surface-variant">9:00 AM – 11:30 AM</p></div>
+        </div>
+        <div class="flex items-center gap-2 text-on-surface-variant">
+          <span class="material-symbols-outlined text-sm">location_on</span>
+          <span class="text-body-md">Main Auditorium, HQ</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Sunday Bible School Highlight -->
+<section class="py-section-gap px-margin-mobile md:px-margin-desktop bg-primary text-white">
+  <div class="max-w-[1440px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+    <div>
+      <div class="inline-flex items-center gap-2 px-4 py-1 bg-white/20 rounded-full mb-6">
+        <span class="material-symbols-outlined text-white text-sm" style="font-variation-settings:'FILL' 1;">menu_book</span>
+        <span class="text-label-caps text-white/80">EVERY SUNDAY MORNING</span>
+      </div>
+      <h2 class="text-headline-md text-white mb-6">Sunday Bible School</h2>
+      <p class="text-body-lg text-white/85 leading-relaxed mb-6">Every Sunday at 7:45 AM, our Bible School equips believers with systematic, in-depth study of God's Word. Lessons are published by The Coming King Ministries Publishing Department and distributed across all our branches.</p>
+      <p class="text-body-lg text-white/85 leading-relaxed mb-8">Whether you are a new believer or a seasoned saint, Sunday Bible School is designed to strengthen your faith, deepen your understanding of Scripture, and prepare you for Kingdom living.</p>
+      <div class="flex gap-4">
+        <a href="bible-school.html" class="px-8 py-3 bg-white text-primary rounded-lg text-label-md hover:bg-white/90 transition-all shadow-sm font-bold">Download Lessons</a>
+        <a href="contact.html" class="px-8 py-3 border border-white text-white rounded-lg text-label-md hover:bg-white hover:text-primary transition-all">Join a Class</a>
+      </div>
+    </div>
+    <div class="grid grid-cols-2 gap-6">
+      <div class="bg-white/10 rounded-xl p-6 text-center hover:bg-white/20 transition-all">
+        <span class="material-symbols-outlined text-white text-4xl mb-3 block" style="font-variation-settings:'FILL' 1;">schedule</span>
+        <p class="text-label-md text-white/80">Time</p>
+        <p class="text-headline-sm text-white mt-1">7:45 – 9:00 AM</p>
+      </div>
+      <div class="bg-white/10 rounded-xl p-6 text-center hover:bg-white/20 transition-all">
+        <span class="material-symbols-outlined text-white text-4xl mb-3 block" style="font-variation-settings:'FILL' 1;">calendar_today</span>
+        <p class="text-label-md text-white/80">Day</p>
+        <p class="text-headline-sm text-white mt-1">Every Sunday</p>
+      </div>
+      <div class="bg-white/10 rounded-xl p-6 text-center hover:bg-white/20 transition-all">
+        <span class="material-symbols-outlined text-white text-4xl mb-3 block" style="font-variation-settings:'FILL' 1;">groups</span>
+        <p class="text-label-md text-white/80">For</p>
+        <p class="text-headline-sm text-white mt-1">All Ages</p>
+      </div>
+      <div class="bg-white/10 rounded-xl p-6 text-center hover:bg-white/20 transition-all">
+        <span class="material-symbols-outlined text-white text-4xl mb-3 block" style="font-variation-settings:'FILL' 1;">auto_stories</span>
+        <p class="text-label-md text-white/80">Materials</p>
+        <p class="text-headline-sm text-white mt-1">Published Quarterly</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Monthly Programs -->
+<section class="py-section-gap px-margin-mobile md:px-margin-desktop bg-white">
+  <div class="max-w-[1440px] mx-auto">
+    <div class="text-center mb-16">
+      <div class="inline-flex items-center gap-2 px-4 py-1 bg-primary/10 rounded-full mb-6">
+        <span class="material-symbols-outlined text-primary text-sm" style="font-variation-settings:'FILL' 1;">event</span>
+        <span class="text-label-caps text-primary">MONTHLY PROGRAMS</span>
+      </div>
+      <h2 class="text-headline-md text-on-background">Special Monthly Gatherings</h2>
+      <p class="text-body-lg text-on-surface-variant max-w-2xl mx-auto mt-4">Beyond weekly services, these monthly programs build community, deepen devotion, and strengthen the Body of Christ.</p>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div class="bg-surface-container-low rounded-xl p-8 hover:shadow-lg transition-all group">
+        <div class="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center mb-6 group-hover:bg-primary transition-all">
+          <span class="material-symbols-outlined text-primary text-2xl group-hover:text-white transition-all" style="font-variation-settings:'FILL' 1;">bedtime</span>
+        </div>
+        <span class="text-label-caps text-primary mb-2 block">1ST MON, TUE & WED MONTHLY</span>
+        <h3 class="text-headline-sm text-on-background mb-3">Hours of Prayer</h3>
+        <p class="text-body-md text-on-surface-variant mb-3">First Monday, Tuesday & Wednesday of every month. Three days of intense corporate prayer and intercession.</p>
+        <div class="flex items-center gap-2 text-primary font-bold text-label-md">
+          <span class="material-symbols-outlined text-[18px]">schedule</span> 5:00 PM daily
+        </div>
+      </div>
+
+      <div class="bg-surface-container-low rounded-xl p-8 hover:shadow-lg transition-all group">
+        <div class="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center mb-6 group-hover:bg-primary transition-all">
+          <span class="material-symbols-outlined text-primary text-2xl group-hover:text-white transition-all" style="font-variation-settings:'FILL' 1;">nightlight</span>
+        </div>
+        <span class="text-label-caps text-primary mb-2 block">1ST FRIDAY MONTHLY</span>
+        <h3 class="text-headline-sm text-on-background mb-3">King's Women Vigil</h3>
+        <p class="text-body-md text-on-surface-variant mb-3">1st Friday of every month. A dedicated night of prayer for the women of the ministry.</p>
+        <span class="inline-block px-3 py-1 bg-primary/10 text-primary text-label-caps rounded-full">Below 50 Years</span>
+      </div>
+
+      <div class="bg-surface-container-low rounded-xl p-8 hover:shadow-lg transition-all group">
+        <div class="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center mb-6 group-hover:bg-primary transition-all">
+          <span class="material-symbols-outlined text-primary text-2xl group-hover:text-white transition-all" style="font-variation-settings:'FILL' 1;">person</span>
+        </div>
+        <span class="text-label-caps text-primary mb-2 block">2ND FRIDAY MONTHLY</span>
+        <h3 class="text-headline-sm text-on-background mb-3">King's Youth Vigil</h3>
+        <p class="text-body-md text-on-surface-variant mb-3">2nd Friday of every month. Fire and passion — young people gathering to seek the face of God.</p>
+        <span class="inline-block px-3 py-1 bg-primary/10 text-primary text-label-caps rounded-full">Youth</span>
+      </div>
+
+      <div class="bg-surface-container-low rounded-xl p-8 hover:shadow-lg transition-all group">
+        <div class="w-14 h-14 bg-secondary/10 rounded-xl flex items-center justify-center mb-6 group-hover:bg-secondary transition-all">
+          <span class="material-symbols-outlined text-secondary text-2xl group-hover:text-white transition-all" style="font-variation-settings:'FILL' 1;">groups</span>
+        </div>
+        <span class="text-label-caps text-secondary mb-2 block">3RD FRIDAY MONTHLY</span>
+        <h3 class="text-headline-sm text-on-background mb-3">King's Men Vigil</h3>
+        <p class="text-body-md text-on-surface-variant mb-3">3rd Friday of every month. Men of God arising in prayer, covering their homes and the ministry.</p>
+        <span class="inline-block px-3 py-1 bg-secondary/10 text-secondary text-label-caps rounded-full">Below 50 Years</span>
+      </div>
+
+      <div class="bg-surface-container-low rounded-xl p-8 hover:shadow-lg transition-all group">
+        <div class="w-14 h-14 bg-secondary/10 rounded-xl flex items-center justify-center mb-6 group-hover:bg-secondary transition-all">
+          <span class="material-symbols-outlined text-secondary text-2xl group-hover:text-white transition-all" style="font-variation-settings:'FILL' 1;">elderly</span>
+        </div>
+        <span class="text-label-caps text-secondary mb-2 block">4TH FRIDAY MONTHLY</span>
+        <h3 class="text-headline-sm text-on-background mb-3">King's Men & Women Vigil</h3>
+        <p class="text-body-md text-on-surface-variant mb-3">4th Friday of every month. A combined vigil for the seasoned saints of the ministry — men and women together.</p>
+        <span class="inline-block px-3 py-1 bg-secondary/10 text-secondary text-label-caps rounded-full">Above 50 Years</span>
+      </div>
+
+      <div class="bg-surface-container-low rounded-xl p-8 hover:shadow-lg transition-all group">
+        <div class="w-14 h-14 bg-secondary/10 rounded-xl flex items-center justify-center mb-6 group-hover:bg-secondary transition-all">
+          <span class="material-symbols-outlined text-secondary text-2xl group-hover:text-white transition-all" style="font-variation-settings:'FILL' 1;">celebration</span>
+        </div>
+        <span class="text-label-caps text-secondary mb-2 block">LAST SUNDAY MONTHLY</span>
+        <h3 class="text-headline-sm text-on-background mb-3">Monthly Thanksgiving Service</h3>
+        <p class="text-body-md text-on-surface-variant">Last Sunday of every month. Members come to testify, give thanks and offer worship for God's faithfulness and answered prayers.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Jehovah Night - Quarterly -->
+<section class="py-section-gap px-margin-mobile md:px-margin-desktop bg-secondary text-white relative overflow-hidden">
+  <div class="absolute inset-0 opacity-10" style="background-image:radial-gradient(#e31b23 1px,transparent 1px);background-size:32px 32px;"></div>
+  <div class="max-w-[1440px] mx-auto relative z-10 text-center">
+    <div class="inline-flex items-center gap-2 px-6 py-2 border border-primary/50 rounded-full mb-8">
+      <span class="material-symbols-outlined text-primary text-sm" style="font-variation-settings:'FILL' 1;">nights_stay</span>
+      <span class="text-label-caps text-primary tracking-widest">QUARTERLY PROGRAM</span>
+    </div>
+    <h2 class="text-display-lg text-white mb-6">Jehovah Night</h2>
+    <p class="text-body-lg text-white/80 max-w-3xl mx-auto mb-12 leading-relaxed">Our flagship quarterly program — held in the <strong>3rd week</strong> of January, April, August and December. A powerful all-night service of worship, prayer, and encounter with God. Every Jehovah Night is a moment of divine visitation, spiritual breakthrough, and deep consecration.</p>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-3xl mx-auto mb-12">
+      <div class="bg-white/10 rounded-xl p-6 hover:bg-primary/30 transition-all border border-white/10">
+        <span class="material-symbols-outlined text-primary text-3xl mb-3 block" style="font-variation-settings:'FILL' 1;">event</span>
+        <p class="text-headline-sm text-white font-bold">January</p>
+        <p class="text-body-md text-white/60 mt-1">New Year Edition</p>
+      </div>
+      <div class="bg-white/10 rounded-xl p-6 hover:bg-primary/30 transition-all border border-white/10">
+        <span class="material-symbols-outlined text-primary text-3xl mb-3 block" style="font-variation-settings:'FILL' 1;">event</span>
+        <p class="text-headline-sm text-white font-bold">April</p>
+        <p class="text-body-md text-white/60 mt-1">Easter Edition</p>
+      </div>
+      <div class="bg-white/10 rounded-xl p-6 hover:bg-primary/30 transition-all border border-white/10">
+        <span class="material-symbols-outlined text-primary text-3xl mb-3 block" style="font-variation-settings:'FILL' 1;">event</span>
+        <p class="text-headline-sm text-white font-bold">August</p>
+        <p class="text-body-md text-white/60 mt-1">Mid-Year Edition</p>
+      </div>
+      <div class="bg-white/10 rounded-xl p-6 hover:bg-primary/30 transition-all border border-white/10">
+        <span class="material-symbols-outlined text-primary text-3xl mb-3 block" style="font-variation-settings:'FILL' 1;">event</span>
+        <p class="text-headline-sm text-white font-bold">December</p>
+        <p class="text-body-md text-white/60 mt-1">Year-End Edition</p>
+      </div>
+    </div>
+    <a href="events.html" class="inline-flex items-center gap-3 bg-primary text-white px-10 py-4 rounded-lg text-label-md hover:scale-105 transition-transform shadow-lg">
+      View Upcoming Events <span class="material-symbols-outlined">arrow_forward</span>
+    </a>
+  </div>
+</section>
+
+</main>
+
+<!-- Footer -->
+<footer class="w-full py-16 px-margin-desktop bg-secondary text-white">
+  <div class="max-w-[1440px] mx-auto grid grid-cols-1 md:grid-cols-3 gap-gutter-desktop">
+    <div class="space-y-6">
+      <div class="flex items-center gap-3">
+        <img src="IMG_7893.PNG" alt="Logo" class="h-10 w-10 object-contain rounded-full"/>
+        <span class="text-headline-sm font-bold text-primary">The Coming King Ministries</span>
+      </div>
+      <p class="text-body-md text-white/70 max-w-sm">A community dedicated to spiritual growth and preparation of the saints. Rooted in holiness and led by the Spirit. Founded June 6, 2004.</p>
+      <p class="text-label-md text-white/60 italic">"To Prepare Saints for the Coming King"</p>
+      <div class="flex gap-4">
+        <a href="https://youtube.com/@thecomingkingministriesnigeria" target="_blank" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-primary transition-all"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+        <a href="https://www.facebook.com/profile.php?id=100080477388903" target="_blank" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-primary transition-all"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+        <a href="https://wa.me/2348064694851" target="_blank" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-primary transition-all"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg></a>
+        <a href="mailto:TheComingkingMinistriesNigeria@gmail.com" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-primary transition-all"><span class="material-symbols-outlined text-[18px]">mail</span></a>
+      </div>
+    </div>
+    <div class="space-y-6">
+      <h4 class="text-label-md font-bold text-primary uppercase">Quick Links</h4>
+      <div class="grid grid-cols-1 gap-3">
+        <a class="text-body-md text-white/70 hover:text-white hover:underline transition-colors" href="home_page_the_coming_king_ministries.html">Home</a>
+        <a class="text-body-md text-white/70 hover:text-white hover:underline transition-colors" href="about.html">About</a>
+        <a class="text-body-md text-white/70 hover:text-white hover:underline transition-colors" href="leadership.html">Leadership</a>
+        <a class="text-body-md text-white/70 hover:text-white hover:underline transition-colors" href="sermons.html">Sermons</a>
+        <a class="text-body-md text-white/70 hover:text-white hover:underline transition-colors" href="events.html">Events</a>
+        <a class="text-body-md text-white/70 hover:text-white hover:underline transition-colors" href="gallery.html">Gallery</a>
+        <a class="text-body-md text-white/70 hover:text-white hover:underline transition-colors" href="giving.html">Giving</a>
+        <a class="text-body-md text-white/70 hover:text-white hover:underline transition-colors" href="contact.html">Contact</a>
+      </div>
+    </div>
+    <div class="space-y-6">
+      <h4 class="text-label-md font-bold text-primary uppercase">Headquarters</h4>
+      <div class="flex items-start gap-3 text-white/70">
+        <span class="material-symbols-outlined text-primary mt-1">location_on</span>
+        <p class="text-body-md">Olorunsogo, Idi-Aba,<br/>Abeokuta, Ogun State, Nigeria</p>
+      </div>
+      <div class="flex items-center gap-3 text-white/70">
+        <span class="material-symbols-outlined text-primary">call</span>
+        <div><p class="text-body-md">08064694851</p><p class="text-body-md">08067907017</p></div>
+      </div>
+      <div class="flex items-center gap-3 text-white/70">
+        <span class="material-symbols-outlined text-primary">mail</span>
+        <a href="mailto:TheComingkingMinistriesNigeria@gmail.com" class="text-body-md hover:text-white transition-colors break-all">TheComingkingMinistriesNigeria@gmail.com</a>
+      </div>
+      <p class="text-label-md text-white/50 pt-8 border-t border-white/10">© 2026 The Coming King Ministries. All Rights Reserved.<br/>Prepared in Holiness.</p>
+    </div>
+  </div>
+<div class="text-center py-3 border-t border-white/5"><a href="admin-super.html" class="text-[10px] text-white/20 hover:text-white/50 transition-colors tracking-widest uppercase">Admin Portal</a></div><div class="border-t border-white/10 mt-6 pt-4 text-center"><a href="admin-login.html" class="text-[10px] text-white/20 hover:text-white/40 transition-colors uppercase tracking-widest">Admin Login</a></div></footer>
+</body>
+</html>

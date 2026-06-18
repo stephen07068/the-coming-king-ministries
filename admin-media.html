@@ -1,0 +1,712 @@
+﻿<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Media Admin | The Coming King Ministries</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/><link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Inter:wght@400;500;600&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+  tailwind.config={darkMode:"class",theme:{extend:{colors:{"primary":"#e31b23","on-primary":"#ffffff","secondary":"#2d3132","surface":"#f9f9f9","surface-container-lowest":"#ffffff","surface-container-low":"#f3f3f3","surface-container":"#eeeeee","surface-container-high":"#e5e5e5","surface-container-highest":"#dadada","on-surface":"#1a1a1a","on-surface-variant":"#4a4a4a","outline":"#d1d1d1","outline-variant":"#e5e5e5","midnight-navy":"#0a0a0a"},borderRadius:{"DEFAULT":"8px","lg":"12px","xl":"16px","full":"9999px"},fontFamily:{"display":["Montserrat","sans-serif"],"body":["Inter","sans-serif"]}}}}
+</script>
+<style>
+  body{font-family:'Inter',sans-serif;background:#f9f9f9;}
+  h1,h2,h3,h4{font-family:'Montserrat',sans-serif;}
+  .material-symbols-outlined{font-variation-settings:'FILL' 0,'wght' 300,'GRAD' 0,'opsz' 24;}
+  .nav-active{background:#e31b23;color:#fff;}
+  .nav-link{color:#4a4a4a;}
+  .nav-link:hover{background:#eeeeee;color:#1a1a1a;}
+  .custom-scrollbar::-webkit-scrollbar{width:4px;}
+  .custom-scrollbar::-webkit-scrollbar-thumb{background:#dadada;border-radius:10px;}
+  .panel{display:none;}
+  .panel.active{display:block;}
+  .drop-zone{border:2px dashed #d1d1d1;transition:all 0.2s;}
+  .drop-zone:hover,.drop-zone.dragover{border-color:#e31b23;background:#fff5f5;}
+</style>
+</head>
+<body class="text-on-surface antialiased">
+
+<!-- Sidebar -->
+<aside class="fixed left-0 top-0 h-screen w-64 bg-surface-container-lowest border-r border-outline-variant flex flex-col z-50">
+  <div class="px-6 py-6 flex items-center gap-3 border-b border-outline-variant">
+    <img src="IMG_7893.PNG" alt="Logo" class="h-10 w-10 object-contain rounded-full"/>
+    <div>
+      <p class="font-bold text-sm text-midnight-navy leading-tight">Media Admin</p>
+      <p class="text-[10px] text-green-600 uppercase tracking-widest font-bold">Media & Social</p>
+    </div>
+  </div>
+  <nav class="flex-1 px-3 py-4 space-y-1 overflow-y-auto custom-scrollbar">
+    <p class="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant/50 px-3 mb-2">Media</p>
+    <a href="#" onclick="showPanel('gallery','Gallery Assets')" class="nav-active flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-semibold cursor-pointer">
+      <span class="material-symbols-outlined text-[20px]" style="font-variation-settings:'FILL' 1;">photo_library</span> Gallery
+    </a>
+    <a href="#" onclick="showPanel('leadership-photos','Leadership Photos')" class="nav-link flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm cursor-pointer">
+      <span class="material-symbols-outlined text-[20px]">person</span> Leadership Photos
+    </a>
+    <a href="#" onclick="showPanel('events','Upcoming Events')" class="nav-link flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm cursor-pointer">
+      <span class="material-symbols-outlined text-[20px]">event</span> Events
+    </a>
+    <a href="#" onclick="showPanel('video-sermons','Video Sermons')" class="nav-link flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm cursor-pointer">
+      <span class="material-symbols-outlined text-[20px]">smart_display</span> Video Sermons
+    </a>
+    <p class="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant/50 px-3 mb-2 mt-4">Social Media</p>
+    <a href="#" onclick="showPanel('social','Social Media Links')" class="nav-link flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm cursor-pointer">
+      <span class="material-symbols-outlined text-[20px]">share</span> Social Links
+    </a>
+    <a href="#" onclick="showPanel('youtube','YouTube')" class="nav-link flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm cursor-pointer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg> YouTube
+    </a>
+    <a href="#" onclick="showPanel('facebook','Facebook')" class="nav-link flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm cursor-pointer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg> Facebook
+    </a>
+    <a href="#" onclick="showPanel('instagram','Instagram')" class="nav-link flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm cursor-pointer">
+      <span class="material-symbols-outlined text-[20px]">camera_alt</span> Instagram
+    </a>
+  </nav>
+  <div class="p-4 border-t border-outline-variant">
+    <div class="flex items-center gap-3 mb-3">
+      <div class="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center text-white text-xs font-bold">MA</div>
+      <div>
+        <p class="text-sm font-semibold text-midnight-navy">Media Admin</p>
+        <p class="text-[10px] text-green-600 font-bold uppercase">Media & Social Access</p>
+      </div>
+    </div>
+    <p class="text-[10px] text-on-surface-variant bg-surface-container-low rounded-lg p-2">Can upload media and update social links directly. No approval needed.</p>
+    <div class="flex gap-2 mt-3">
+      <a href="admin-super.html" class="flex-1 text-center text-[11px] py-1.5 border border-outline-variant rounded-lg text-on-surface-variant hover:bg-surface-container transition-all">Super</a>
+      <a href="admin-content.html" class="flex-1 text-center text-[11px] py-1.5 border border-outline-variant rounded-lg text-on-surface-variant hover:bg-surface-container transition-all">Content</a>
+    </div>
+  </div>
+</aside>
+
+<!-- Main -->
+<main class="ml-64 min-h-screen">
+  <header class="h-16 bg-surface-container-lowest border-b border-outline-variant px-8 flex items-center justify-between sticky top-0 z-40">
+    <h2 id="panel-title" class="font-display text-xl font-bold text-midnight-navy">Gallery Assets</h2>
+    <div class="flex items-center gap-4">
+      <span class="text-xs text-green-600 font-bold bg-green-50 px-3 py-1 rounded-full flex items-center gap-1">
+        <span class="material-symbols-outlined text-[14px]">check_circle</span> Media & Social Access Only
+      </span>
+      <a href="home_page_the_coming_king_ministries.html" target="_blank" class="px-4 py-2 border border-outline-variant rounded-lg text-sm text-on-surface-variant hover:bg-surface-container transition-all flex items-center gap-2">
+        <span class="material-symbols-outlined text-[18px]">open_in_new</span> View Site
+      </a>
+    </div>
+  </header>
+
+  <div class="p-8 max-w-[1400px]">
+
+    <!-- Gallery Panel -->
+    <div id="panel-gallery" class="panel active">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+        <div class="bg-surface-container-lowest rounded-xl border border-outline-variant p-5 shadow-sm text-center">
+          <span class="material-symbols-outlined text-primary text-4xl block mb-2" style="font-variation-settings:'FILL' 1;">photo_library</span>
+          <p class="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant">Total Photos</p>
+          <h3 class="text-2xl font-bold text-midnight-navy font-display">48</h3>
+        </div>
+        <div class="bg-surface-container-lowest rounded-xl border border-outline-variant p-5 shadow-sm text-center">
+          <span class="material-symbols-outlined text-primary text-4xl block mb-2" style="font-variation-settings:'FILL' 1;">category</span>
+          <p class="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant">Categories</p>
+          <h3 class="text-2xl font-bold text-midnight-navy font-display">5</h3>
+        </div>
+        <div class="bg-surface-container-lowest rounded-xl border border-outline-variant p-5 shadow-sm text-center">
+          <span class="material-symbols-outlined text-primary text-4xl block mb-2" style="font-variation-settings:'FILL' 1;">cloud_upload</span>
+          <p class="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant">This Month</p>
+          <h3 class="text-2xl font-bold text-midnight-navy font-display">12</h3>
+        </div>
+      </div>
+
+      <!-- Upload Zone -->
+      <div class="drop-zone rounded-xl p-10 text-center mb-8 cursor-pointer" onclick="document.getElementById('file-input').click()" ondragover="this.classList.add('dragover');event.preventDefault()" ondragleave="this.classList.remove('dragover')" ondrop="this.classList.remove('dragover');event.preventDefault()">
+        <span class="material-symbols-outlined text-primary text-5xl mb-4 block" style="font-variation-settings:'FILL' 1;">add_photo_alternate</span>
+        <h3 class="text-headline-sm text-on-background mb-2">Upload Images</h3>
+        <p class="text-body-md text-on-surface-variant mb-4">Drag and drop photos here, or click to browse</p>
+        <p class="text-label-caps text-on-surface-variant">JPG, PNG, WEBP — Max 1MB per image</p>
+        <input type="file" id="file-input" multiple accept="image/*" class="hidden" onchange="validateAndPreview(this)"/>
+        <div id="upload-errors" class="mt-4 hidden"></div>
+        <div id="upload-previews" class="mt-4 grid grid-cols-4 gap-3 hidden"></div>
+      </div>
+
+      <!-- Category selector -->
+      <div class="flex flex-wrap gap-3 mb-6 items-center">
+        <span class="text-sm font-bold text-on-surface-variant">Category:</span>
+        <select id="gallery-cat" class="px-4 py-2 rounded-lg border border-outline-variant text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary">
+          <option>Worship</option>
+          <option>Events</option>
+          <option>Leadership</option>
+          <option>Church Building</option>
+          <option>Community</option>
+        </select>
+        <button class="px-5 py-2 bg-primary text-white text-sm font-bold rounded-lg hover:opacity-90 transition-all flex items-center gap-2">
+          <span class="material-symbols-outlined text-[16px]">cloud_upload</span> Upload Selected
+        </button>
+      </div>
+
+      <!-- Existing Gallery Grid -->
+      <div class="bg-surface-container-lowest rounded-xl border border-outline-variant shadow-sm overflow-hidden">
+        <div class="p-5 border-b border-outline-variant flex justify-between items-center">
+          <h3 class="font-semibold text-midnight-navy">Current Gallery</h3>
+          <div class="flex gap-2">
+            <select class="px-3 py-1.5 rounded-lg border border-outline-variant text-sm focus:outline-none focus:border-primary">
+              <option>All Categories</option>
+              <option>Worship</option>
+              <option>Events</option>
+              <option>Leadership</option>
+              <option>Church Building</option>
+            </select>
+          </div>
+        </div>
+        <div class="p-5 grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-3">
+          <div class="relative group rounded-lg overflow-hidden h-28 bg-surface-container">
+            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuC2vLsQGSvJ3qUErR86_ygJAOS7xOBCvYvD8gyvEEK2CPHULxtknCrrBdPsqpucR7j7eKB7eXINfsMtMjmUPWMdkEHvCJyWdWudFPPDBirkcYWNcwPY8jbzavAkWjAx4WP3WdiUXLIGnJPmOyYnEY5oP9Wtoa8Uv8F-fKKtpR-3D_ttxi52kdXKyWpKgscpgHQSHb2ymO5f0Ve82h7oDcPePLr5eOG2pCZAH08IYh-4IMbZhG2BSzp_f2OxjbVveW8sxjV1NRGWjnkT" class="w-full h-full object-cover" alt=""/>
+            <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-2">
+              <button class="p-1.5 bg-white rounded-full text-on-surface hover:text-primary"><span class="material-symbols-outlined text-[16px]">edit</span></button>
+              <button onclick="deleteCard(this,'Photo 1')" class="p-1.5 bg-white rounded-full text-on-surface hover:text-red-500"><span class="material-symbols-outlined text-[16px]">delete</span></button>
+            </div>
+          </div>
+          <div class="relative group rounded-lg overflow-hidden h-28 bg-surface-container">
+            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuD62yhlS7O9aSTfjyEiBm8-hP1TywjKysx_5Hne14_TNHRv0MCjvf8nmeh1TEb0KGIf7825sokG4jdLPGSWz4-OWzu0ZnD-BjM2BuEvEfI5-iOYnhuG_pOoB7l6bF4dcdCsRqCM6UtR2TsEakSUbCoPGSChpXX5t9xZFY9vPRVFCzC9Go19sBLw1oR53tVREq5PyPd8Afwf_JCyS9PTI7DivcgvwDmF8g8XFNCNvVs-1mt6RMeRGrZfOOl8Rsf6RmSJc0DBKGAcnU75" class="w-full h-full object-cover" alt=""/>
+            <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-2">
+              <button class="p-1.5 bg-white rounded-full text-on-surface hover:text-primary"><span class="material-symbols-outlined text-[16px]">edit</span></button>
+              <button onclick="deleteCard(this,'Photo 2')" class="p-1.5 bg-white rounded-full text-on-surface hover:text-red-500"><span class="material-symbols-outlined text-[16px]">delete</span></button>
+            </div>
+          </div>
+          <div class="relative group rounded-lg overflow-hidden h-28 bg-surface-container">
+            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBDEPnI5YT1HNUw8K_B2hRwPpsr255EjhRdDsScYUJYiLCkgWVaJENjDthAeZyUeaB9qkwgxXDH4ybOb-8dscK6aRcizU8KUSAaNQsJSZQksIS944cDZHC1CVivxyXXFYNBJi6YG0tNXgYm9c5AL-gY3YjZHTs0mivhEm5VCB2aSeSH7_wpLykGNhQ4c1vm32jD9XfB2rHSDwEhEPfQNFqc75LotFBD7gPqM9JaAdCSsHv34-UfHyQ_eNAWN0jEq1LzncsvcrEUKZYo" class="w-full h-full object-cover" alt=""/>
+            <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-2">
+              <button class="p-1.5 bg-white rounded-full text-on-surface hover:text-primary"><span class="material-symbols-outlined text-[16px]">edit</span></button>
+              <button onclick="deleteCard(this,'Photo 3')" class="p-1.5 bg-white rounded-full text-on-surface hover:text-red-500"><span class="material-symbols-outlined text-[16px]">delete</span></button>
+            </div>
+          </div>
+          <div class="relative group rounded-lg overflow-hidden h-28 bg-surface-container">
+            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuA1ilVAj4h9yMvsR2MZ3ZEl01CgOmsywhAfUQN1nn3Kla0h9dfdqnT8SwO9m0KJTjIoHHbFFLW60SagQGnURDWpI6J4kLP_tDvHgeX0SHIVk-wI7kALx04e3BqEsocSdccYgOqaf8AETGgkbE1qE-cXWiZZuBPs-XK0sYWI3cLfnkSA4EM8PZgWPPgaxMfDtYOOud3PWNMISFaK9xfKAw2aZP-jJbOSBPXtSQBeZ-J1G0mwtPWfWv_otjlNzTB-HyIM33ic71JDmmTn" class="w-full h-full object-cover" alt=""/>
+            <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-2">
+              <button class="p-1.5 bg-white rounded-full text-on-surface hover:text-primary"><span class="material-symbols-outlined text-[16px]">edit</span></button>
+              <button onclick="deleteCard(this,'Photo 4')" class="p-1.5 bg-white rounded-full text-on-surface hover:text-red-500"><span class="material-symbols-outlined text-[16px]">delete</span></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Events Panel -->
+    <div id="panel-events" class="panel">
+      <div class="bg-surface-container-lowest rounded-xl border border-outline-variant shadow-sm p-6 mb-6">
+        <div class="flex items-center justify-between mb-6">
+          <div>
+            <h3 class="font-display text-lg font-bold text-midnight-navy">Upcoming Events</h3>
+            <p class="text-xs text-on-surface-variant mt-1">Post and manage upcoming ministry events with banners</p>
+          </div>
+          <button onclick="openEventModal()" class="px-5 py-2.5 bg-primary text-white text-sm font-bold rounded-lg hover:opacity-90 transition-all flex items-center gap-2">
+            <span class="material-symbols-outlined text-[18px]">add</span> New Event
+          </button>
+        </div>
+
+        <!-- Existing Events List -->
+        <div class="space-y-4">
+          <div class="flex items-center gap-4 p-4 bg-surface-container-low rounded-xl border border-outline-variant">
+            <div class="w-20 h-14 rounded-lg overflow-hidden bg-surface-container flex-shrink-0">
+              <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuC2vLsQGSvJ3qUErR86_ygJAOS7xOBCvYvD8gyvEEK2CPHULxtknCrrBdPsqpucR7j7eKB7eXINfsMtMjmUPWMdkEHvCJyWdWudFPPDBirkcYWNcwPY8jbzavAkWjAx4WP3WdiUXLIGnJPmOyYnEY5oP9Wtoa8Uv8F-fKKtpR-3D_ttxi52kdXKyWpKgscpgHQSHb2ymO5f0Ve82h7oDcPePLr5eOG2pCZAH08IYh-4IMbZhG2BSzp_f2OxjbVveW8sxjV1NRGWjnkT" class="w-full h-full object-cover" alt="Banner"/>
+            </div>
+            <div class="flex-1 min-w-0">
+              <p class="text-sm font-semibold text-midnight-navy">Hours of Prayer</p>
+              <p class="text-xs text-on-surface-variant mt-0.5">1st Mon–Wed of every month · Recurring</p>
+            </div>
+            <span class="text-[10px] font-bold px-2 py-1 bg-blue-50 text-blue-700 rounded-full flex-shrink-0">PUBLISHED</span>
+            <div class="flex gap-2 flex-shrink-0">
+              <button class="p-1.5 text-on-surface-variant hover:text-primary rounded-lg hover:bg-surface-container transition-all"><span class="material-symbols-outlined text-[18px]">edit</span></button>
+              <button onclick="deleteCard(this,'Hours of Prayer')" class="p-1.5 text-on-surface-variant hover:text-red-500 rounded-lg hover:bg-surface-container transition-all"><span class="material-symbols-outlined text-[18px]">delete</span></button>
+            </div>
+          </div>
+          <div class="flex items-center gap-4 p-4 bg-surface-container-low rounded-xl border border-outline-variant">
+            <div class="w-20 h-14 rounded-lg bg-surface-container flex-shrink-0 flex items-center justify-center">
+              <span class="material-symbols-outlined text-on-surface-variant text-2xl">image</span>
+            </div>
+            <div class="flex-1 min-w-0">
+              <p class="text-sm font-semibold text-midnight-navy">Jehovah Night — July 2026</p>
+              <p class="text-xs text-on-surface-variant mt-0.5">July 2026 · Quarterly</p>
+            </div>
+            <span class="text-[10px] font-bold px-2 py-1 bg-amber-50 text-amber-700 rounded-full flex-shrink-0">PENDING</span>
+            <div class="flex gap-2 flex-shrink-0">
+              <button class="p-1.5 text-on-surface-variant hover:text-primary rounded-lg hover:bg-surface-container transition-all"><span class="material-symbols-outlined text-[18px]">edit</span></button>
+              <button onclick="deleteCard(this,'Jehovah Night — July 2026')" class="p-1.5 text-on-surface-variant hover:text-red-500 rounded-lg hover:bg-surface-container transition-all"><span class="material-symbols-outlined text-[18px]">delete</span></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- New Event Modal -->
+    <div id="event-modal" class="hidden fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4">
+      <div class="bg-white rounded-2xl w-full max-w-lg shadow-2xl">
+        <div class="p-6 border-b border-outline-variant flex justify-between items-center">
+          <h3 class="font-display text-lg font-bold text-midnight-navy">Post New Event</h3>
+          <button onclick="closeEventModal()" class="text-on-surface-variant hover:text-primary"><span class="material-symbols-outlined">close</span></button>
+        </div>
+        <div class="p-6 space-y-4">
+          <div>
+            <label class="text-xs font-bold uppercase tracking-wider text-on-surface-variant block mb-2">Event Title</label>
+            <input type="text" id="evt-title" placeholder="e.g. Jehovah Night — August 2026" class="w-full px-4 py-2.5 rounded-lg border border-outline-variant text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary"/>
+          </div>
+          <div class="grid grid-cols-2 gap-4">
+            <div>
+              <label class="text-xs font-bold uppercase tracking-wider text-on-surface-variant block mb-2">Event Date</label>
+              <input type="date" id="evt-date" class="w-full px-4 py-2.5 rounded-lg border border-outline-variant text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary"/>
+            </div>
+            <div>
+              <label class="text-xs font-bold uppercase tracking-wider text-on-surface-variant block mb-2">Event Type</label>
+              <select id="evt-type" class="w-full px-4 py-2.5 rounded-lg border border-outline-variant text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary">
+                <option>One-Time</option>
+                <option>Weekly</option>
+                <option>Monthly</option>
+                <option>Quarterly</option>
+                <option>Annual</option>
+              </select>
+            </div>
+          </div>
+          <div>
+            <label class="text-xs font-bold uppercase tracking-wider text-on-surface-variant block mb-2">Description</label>
+            <textarea id="evt-desc" rows="2" placeholder="Brief event description..." class="w-full px-4 py-2.5 rounded-lg border border-outline-variant text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary resize-none"></textarea>
+          </div>
+          <div>
+            <label class="text-xs font-bold uppercase tracking-wider text-on-surface-variant block mb-2">
+              Event Banner <span class="text-red-500 font-bold">— Max 100KB</span>
+            </label>
+            <div class="border-2 border-dashed border-outline-variant rounded-xl p-5 text-center cursor-pointer hover:border-primary hover:bg-red-50/30 transition-all" onclick="document.getElementById('evt-banner').click()">
+              <span class="material-symbols-outlined text-primary text-3xl block mb-2" style="font-variation-settings:'FILL' 1;">add_photo_alternate</span>
+              <p class="text-xs text-on-surface-variant">Click to upload event banner</p>
+              <p class="text-[10px] text-on-surface-variant/70 mt-1">JPG, PNG, WEBP · Max 100KB</p>
+            </div>
+            <input type="file" id="evt-banner" accept="image/*" class="hidden" onchange="validateEventBanner(this)"/>
+            <div id="evt-banner-error" class="hidden mt-2 p-2.5 bg-red-50 border border-red-200 rounded-lg text-xs text-red-600 flex items-center gap-2">
+              <span class="material-symbols-outlined text-[16px]">cancel</span><span id="evt-banner-error-msg"></span>
+            </div>
+            <div id="evt-banner-ok" class="hidden mt-2 p-2.5 bg-green-50 border border-green-200 rounded-lg text-xs text-green-600 flex items-center gap-2">
+              <span class="material-symbols-outlined text-[16px]">check_circle</span><span id="evt-banner-ok-msg"></span>
+            </div>
+            <div id="evt-banner-preview" class="hidden mt-3 rounded-xl overflow-hidden h-32 bg-surface-container">
+              <img id="evt-banner-img" class="w-full h-full object-cover" alt="Banner preview"/>
+            </div>
+          </div>
+        </div>
+        <div class="p-6 border-t border-outline-variant flex gap-3 justify-end">
+          <button onclick="closeEventModal()" class="px-5 py-2 border border-outline-variant rounded-lg text-sm text-on-surface-variant hover:bg-surface-container transition-all">Cancel</button>
+          <button onclick="publishEvent()" class="px-5 py-2 bg-primary text-white text-sm font-bold rounded-lg hover:opacity-90 transition-all flex items-center gap-2">
+            <span class="material-symbols-outlined text-[16px]">publish</span> Publish Event
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Video Sermons Panel -->
+    <div id="panel-video-sermons" class="panel">
+      <div class="bg-surface-container-lowest rounded-xl border border-outline-variant shadow-sm p-6 mb-6">
+        <div class="flex items-center justify-between mb-6">
+          <div>
+            <h3 class="font-display text-lg font-bold text-midnight-navy">Video Sermons</h3>
+            <p class="text-xs text-on-surface-variant mt-1">Post video sermon links from Facebook</p>
+          </div>
+          <button onclick="openVideoSermonModal()" class="px-5 py-2.5 bg-primary text-white text-sm font-bold rounded-lg hover:opacity-90 transition-all flex items-center gap-2">
+            <span class="material-symbols-outlined text-[18px]">add</span> Add Video Sermon
+          </button>
+        </div>
+
+        <!-- Sermons List -->
+        <div class="space-y-3">
+          <div class="flex items-center gap-4 p-4 bg-surface-container-low rounded-xl border border-outline-variant">
+            <div class="p-3 bg-blue-50 rounded-xl flex-shrink-0">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+            </div>
+            <div class="flex-1 min-w-0">
+              <p class="text-sm font-semibold text-midnight-navy">The Authority of the Believer</p>
+              <p class="text-xs text-on-surface-variant mt-0.5">Pastor Akinboye Michael · facebook.com/...</p>
+            </div>
+            <span class="text-[10px] font-bold px-2 py-1 bg-blue-50 text-blue-700 rounded-full flex-shrink-0">PUBLISHED</span>
+            <div class="flex gap-2 flex-shrink-0">
+              <button class="p-1.5 text-on-surface-variant hover:text-primary rounded-lg hover:bg-surface-container transition-all"><span class="material-symbols-outlined text-[18px]">edit</span></button>
+              <button onclick="deleteCard(this,'The Authority of the Believer')" class="p-1.5 text-on-surface-variant hover:text-red-500 rounded-lg hover:bg-surface-container transition-all"><span class="material-symbols-outlined text-[18px]">delete</span></button>
+            </div>
+          </div>
+          <div class="flex items-center gap-4 p-4 bg-surface-container-low rounded-xl border border-outline-variant">
+            <div class="p-3 bg-blue-50 rounded-xl flex-shrink-0">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+            </div>
+            <div class="flex-1 min-w-0">
+              <p class="text-sm font-semibold text-midnight-navy">Walking in Holiness</p>
+              <p class="text-xs text-on-surface-variant mt-0.5">Pastor Ruth O. Olatoye · facebook.com/...</p>
+            </div>
+            <span class="text-[10px] font-bold px-2 py-1 bg-gray-100 text-gray-600 rounded-full flex-shrink-0">DRAFT</span>
+            <div class="flex gap-2 flex-shrink-0">
+              <button class="p-1.5 text-on-surface-variant hover:text-primary rounded-lg hover:bg-surface-container transition-all"><span class="material-symbols-outlined text-[18px]">edit</span></button>
+              <button onclick="deleteCard(this,'Walking in Holiness')" class="p-1.5 text-on-surface-variant hover:text-red-500 rounded-lg hover:bg-surface-container transition-all"><span class="material-symbols-outlined text-[18px]">delete</span></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Add Video Sermon Modal -->
+    <div id="video-sermon-modal" class="hidden fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4">
+      <div class="bg-white rounded-2xl w-full max-w-lg shadow-2xl">
+        <div class="p-6 border-b border-outline-variant flex justify-between items-center">
+          <h3 class="font-display text-lg font-bold text-midnight-navy">Add Video Sermon</h3>
+          <button onclick="closeVideoSermonModal()" class="text-on-surface-variant hover:text-primary"><span class="material-symbols-outlined">close</span></button>
+        </div>
+        <div class="p-6 space-y-4">
+          <div>
+            <label class="text-xs font-bold uppercase tracking-wider text-on-surface-variant block mb-2">Sermon Title</label>
+            <input type="text" id="vs-title" placeholder="e.g. The Power of the Holy Spirit" class="w-full px-4 py-2.5 rounded-lg border border-outline-variant text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary"/>
+          </div>
+          <div>
+            <label class="text-xs font-bold uppercase tracking-wider text-on-surface-variant block mb-2">Speaker / Pastor</label>
+            <input type="text" id="vs-speaker" placeholder="Pastor name..." class="w-full px-4 py-2.5 rounded-lg border border-outline-variant text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary"/>
+          </div>
+          <div>
+            <label class="text-xs font-bold uppercase tracking-wider text-on-surface-variant block mb-2">
+              Facebook Video Link
+              <span class="ml-2 inline-flex items-center gap-1 text-blue-600 font-normal normal-case text-[11px]">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="12" height="12"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                Facebook only
+              </span>
+            </label>
+            <input type="url" id="vs-link" placeholder="https://www.facebook.com/watch?v=..." class="w-full px-4 py-2.5 rounded-lg border border-outline-variant text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary"/>
+            <p class="text-[10px] text-on-surface-variant mt-1.5">Paste the Facebook video link for this sermon</p>
+            <div id="vs-link-error" class="hidden mt-2 p-2.5 bg-red-50 border border-red-200 rounded-lg text-xs text-red-600 flex items-center gap-2">
+              <span class="material-symbols-outlined text-[16px]">cancel</span>
+              <span id="vs-link-error-msg">Only Facebook links are allowed (facebook.com)</span>
+            </div>
+          </div>
+          <div>
+            <label class="text-xs font-bold uppercase tracking-wider text-on-surface-variant block mb-2">Description</label>
+            <textarea id="vs-desc" rows="2" placeholder="Brief description..." class="w-full px-4 py-2.5 rounded-lg border border-outline-variant text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary resize-none"></textarea>
+          </div>
+        </div>
+        <div class="p-6 border-t border-outline-variant flex gap-3 justify-end">
+          <button onclick="closeVideoSermonModal()" class="px-5 py-2 border border-outline-variant rounded-lg text-sm text-on-surface-variant hover:bg-surface-container transition-all">Cancel</button>
+          <button onclick="publishVideoSermon()" class="px-5 py-2 bg-primary text-white text-sm font-bold rounded-lg hover:opacity-90 transition-all flex items-center gap-2">
+            <span class="material-symbols-outlined text-[16px]">publish</span> Publish Sermon
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Social Links Panel -->
+    <div id="panel-social" class="panel">
+      <div class="bg-surface-container-lowest rounded-xl border border-outline-variant shadow-sm p-6">
+        <h3 class="font-display text-lg font-bold text-midnight-navy mb-6">Social Media Links</h3>
+        <div class="space-y-5 max-w-2xl">
+          <div class="flex items-center gap-4">
+            <div class="p-3 bg-red-50 rounded-xl flex-shrink-0"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></div>
+            <div class="flex-1">
+              <label class="text-xs font-bold uppercase tracking-wider text-on-surface-variant block mb-2">YouTube Channel URL</label>
+              <input value="https://youtube.com/@thecomingkingministriesnigeria" class="w-full px-4 py-2.5 rounded-lg border border-outline-variant text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary"/>
+            </div>
+            <button class="px-4 py-2.5 bg-primary text-white text-xs font-bold rounded-lg hover:opacity-90 flex-shrink-0">Update</button>
+          </div>
+          <div class="flex items-center gap-4">
+            <div class="p-3 bg-blue-50 rounded-xl flex-shrink-0"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></div>
+            <div class="flex-1">
+              <label class="text-xs font-bold uppercase tracking-wider text-on-surface-variant block mb-2">Facebook Page URL</label>
+              <input value="https://www.facebook.com/profile.php?id=100080477388903" class="w-full px-4 py-2.5 rounded-lg border border-outline-variant text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary"/>
+            </div>
+            <button class="px-4 py-2.5 bg-primary text-white text-xs font-bold rounded-lg hover:opacity-90 flex-shrink-0">Update</button>
+          </div>
+          <div class="flex items-center gap-4">
+            <div class="p-3 bg-pink-50 rounded-xl flex-shrink-0"><span class="material-symbols-outlined text-pink-600 text-2xl">camera_alt</span></div>
+            <div class="flex-1">
+              <label class="text-xs font-bold uppercase tracking-wider text-on-surface-variant block mb-2">Instagram URL</label>
+              <input placeholder="https://instagram.com/thecomingkingministries" class="w-full px-4 py-2.5 rounded-lg border border-outline-variant text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary"/>
+            </div>
+            <button class="px-4 py-2.5 bg-primary text-white text-xs font-bold rounded-lg hover:opacity-90 flex-shrink-0">Update</button>
+          </div>
+          <div class="flex items-center gap-4">
+            <div class="p-3 bg-green-50 rounded-xl flex-shrink-0"><span class="material-symbols-outlined text-green-600 text-2xl">chat</span></div>
+            <div class="flex-1">
+              <label class="text-xs font-bold uppercase tracking-wider text-on-surface-variant block mb-2">WhatsApp Number</label>
+              <input value="08064694851" class="w-full px-4 py-2.5 rounded-lg border border-outline-variant text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary"/>
+            </div>
+            <button class="px-4 py-2.5 bg-primary text-white text-xs font-bold rounded-lg hover:opacity-90 flex-shrink-0">Update</button>
+          </div>
+        </div>
+        <div class="mt-6 p-4 bg-amber-50 rounded-xl border border-amber-200">
+          <p class="text-xs text-amber-700 font-semibold">
+            <span class="material-symbols-outlined text-[16px] align-middle mr-1">info</span>
+            Media Admin can update social media links and content. Cannot manage users, approve content, or change system settings.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Banners Panel -->
+    <div id="panel-banners" class="panel">
+      <div class="bg-surface-container-lowest rounded-xl border border-outline-variant shadow-sm p-6">
+        <h3 class="font-display text-lg font-bold text-midnight-navy mb-6">Homepage Banners</h3>
+        <div class="space-y-4">
+          <div class="flex items-center gap-4 p-4 bg-surface-container-low rounded-xl">
+            <img src="https://images.unsplash.com/photo-1438232992991-995b7058bbb3?q=80&w=200&auto=format&fit=crop" class="w-24 h-16 object-cover rounded-lg flex-shrink-0" alt="Banner"/>
+            <div class="flex-1">
+              <p class="text-sm font-semibold text-midnight-navy">Hero Background Image</p>
+              <p class="text-xs text-on-surface-variant">Currently active on homepage</p>
+            </div>
+            <button class="px-4 py-2 border border-outline-variant rounded-lg text-sm text-on-surface-variant hover:bg-surface-container transition-all flex items-center gap-2">
+              <span class="material-symbols-outlined text-[16px]">swap_horiz</span> Replace
+            </button>
+          </div>
+        </div>
+        <button class="mt-4 px-5 py-2.5 bg-primary text-white text-sm font-bold rounded-lg hover:opacity-90 flex items-center gap-2">
+          <span class="material-symbols-outlined text-[16px]">add</span> Add New Banner
+        </button>
+      </div>
+    </div>
+
+    <!-- Leadership Photos Panel -->
+    <div id="panel-leadership-photos" class="panel">
+      <div class="bg-surface-container-lowest rounded-xl border border-outline-variant shadow-sm p-6">
+        <h3 class="font-display text-lg font-bold text-midnight-navy mb-6">Leadership Photos</h3>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+          <div class="text-center">
+            <div class="w-24 h-24 mx-auto rounded-full overflow-hidden border-2 border-primary mb-3 relative group cursor-pointer">
+              <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDCOz29hfR3d7IhSsleV9Js-CQBn1_tRoU3b5JysmSsDSVQnPKBKSGbP4nOpPoc1zVIvlRA85ZwV6Nq2vglvm7INJUg96ZPbxU3y1Kwo_H2iGqvbh0F1CJUbvyapWGev-DdkeQJQRh_HtLnFYCxJoyw8HI0A2CVXesVvZLRnguLPXa-2_DklHGQAKYnaZq-PgwyRJxr6e_0nAcBFVdl0l1DW2BAOUvD8Xidxjv6Moi0ClauXn1fYSwlX8mdSHPrO1F5jAH8hESAsrk8" class="w-full h-full object-cover" alt=""/>
+              <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                <span class="material-symbols-outlined text-white text-[20px]">edit</span>
+              </div>
+            </div>
+            <p class="text-xs font-semibold text-midnight-navy">Pastor Akinboye Michael</p>
+            <p class="text-[10px] text-primary">General Overseer</p>
+          </div>
+          <div class="text-center">
+            <div class="w-24 h-24 mx-auto rounded-full overflow-hidden border-2 border-surface-container-high mb-3 relative group cursor-pointer bg-surface-container flex items-center justify-center">
+              <span class="material-symbols-outlined text-on-surface-variant text-4xl">person</span>
+              <div class="absolute inset-0 bg-primary/80 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center rounded-full">
+                <span class="material-symbols-outlined text-white text-[20px]">add_photo_alternate</span>
+              </div>
+            </div>
+            <p class="text-xs font-semibold text-midnight-navy">Pastor Ruth O. Olatoye</p>
+            <p class="text-[10px] text-on-surface-variant">Upload photo</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- YouTube Panel -->
+    <div id="panel-youtube" class="panel">
+      <div class="bg-surface-container-lowest rounded-xl border border-outline-variant shadow-sm p-6 max-w-2xl">
+        <div class="flex items-center gap-3 mb-6">
+          <div class="p-3 bg-red-50 rounded-xl"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></div>
+          <div><h3 class="font-display text-lg font-bold text-midnight-navy">YouTube Channel Settings</h3><p class="text-xs text-on-surface-variant">Manage your YouTube presence</p></div>
+        </div>
+        <div class="space-y-4">
+          <div>
+            <label class="text-xs font-bold uppercase tracking-wider text-on-surface-variant block mb-2">Channel URL</label>
+            <input value="https://youtube.com/@thecomingkingministriesnigeria" class="w-full px-4 py-2.5 rounded-lg border border-outline-variant text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary"/>
+          </div>
+          <div>
+            <label class="text-xs font-bold uppercase tracking-wider text-on-surface-variant block mb-2">Channel Name</label>
+            <input value="@thecomingkingministriesnigeria" class="w-full px-4 py-2.5 rounded-lg border border-outline-variant text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary"/>
+          </div>
+          <div>
+            <label class="text-xs font-bold uppercase tracking-wider text-on-surface-variant block mb-2">Featured Video Embed URL (for homepage)</label>
+            <input placeholder="https://www.youtube.com/embed/VIDEO_ID" class="w-full px-4 py-2.5 rounded-lg border border-outline-variant text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary"/>
+          </div>
+          <button class="px-6 py-2.5 bg-primary text-white text-sm font-bold rounded-lg hover:opacity-90">Save YouTube Settings</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Facebook Panel -->
+    <div id="panel-facebook" class="panel">
+      <div class="bg-surface-container-lowest rounded-xl border border-outline-variant shadow-sm p-6 max-w-2xl">
+        <div class="flex items-center gap-3 mb-6">
+          <div class="p-3 bg-blue-50 rounded-xl"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></div>
+          <div><h3 class="font-display text-lg font-bold text-midnight-navy">Facebook Page Settings</h3></div>
+        </div>
+        <div class="space-y-4">
+          <div>
+            <label class="text-xs font-bold uppercase tracking-wider text-on-surface-variant block mb-2">Facebook Page URL</label>
+            <input value="https://www.facebook.com/profile.php?id=100080477388903" class="w-full px-4 py-2.5 rounded-lg border border-outline-variant text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary"/>
+          </div>
+          <button class="px-6 py-2.5 bg-primary text-white text-sm font-bold rounded-lg hover:opacity-90">Save Facebook Settings</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Instagram Panel -->
+    <div id="panel-instagram" class="panel">
+      <div class="bg-surface-container-lowest rounded-xl border border-outline-variant shadow-sm p-6 max-w-2xl">
+        <div class="flex items-center gap-3 mb-6">
+          <div class="p-3 bg-pink-50 rounded-xl"><span class="material-symbols-outlined text-pink-600 text-2xl">camera_alt</span></div>
+          <div><h3 class="font-display text-lg font-bold text-midnight-navy">Instagram Settings</h3></div>
+        </div>
+        <div class="space-y-4">
+          <div>
+            <label class="text-xs font-bold uppercase tracking-wider text-on-surface-variant block mb-2">Instagram Profile URL</label>
+            <input placeholder="https://instagram.com/thecomingkingministries" class="w-full px-4 py-2.5 rounded-lg border border-outline-variant text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary"/>
+          </div>
+          <button class="px-6 py-2.5 bg-primary text-white text-sm font-bold rounded-lg hover:opacity-90">Save Instagram Settings</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<script>
+function showPanel(name, title) {
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+  document.getElementById('panel-' + name).classList.add('active');
+  document.getElementById('panel-title').textContent = title;
+  document.querySelectorAll('aside nav a').forEach(a => { a.classList.remove('nav-active'); a.classList.add('nav-link'); });
+  event.currentTarget.classList.add('nav-active'); event.currentTarget.classList.remove('nav-link');
+}
+function validateAndPreview(input) {
+  const MAX_BYTES = 1 * 1024 * 1024; // 1MB max
+  const errorsEl = document.getElementById('upload-errors');
+  const previewsEl = document.getElementById('upload-previews');
+  errorsEl.innerHTML = '';
+  previewsEl.innerHTML = '';
+  errorsEl.classList.add('hidden');
+  previewsEl.classList.add('hidden');
+
+  const rejected = [];
+  const accepted = [];
+
+  Array.from(input.files).forEach(file => {
+    if (file.size > MAX_BYTES) {
+      rejected.push({ name: file.name, size: (file.size / (1024 * 1024)).toFixed(2), reason: 'Exceeds 1MB limit' });
+    } else {
+      accepted.push(file);
+    }
+  });
+
+  // Show rejected errors
+  if (rejected.length > 0) {
+    errorsEl.classList.remove('hidden');
+    errorsEl.innerHTML = rejected.map(f =>
+      `<div class="flex items-center gap-2 p-3 bg-red-50 border border-red-200 rounded-lg text-sm text-red-700 mb-2">
+        <span class="material-symbols-outlined text-red-500 text-[18px]" style="font-variation-settings:'FILL' 1;">cancel</span>
+        <span><strong>${f.name}</strong> rejected — ${f.reason || f.size + 'MB exceeds 1MB limit'}</span>
+      </div>`
+    ).join('');
+  }
+
+  // Show accepted previews
+  if (accepted.length > 0) {
+    previewsEl.classList.remove('hidden');
+    accepted.forEach(file => {
+      const reader = new FileReader();
+      reader.onload = e => {
+        const div = document.createElement('div');
+        div.className = 'relative rounded-lg overflow-hidden h-24 bg-surface-container';
+        div.innerHTML = `
+          <img src="${e.target.result}" class="w-full h-full object-cover" alt="${file.name}"/>
+          <div class="absolute bottom-0 left-0 right-0 bg-black/60 px-2 py-1">
+            <p class="text-white text-[9px] truncate">${file.name}</p>
+            <p class="text-green-300 text-[9px]">${(file.size/(1024*1024)).toFixed(2)}MB ✓</p>
+          </div>`;
+        previewsEl.appendChild(div);
+      };
+      reader.readAsDataURL(file);
+    });
+
+    // Summary
+    const summary = document.createElement('div');
+    summary.className = 'col-span-4 p-3 bg-green-50 border border-green-200 rounded-lg text-sm text-green-700 flex items-center gap-2';
+    summary.innerHTML = `<span class="material-symbols-outlined text-green-500 text-[18px]" style="font-variation-settings:'FILL' 1;">check_circle</span>
+      <span><strong>${accepted.length}</strong> image${accepted.length > 1 ? 's' : ''} ready to upload${rejected.length > 0 ? ` · <strong>${rejected.length}</strong> rejected` : ''}.</span>`;
+    previewsEl.prepend(summary);
+  }
+
+  // Reset input so rejected files are not submitted
+  if (rejected.length > 0 && accepted.length === 0) {
+    input.value = '';
+  }
+}
+function openEventModal() {
+  document.getElementById('event-modal').classList.remove('hidden');
+}
+function closeEventModal() {
+  document.getElementById('event-modal').classList.add('hidden');
+  document.getElementById('evt-title').value = '';
+  document.getElementById('evt-date').value = '';
+  document.getElementById('evt-desc').value = '';
+  document.getElementById('evt-banner').value = '';
+  document.getElementById('evt-banner-error').classList.add('hidden');
+  document.getElementById('evt-banner-ok').classList.add('hidden');
+  document.getElementById('evt-banner-preview').classList.add('hidden');
+}
+function validateEventBanner(input) {
+  const MAX_BYTES = 100 * 1024; // 100KB
+  const errEl = document.getElementById('evt-banner-error');
+  const okEl = document.getElementById('evt-banner-ok');
+  const previewEl = document.getElementById('evt-banner-preview');
+  const previewImg = document.getElementById('evt-banner-img');
+  errEl.classList.add('hidden');
+  okEl.classList.add('hidden');
+  previewEl.classList.add('hidden');
+
+  if (!input.files.length) return;
+  const file = input.files[0];
+  const sizeKB = (file.size / 1024).toFixed(1);
+
+  if (file.size > MAX_BYTES) {
+    document.getElementById('evt-banner-error-msg').textContent =
+      `"${file.name}" is ${sizeKB}KB — exceeds the 100KB limit. Please compress the image.`;
+    errEl.classList.remove('hidden');
+    input.value = '';
+  } else {
+    document.getElementById('evt-banner-ok-msg').textContent =
+      `"${file.name}" (${sizeKB}KB) — ready to upload ✓`;
+    okEl.classList.remove('hidden');
+    const reader = new FileReader();
+    reader.onload = e => {
+      previewImg.src = e.target.result;
+      previewEl.classList.remove('hidden');
+    };
+    reader.readAsDataURL(file);
+  }
+}
+function publishEvent() {
+  const title = document.getElementById('evt-title').value.trim();
+  if (!title) { alert('Please enter an event title.'); return; }
+  closeEventModal();
+  alert('✅ "' + title + '" published successfully!');
+}
+function openVideoSermonModal() {
+  document.getElementById('video-sermon-modal').classList.remove('hidden');
+}
+function closeVideoSermonModal() {
+  document.getElementById('video-sermon-modal').classList.add('hidden');
+  document.getElementById('vs-title').value = '';
+  document.getElementById('vs-speaker').value = '';
+  document.getElementById('vs-link').value = '';
+  document.getElementById('vs-desc').value = '';
+  document.getElementById('vs-link-error').classList.add('hidden');
+}
+function publishVideoSermon() {
+  const title = document.getElementById('vs-title').value.trim();
+  const link = document.getElementById('vs-link').value.trim();
+  const errEl = document.getElementById('vs-link-error');
+  const errMsg = document.getElementById('vs-link-error-msg');
+
+  if (!title) { alert('Please enter a sermon title.'); return; }
+
+  // Validate Facebook link
+  if (link && !link.includes('facebook.com')) {
+    errMsg.textContent = 'Only Facebook links are allowed (facebook.com)';
+    errEl.classList.remove('hidden');
+    return;
+  }
+  errEl.classList.add('hidden');
+
+  if (!link) { alert('Please paste a Facebook video link.'); return; }
+
+  closeVideoSermonModal();
+  alert('✅ "' + title + '" published successfully!');
+}
+function deleteCard(btn, name) {
+  if (!confirm('Delete "' + name + '"? This cannot be undone.')) return;
+  const card = btn.closest('.relative.group, .flex.items-center.gap-4, tr');
+  if (card) { card.style.transition = 'opacity 0.3s'; card.style.opacity = '0'; setTimeout(() => card.remove(), 300); }
+}
+</script>
+</body>
+</html>

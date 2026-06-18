@@ -1,0 +1,21 @@
+# Kiro spec files
+.kiro/
+
+# VS Code settings
+.vscode/
+
+# HEIC image files (not web compatible)
+*.HEIC
+
+# Duplicate/old portal files
+admin_portal_the_coming_king_ministries.html
+admin_portal_the_coming_king_ministries_elite.html
+home_page_the_coming_king_ministries (1).html
+code.html
+
+# Word documents
+*.docx
+
+# Windows
+Thumbs.db
+Desktop.ini
