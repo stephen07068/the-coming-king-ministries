@@ -19,3 +19,15 @@ code.html
 # Windows
 Thumbs.db
 Desktop.ini
+
+# Node dependencies
+node_modules/
+package-lock.json
+package.json
+
+# Original image backups
+originals/
+
+# Build scripts (one-time use)
+compress-images.js
+optimize-html.js
