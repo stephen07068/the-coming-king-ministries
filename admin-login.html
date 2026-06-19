@@ -98,9 +98,9 @@
 
   // Role → redirect map
   const roleRedirects = {
-    super: 'admin-super.html',
-    content: 'admin-content.html',
-    media: 'admin-media.html'
+    super: '/admin-super.html',
+    content: '/admin-content.html',
+    media: '/admin-media.html'
   };
 
   window.handleLogin = async function(e) {
@@ -132,8 +132,7 @@
       }
       sessionStorage.setItem('tck_role', role);
       sessionStorage.setItem('tck_user', email);
-      sessionStorage.setItem('tck_uid', cred.user.uid);
-      window.location.href = roleRedirects[role] || 'admin-super.html';
+      window.location.href = roleRedirects[role] || '/admin-super.html';
     } catch (err) {
       btn.disabled = false;
       btn.innerHTML = '<span class="material-symbols-outlined text-[20px]">login</span> Sign In';
