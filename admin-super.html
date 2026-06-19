@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html class="light" lang="en">
 <head>
 <link rel="dns-prefetch" href="//fonts.googleapis.com"/>
@@ -103,7 +103,7 @@
     <div class="flex gap-2">
       <a href="admin-content.html" class="flex-1 text-center text-[11px] py-1.5 border border-outline-variant rounded-lg text-on-surface-variant hover:bg-surface-container transition-all">Content</a>
       <a href="admin-media.html" class="flex-1 text-center text-[11px] py-1.5 border border-outline-variant rounded-lg text-on-surface-variant hover:bg-surface-container transition-all">Media</a>
-      <button class="p-1.5 text-on-surface-variant hover:text-primary"><span class="material-symbols-outlined text-[20px]">logout</span></button>
+      <button onclick="sessionStorage.clear(); window.location.href='admin/index.html';" class="p-1.5 text-on-surface-variant hover:text-primary" title="Logout"><span class="material-symbols-outlined text-[20px]">logout</span></button>
     </div>
   </div>
 </aside>

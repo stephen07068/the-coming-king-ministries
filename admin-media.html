@@ -75,10 +75,7 @@
       </div>
     </div>
     <p class="text-[10px] text-on-surface-variant bg-surface-container-low rounded-lg p-2">Can upload media and update social links directly. No approval needed.</p>
-    <div class="flex gap-2 mt-3">
-      <a href="admin-super.html" class="flex-1 text-center text-[11px] py-1.5 border border-outline-variant rounded-lg text-on-surface-variant hover:bg-surface-container transition-all">Super</a>
-      <a href="admin-content.html" class="flex-1 text-center text-[11px] py-1.5 border border-outline-variant rounded-lg text-on-surface-variant hover:bg-surface-container transition-all">Content</a>
-    </div>
+    <button onclick="sessionStorage.clear(); window.location.href='admin/index.html';" class="w-full flex items-center justify-center gap-2 mt-3 py-1.5 border border-outline-variant rounded-lg text-[11px] text-on-surface-variant hover:text-primary hover:bg-surface-container transition-all" title="Logout"><span class="material-symbols-outlined text-[16px]">logout</span> Logout</button>
   </div>
 </aside>
 
