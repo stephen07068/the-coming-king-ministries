@@ -511,11 +511,12 @@ function filterCat(cat) {
       const snap = await getDocs(q);
       
       if (snap.empty) {
-        grid.innerHTML = '<div class="col-span-full py-20 text-center"><p class="text-on-surface-variant">No sermons found. Please check back later!</p></div>';
+        // Keep the static sample cards — don't replace them
         document.getElementById('featured-sermon-container').style.display = 'none';
         return;
       }
       
+      // Only replace static cards if real sermons exist in Firebase
       grid.innerHTML = '';
       let isFirst = true;
       
