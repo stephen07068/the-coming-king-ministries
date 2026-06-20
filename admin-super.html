@@ -509,7 +509,7 @@
             <div class="w-9 h-9 ${bg} rounded-full flex items-center justify-center text-white text-xs font-bold flex-shrink-0">${(d.name || d.email || '?').charAt(0).toUpperCase()}</div>
             <div class="flex-1 min-w-0">
               <p class="text-sm font-semibold text-midnight-navy">${d.name || 'Admin User'}</p>
-              <p class="text-xs text-on-surface-variant">${d.email}</p>
+              <p class="text-xs text-on-surface-variant">${d.email || 'No email provided'}</p>
             </div>
             <div class="flex items-center gap-2">
               <span class="text-[10px] font-bold px-2 py-1 ${bgL} rounded-full uppercase">${d.role}</span>
