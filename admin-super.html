@@ -168,8 +168,55 @@
           <h3 class="font-display text-lg font-bold text-midnight-navy">All Published Content</h3>
           <span class="text-xs text-primary font-bold bg-primary/10 px-3 py-1 rounded-full">Full Access — No Restrictions</span>
         </div>
-        <div id="super-content-list" class="divide-y divide-outline-variant">
-          <div class="p-4 text-center text-xs text-on-surface-variant">Loading content...</div>
+        <div class="divide-y divide-outline-variant">
+          <div class="p-4 flex items-center gap-4 hover:bg-surface-container-low transition-colors">
+            <div class="p-2 bg-primary/10 rounded-lg"><span class="material-symbols-outlined text-primary text-[20px]">video_library</span></div>
+            <div class="flex-1 min-w-0">
+              <p class="text-sm font-semibold text-midnight-navy truncate">The Authority of the Believer</p>
+              <p class="text-xs text-on-surface-variant">Sermon • Pastor Akinboye Michael</p>
+            </div>
+            <span class="badge-published text-[10px] font-bold px-2 py-1 rounded-full">PUBLISHED</span>
+            <div class="flex gap-2">
+              <button class="p-1.5 text-on-surface-variant hover:text-primary"><span class="material-symbols-outlined text-[18px]">edit</span></button>
+              <button onclick="deleteRow(this,'The Authority of the Believer')" class="p-1.5 text-on-surface-variant hover:text-red-500"><span class="material-symbols-outlined text-[18px]">delete</span></button>
+            </div>
+          </div>
+          <div class="p-4 flex items-center gap-4 hover:bg-surface-container-low transition-colors">
+            <div class="p-2 bg-primary/10 rounded-lg"><span class="material-symbols-outlined text-primary text-[20px]">event</span></div>
+            <div class="flex-1 min-w-0">
+              <p class="text-sm font-semibold text-midnight-navy truncate">Jehovah Night — April Program</p>
+              <p class="text-xs text-on-surface-variant">Event • Quarterly</p>
+            </div>
+            <span class="badge-published text-[10px] font-bold px-2 py-1 rounded-full">PUBLISHED</span>
+            <div class="flex gap-2">
+              <button class="p-1.5 text-on-surface-variant hover:text-primary"><span class="material-symbols-outlined text-[18px]">edit</span></button>
+              <button onclick="deleteRow(this,'Jehovah Night — April Program')" class="p-1.5 text-on-surface-variant hover:text-red-500"><span class="material-symbols-outlined text-[18px]">delete</span></button>
+            </div>
+          </div>
+          <div class="p-4 flex items-center gap-4 hover:bg-surface-container-low transition-colors">
+            <div class="p-2 bg-primary/10 rounded-lg"><span class="material-symbols-outlined text-primary text-[20px]">school</span></div>
+            <div class="flex-1 min-w-0">
+              <p class="text-sm font-semibold text-midnight-navy truncate">Bible School Lesson 7 — 2025</p>
+              <p class="text-xs text-on-surface-variant">Bible School Lesson</p>
+            </div>
+            <span class="badge-published text-[10px] font-bold px-2 py-1 rounded-full">PUBLISHED</span>
+            <div class="flex gap-2">
+              <button class="p-1.5 text-on-surface-variant hover:text-primary"><span class="material-symbols-outlined text-[18px]">edit</span></button>
+              <button onclick="deleteRow(this,'Bible School Lesson 7 — 2025')" class="p-1.5 text-on-surface-variant hover:text-red-500"><span class="material-symbols-outlined text-[18px]">delete</span></button>
+            </div>
+          </div>
+          <div class="p-4 flex items-center gap-4 hover:bg-surface-container-low transition-colors">
+            <div class="p-2 bg-primary/10 rounded-lg"><span class="material-symbols-outlined text-primary text-[20px]">photo_library</span></div>
+            <div class="flex-1 min-w-0">
+              <p class="text-sm font-semibold text-midnight-navy truncate">Gallery — Women Vigil Photos (12 images)</p>
+              <p class="text-xs text-on-surface-variant">Gallery Upload</p>
+            </div>
+            <span class="badge-published text-[10px] font-bold px-2 py-1 rounded-full">PUBLISHED</span>
+            <div class="flex gap-2">
+              <button class="p-1.5 text-on-surface-variant hover:text-primary"><span class="material-symbols-outlined text-[18px]">edit</span></button>
+              <button onclick="deleteRow(this,'Gallery — Women Vigil Photos')" class="p-1.5 text-on-surface-variant hover:text-red-500"><span class="material-symbols-outlined text-[18px]">delete</span></button>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -345,68 +392,6 @@ function deleteRow(btn, name) {
   const row = btn.closest('.p-4, tr');
   if (row) { row.style.transition = 'opacity 0.3s'; row.style.opacity = '0'; setTimeout(() => row.remove(), 300); }
 }
-</script>
-<script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-app.js";
-  import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-auth.js";
-  import { getFirestore, collection, getDocs, deleteDoc, doc, query, orderBy } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-firestore.js";
-  const firebaseConfig = {
-    apiKey: "AIzaSyDmoTnhEFG1QYV7GHL0Ag3ICiGwWidcWkY",
-    authDomain: "thecomingkingministries-26250.firebaseapp.com",
-    projectId: "thecomingkingministries-26250",
-    storageBucket: "thecomingkingministries-26250.firebasestorage.app",
-    messagingSenderId: "1060064890115",
-    appId: "1:1060064890115:web:7ae456f7690f596c912d36"
-  };
-  const app = initializeApp(firebaseConfig);
-  const auth = getAuth(app);
-  const db = getFirestore(app);
-  onAuthStateChanged(auth, user => { if (!user) window.location.href = '/admin-login.html'; });
-
-  const iconMap = { sermons: 'headphones', events: 'event', bible_school: 'school', video_sermons: 'smart_display' };
-  const labelMap = { sermons: 'Sermon', events: 'Event', bible_school: 'Bible School', video_sermons: 'Video Sermon' };
-
-  async function loadAllContent() {
-    const list = document.getElementById('super-content-list');
-    list.innerHTML = '';
-    const collections = ['sermons','events','bible_school','video_sermons'];
-    let total = 0;
-    for (const col of collections) {
-      try {
-        const q = query(collection(db, col), orderBy('createdAt', 'desc'));
-        const snap = await getDocs(q);
-        snap.forEach(docSnap => {
-          total++;
-          const d = docSnap.data();
-          const div = document.createElement('div');
-          div.className = 'p-4 flex items-center gap-4 hover:bg-surface-container-low transition-colors';
-          div.dataset.id = docSnap.id;
-          div.dataset.col = col;
-          div.innerHTML = `
-            <div class="p-2 bg-primary/10 rounded-lg"><span class="material-symbols-outlined text-primary text-[20px]">${iconMap[col]}</span></div>
-            <div class="flex-1 min-w-0">
-              <p class="text-sm font-semibold text-midnight-navy truncate">${d.title}</p>
-              <p class="text-xs text-on-surface-variant">${labelMap[col]}${d.speaker ? ' • ' + d.speaker : ''}</p>
-            </div>
-            <span class="badge-published text-[10px] font-bold px-2 py-1 rounded-full">PUBLISHED</span>
-            <div class="flex gap-2">
-              ${d.link ? `<a href="${d.link}" target="_blank" class="p-1.5 text-on-surface-variant hover:text-primary"><span class="material-symbols-outlined text-[18px]">open_in_new</span></a>` : ''}
-              <button onclick="superDelete('${col}','${docSnap.id}',this)" class="p-1.5 text-on-surface-variant hover:text-red-500"><span class="material-symbols-outlined text-[18px]">delete</span></button>
-            </div>`;
-          list.appendChild(div);
-        });
-      } catch(e) { console.error(col, e); }
-    }
-    if (total === 0) list.innerHTML = '<div class="p-6 text-center text-sm text-on-surface-variant">No content published yet.</div>';
-  }
-
-  window.superDelete = async function(col, id, btn) {
-    if (!confirm('Permanently delete this item?')) return;
-    try { await deleteDoc(doc(db, col, id)); btn.closest('.p-4').remove(); }
-    catch(e) { alert('Delete failed: ' + e.message); }
-  };
-
-  loadAllContent();
 </script>
 </body>
 </html>
