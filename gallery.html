@@ -303,17 +303,16 @@ document.addEventListener('keydown', e => { if(e.key==='Escape') closeLightbox()
   async function loadGallery() {
     const grid = document.getElementById('gallery-grid');
     if (!grid) return;
+
+    // Show leadership photos immediately — don't wait for Firebase
+    grid.innerHTML = '';
+    renderLeadershipPhotos(grid);
     
     try {
       const q = query(collection(db, 'gallery'), orderBy('createdAt', 'desc'));
       const snap = await getDocs(q);
       
-      grid.innerHTML = '';
-
-      // Always render leadership photos first
-      renderLeadershipPhotos(grid);
-      
-      // Then add Firebase photos
+      // Append Firebase photos after leadership photos
       let index = 0;
       snap.forEach(docSnap => {
         const d = docSnap.data();
@@ -331,10 +330,7 @@ document.addEventListener('keydown', e => { if(e.key==='Escape') closeLightbox()
       
     } catch(e) {
       console.error(e);
-      // On error, still show leadership photos
-      const grid = document.getElementById('gallery-grid');
-      grid.innerHTML = '';
-      renderLeadershipPhotos(grid);
+      // Leadership photos already showing — Firebase just failed silently
     }
   }
 
