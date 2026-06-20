@@ -164,7 +164,7 @@
       </div>
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center" id="featured-sermon-container">
         <a href="https://youtube.com/@thecomingkingministriesnigeria" target="_blank" id="featured-btn" class="rounded-2xl overflow-hidden shadow-xl aspect-video bg-secondary relative block group">
-          <img id="featured-img" class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1438283173091-5dbf5c5a3206?auto=format&fit=crop&q=80&w=800" alt="Latest Sermon" loading="lazy">
+          <img id="featured-img" class="w-full h-full object-cover" src="IMG_7662.jpg" alt="Latest Sermon" loading="lazy">
           <div class="absolute inset-0 bg-black/40 flex items-center justify-center group-hover:bg-black/50 transition-all">
             <div class="w-20 h-20 rounded-full bg-primary/90 flex items-center justify-center shadow-2xl group-hover:scale-110 transition-transform">
               <span class="material-symbols-outlined text-white text-5xl" style="font-variation-settings:'FILL' 1;">play_arrow</span>
@@ -179,9 +179,9 @@
         </a>
         <div class="space-y-6">
           <span class="text-label-caps text-primary">FEATURED SERMON</span>
-          <h2 id="featured-title" class="text-headline-md text-on-background">Loading Latest Message...</h2>
+          <h2 id="featured-title" class="text-headline-md text-on-background">The Coming King Ministries</h2>
           <p id="featured-desc" class="text-body-lg text-on-surface-variant leading-relaxed">
-            Fetching the latest sermon from our database.
+            Watch our latest messages and teachings. Subscribe to our channel to stay updated.
           </p>
           <div class="flex flex-col sm:flex-row gap-4 pt-2">
             <a href="https://youtube.com/@thecomingkingministriesnigeria" target="_blank" class="flex items-center justify-center gap-3 bg-primary text-white px-8 py-3 rounded-lg text-label-md hover:opacity-90 transition-all shadow-sm">
@@ -524,7 +524,7 @@ function filterCat(cat) {
         const dateStr = d.createdAt ? d.createdAt.toDate().toLocaleDateString('en-US', {month: 'short', year: 'numeric'}) : '';
         const cat = (d.category || 'all').toLowerCase();
         
-        let thumbUrl = 'https://images.unsplash.com/photo-1438283173091-5dbf5c5a3206?auto=format&fit=crop&q=80&w=800'; 
+        let thumbUrl = 'IMG_7662.jpg'; 
         if (d.link && d.link.includes('youtube.com/watch?v=')) {
           const videoId = d.link.split('v=')[1].split('&')[0];
           thumbUrl = `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
