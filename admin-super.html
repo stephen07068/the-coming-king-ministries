@@ -346,16 +346,32 @@
   const db = getFirestore(app);
 
   // Auth guard — redirect to login if not signed in or not super admin
-  onAuthStateChanged(auth, user => {
+  onAuthStateChanged(auth, async user => {
     if (!user) {
       window.location.href = '/admin-login.html';
     } else {
-      const role = sessionStorage.getItem('tck_role');
-      if (role && role !== 'super') {
+      let role = sessionStorage.getItem('tck_role');
+      
+      // If role isn't in sessionStorage (e.g. opened in new tab), fetch it from Firestore
+      if (!role) {
+        try {
+          const roleDoc = await getDoc(doc(db, 'admin_roles', user.uid));
+          if (roleDoc.exists()) {
+            role = roleDoc.data().role.toLowerCase().trim();
+            sessionStorage.setItem('tck_role', role);
+          }
+        } catch (e) {
+          console.error("Error fetching role:", e);
+        }
+      }
+
+      // Strictly check for super admin
+      if (role !== 'super' && role !== 'super admin') {
         alert('Access denied. Super Admin privileges required.');
         window.location.href = '/admin-login.html';
         return;
       }
+      
       loadAllContent();
       loadChurchSettings();
       loadUsers();
