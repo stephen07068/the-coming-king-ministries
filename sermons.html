@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html class="light" lang="en">
 <head>
 <link rel="dns-prefetch" href="//fonts.googleapis.com"/>
@@ -162,9 +162,9 @@
         <span class="material-symbols-outlined text-primary text-sm" style="font-variation-settings:'FILL' 1;">smart_display</span>
         <span class="text-label-caps text-primary">LATEST MESSAGE</span>
       </div>
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-        <a href="https://youtube.com/@thecomingkingministriesnigeria" target="_blank" class="rounded-2xl overflow-hidden shadow-xl aspect-video bg-secondary relative block group">
-          <img class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDb7QsHABnUSMQcpMTMmBQG9CGTeTPEDKlrmyN-LmREEgKLHnz-d-muA3B57ZZzWeNUmlz1fzMTDggiTn09FGyKqEg8zNRYWp5kgLnpf3dlI4X388hTmd_KPm4wypf06E9zcxH4EVIXFNbOEGLcGoFocAa7gP7rhnEmUswENO1bzlJB0th2BFrXd19lqf66tw_SdoucNGPbHzfqEPWk8fwO9qQQnPAJoBQqEQnmNpwnyK-L5yJ4XDD6VlOtwklRhT7xx-8J6eLEqNWd" alt="Latest Sermon — The Coming King Ministries"/ loading="lazy">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center" id="featured-sermon-container">
+        <a href="https://youtube.com/@thecomingkingministriesnigeria" target="_blank" id="featured-btn" class="rounded-2xl overflow-hidden shadow-xl aspect-video bg-secondary relative block group">
+          <img id="featured-img" class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1438283173091-5dbf5c5a3206?auto=format&fit=crop&q=80&w=800" alt="Latest Sermon" loading="lazy">
           <div class="absolute inset-0 bg-black/40 flex items-center justify-center group-hover:bg-black/50 transition-all">
             <div class="w-20 h-20 rounded-full bg-primary/90 flex items-center justify-center shadow-2xl group-hover:scale-110 transition-transform">
               <span class="material-symbols-outlined text-white text-5xl" style="font-variation-settings:'FILL' 1;">play_arrow</span>
@@ -179,9 +179,9 @@
         </a>
         <div class="space-y-6">
           <span class="text-label-caps text-primary">FEATURED SERMON</span>
-          <h2 class="text-headline-md text-on-background">Watch Our Latest Message</h2>
-          <p class="text-body-lg text-on-surface-variant leading-relaxed">
-            Every week, Pastor Akinboye Michael and the leadership team of The Coming King Ministries bring fresh, Spirit-filled messages rooted in the Word of God. Subscribe to our YouTube channel to never miss a sermon.
+          <h2 id="featured-title" class="text-headline-md text-on-background">Loading Latest Message...</h2>
+          <p id="featured-desc" class="text-body-lg text-on-surface-variant leading-relaxed">
+            Fetching the latest sermon from our database.
           </p>
           <div class="flex flex-col sm:flex-row gap-4 pt-2">
             <a href="https://youtube.com/@thecomingkingministriesnigeria" target="_blank" class="flex items-center justify-center gap-3 bg-primary text-white px-8 py-3 rounded-lg text-label-md hover:opacity-90 transition-all shadow-sm">
@@ -221,109 +221,6 @@
   <section class="py-section-gap px-margin-mobile md:px-margin-desktop bg-white">
     <div class="max-w-[1440px] mx-auto">
       <div id="sermons-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-
-        <!-- Sermon cards -->
-        <div class="sermon-card group cursor-pointer bg-surface-container-low rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-all" data-title="The Authority of the Believer" data-cat="faith">
-          <div class="relative aspect-video overflow-hidden bg-secondary">
-            <img class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDb7QsHABnUSMQcpMTMmBQG9CGTeTPEDKlrmyN-LmREEgKLHnz-d-muA3B57ZZzWeNUmlz1fzMTDggiTn09FGyKqEg8zNRYWp5kgLnpf3dlI4X388hTmd_KPm4wypf06E9zcxH4EVIXFNbOEGLcGoFocAa7gP7rhnEmUswENO1bzlJB0th2BFrXd19lqf66tw_SdoucNGPbHzfqEPWk8fwO9qQQnPAJoBQqEQnmNpwnyK-L5yJ4XDD6VlOtwklRhT7xx-8J6eLEqNWd" alt="Sermon"/ loading="lazy">
-            <div class="absolute inset-0 bg-primary/20 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-              <span class="material-symbols-outlined text-white text-6xl" style="font-variation-settings:'FILL' 1;">play_circle</span>
-            </div>
-            <span class="absolute top-3 left-3 bg-primary text-white text-label-caps px-2 py-1 rounded">Faith</span>
-          </div>
-          <div class="p-6">
-            <h3 class="text-headline-sm text-on-background mb-2 group-hover:text-primary transition-colors">The Authority of the Believer</h3>
-            <p class="text-on-surface-variant text-body-md mb-3">Pastor Akinboye Michael</p>
-            <p class="text-body-md text-on-surface-variant text-sm mb-4">Understanding the spiritual authority given to every born-again believer through Christ Jesus.</p>
-            <div class="flex items-center justify-between border-t border-surface-container-high pt-4">
-              <span class="text-label-md text-on-surface-variant">Jan 2025</span>
-              <a href="https://youtube.com/@thecomingkingministriesnigeria" target="_blank" class="text-primary text-label-md font-bold flex items-center gap-1 hover:underline">Watch <span class="material-symbols-outlined text-sm">open_in_new</span></a>
-            </div>
-          </div>
-        </div>
-
-        <div class="sermon-card group cursor-pointer bg-surface-container-low rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-all" data-title="Walking in Divine Purpose" data-cat="evangelism">
-          <div class="relative aspect-video overflow-hidden bg-secondary">
-            <img class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCDC-Zi_-lin2L2k1_CJLAK7SdAdAzNf9hAgJi3cDOrpwoAJgYh99J6S81GFM8ZTBOfd63Ug3h5zUmUH4MuFMK-_-nooemyvWq2DErixeCD15bwiSkfPYgjXi7j8TrZ5f1UHVfNQuNppJaeNd-0u5KklvRLf3SkYNDG7pZDc6uR4ZeKhrLHdGv2RHHD_j-TDZLjmrrL2uXccxBfxxhD7FOxAJVG_MTP6-zsH4jWrYVK1Na3zzD3UXKL1Z1X1zv8l_Sbm8qnN_YtLjE4" alt="Sermon"/ loading="lazy">
-            <div class="absolute inset-0 bg-primary/20 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-              <span class="material-symbols-outlined text-white text-6xl" style="font-variation-settings:'FILL' 1;">play_circle</span>
-            </div>
-            <span class="absolute top-3 left-3 bg-secondary text-white text-label-caps px-2 py-1 rounded">Evangelism</span>
-          </div>
-          <div class="p-6">
-            <h3 class="text-headline-sm text-on-background mb-2 group-hover:text-primary transition-colors">Walking in Divine Purpose</h3>
-            <p class="text-on-surface-variant text-body-md mb-3">Pastor Ruth O. Olatoye</p>
-            <p class="text-body-md text-on-surface-variant text-sm mb-4">Discovering and walking in the unique calling God has placed upon your life for His glory.</p>
-            <div class="flex items-center justify-between border-t border-surface-container-high pt-4">
-              <span class="text-label-md text-on-surface-variant">Dec 2026</span>
-              <a href="https://youtube.com/@thecomingkingministriesnigeria" target="_blank" class="text-primary text-label-md font-bold flex items-center gap-1 hover:underline">Watch <span class="material-symbols-outlined text-sm">open_in_new</span></a>
-            </div>
-          </div>
-        </div>
-
-        <div class="sermon-card group cursor-pointer bg-surface-container-low rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-all" data-title="Behold He Cometh: The Signs" data-cat="prophecy">
-          <div class="relative aspect-video overflow-hidden bg-secondary">
-            <img class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCDIhEizJdtUF_g2n2KLZf043bOR6__ucgw-U8h3HJlHA-cXM5D7oJhQSeNwUrUPtCUmt9IAQhBxD_ihQ5PEVxWdu_1Aw7bcy1QI8Hs802V1sMi0jPpbS6c0MjZdLydJ9bPaNxb7neoGa-GG-PtWEZCNzd-TeGj7p77w471fkD4dUYWYpNlLg24rBY6FdM-bUiCUxNiCUQZmJSfuVSjLhBJHYBjGJEWedRtJOIKd03QVjoYoVdSx7LK5AnVMBQOOezcAHjF5i-hHGD4" alt="Sermon"/ loading="lazy">
-            <div class="absolute inset-0 bg-primary/20 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-              <span class="material-symbols-outlined text-white text-6xl" style="font-variation-settings:'FILL' 1;">play_circle</span>
-            </div>
-            <span class="absolute top-3 left-3 bg-primary text-white text-label-caps px-2 py-1 rounded">Prophecy</span>
-          </div>
-          <div class="p-6">
-            <h3 class="text-headline-sm text-on-background mb-2 group-hover:text-primary transition-colors">Behold He Cometh: The Signs</h3>
-            <p class="text-on-surface-variant text-body-md mb-3">Pastor Akinboye Michael</p>
-            <p class="text-body-md text-on-surface-variant text-sm mb-4">A prophetic study of the signs preceding the Second Coming of our Lord Jesus Christ.</p>
-            <div class="flex items-center justify-between border-t border-surface-container-high pt-4">
-              <span class="text-label-md text-on-surface-variant">Nov 2024</span>
-              <a href="https://youtube.com/@thecomingkingministriesnigeria" target="_blank" class="text-primary text-label-md font-bold flex items-center gap-1 hover:underline">Watch <span class="material-symbols-outlined text-sm">open_in_new</span></a>
-            </div>
-          </div>
-        </div>
-
-        <div class="sermon-card group cursor-pointer bg-surface-container-low rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-all" data-title="The Power of Holiness" data-cat="holiness">
-          <div class="relative aspect-video overflow-hidden bg-secondary">
-            <img class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCNbvE63YDSbrwpDiUc1qxlvMMCfTCcBSApqtji5DX35D1pSkEeCvvyyYf1A8Cn1mm0vMe6aCNniLsMrU5CgN2BGNXzbgvaA3Q7rVXmN-FM-qOa2u0OaonsLCG7tio2W__7540T29I3v8yyFLUXIZu51WuadqhvK1OwnS1VKpyEXZNZKI4tSeTcoU81yyoYRHD-QbjhNtWIr_AjJQh0LUvizsFojD4ka17pKjrLPMLtC8WtCK65M9jHcwpyXVyVR8qHnpAWOatiuupn" alt="Sermon"/ loading="lazy">
-            <div class="absolute inset-0 bg-primary/20 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-              <span class="material-symbols-outlined text-white text-6xl" style="font-variation-settings:'FILL' 1;">play_circle</span>
-            </div>
-            <span class="absolute top-3 left-3 bg-secondary text-white text-label-caps px-2 py-1 rounded">Holiness</span>
-          </div>
-          <div class="p-6">
-            <h3 class="text-headline-sm text-on-background mb-2 group-hover:text-primary transition-colors">The Power of Holiness</h3>
-            <p class="text-on-surface-variant text-body-md mb-3">Pastor Akinboye Michael</p>
-            <p class="text-body-md text-on-surface-variant text-sm mb-4">Why holiness is not optional — it is the very nature of God and the requirement for those who will see Him.</p>
-            <div class="flex items-center justify-between border-t border-surface-container-high pt-4">
-              <span class="text-label-md text-on-surface-variant">Oct 2024</span>
-              <a href="https://youtube.com/@thecomingkingministriesnigeria" target="_blank" class="text-primary text-label-md font-bold flex items-center gap-1 hover:underline">Watch <span class="material-symbols-outlined text-sm">open_in_new</span></a>
-            </div>
-          </div>
-        </div>
-
-        <div class="sermon-card group cursor-pointer bg-surface-container-low rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-all" data-title="Praying Without Ceasing" data-cat="prayer">
-          <div class="relative aspect-video overflow-hidden bg-secondary">
-            <img class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAAbefJcgnCiZarKXAtj8yghiwVYj_eCUZ0J8tPvGwJtJmaaWDjZ2nnWlhfaW465uzOyBeBZu_TOVeHXif47U4QoZdHm04rPyW-6orN6fQW83gupAle5NPKw-0MGIXerqXICds5_YJTJnMdy96uaLxBbHYk_B8pAIAAp0ZqpGWsDzPsduh9wRyLvJmcHRZ5MOQsXJesAyRcGxnAKhaxibhBVM8YnySvj6O2dW-LUhIxakUi7N031rgWfn_pIs4lObVfpcslaaG5Xtqk" alt="Sermon"/ loading="lazy">
-            <div class="absolute inset-0 bg-primary/20 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-              <span class="material-symbols-outlined text-white text-6xl" style="font-variation-settings:'FILL' 1;">play_circle</span>
-            </div>
-            <span class="absolute top-3 left-3 bg-primary text-white text-label-caps px-2 py-1 rounded">Prayer</span>
-          </div>
-          <div class="p-6">
-            <h3 class="text-headline-sm text-on-background mb-2 group-hover:text-primary transition-colors">Praying Without Ceasing</h3>
-            <p class="text-on-surface-variant text-body-md mb-3">Pastor Samuel O. Olatoye</p>
-            <p class="text-body-md text-on-surface-variant text-sm mb-4">Building a consistent and effective prayer life that connects you to the heart of God continually.</p>
-            <div class="flex items-center justify-between border-t border-surface-container-high pt-4">
-              <span class="text-label-md text-on-surface-variant">Sep 2024</span>
-              <a href="https://youtube.com/@thecomingkingministriesnigeria" target="_blank" class="text-primary text-label-md font-bold flex items-center gap-1 hover:underline">Watch <span class="material-symbols-outlined text-sm">open_in_new</span></a>
-            </div>
-          </div>
-        </div>
-
-        <div class="sermon-card group cursor-pointer bg-surface-container-low rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-all" data-title="Faith That Moves Mountains" data-cat="faith">
-          <div class="relative aspect-video overflow-hidden bg-secondary">
-            <img class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD0krVlURxNTbjOlcoR2ePefyNIwuMVqmK440uk9PGq0weRANQrf9obDGtsIaGL5446HvwLp1eJQXywwsqFOEtUtgY4S7XVFjRgm9z9uLi_w5xXCMuPBb98LHMJaGAH0AIU9F1l-eGFphILQTry_YKjr5mJ93xX7BUkBecyU2EK265cIOugHWVWi3Z6QO_h9FGtTmBBmsGjIn1MacWWISxe2QTVbYAWySVemFLEGF72UF0cTs-eVzDTxW2kPHDuZCL5IRId56CmywA5" alt="Sermon"/ loading="lazy">
-            <div class="absolute inset-0 bg-primary/20 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-              <span class="material-symbols-outlined text-white text-6xl" style="font-variation-settings:'FILL' 1;">play_circle</span>
-            </div>
             <span class="absolute top-3 left-3 bg-secondary text-white text-label-caps px-2 py-1 rounded">Faith</span>
           </div>
           <div class="p-6">
@@ -487,14 +384,105 @@ function filterCat(cat) {
     b.classList.add('bg-white','text-on-surface-variant','border','border-surface-container-high');
   });
   const btn = document.querySelector(`[data-cat="${cat}"]`);
-  btn.classList.add('bg-primary','text-white');
-  btn.classList.remove('bg-white','text-on-surface-variant','border','border-surface-container-high');
+  if (btn) {
+    btn.classList.add('bg-primary','text-white');
+    btn.classList.remove('bg-white','text-on-surface-variant','border','border-surface-container-high');
+  }
   document.querySelectorAll('.sermon-card').forEach(card => {
     card.style.display = (cat === 'all' || card.dataset.cat === cat) ? '' : 'none';
   });
   const visible = [...document.querySelectorAll('.sermon-card')].filter(c => c.style.display !== 'none').length;
   document.getElementById('no-results').style.display = visible === 0 ? 'block' : 'none';
 }
+
+</script>
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-app.js";
+  import { getFirestore, collection, getDocs, query, orderBy } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-firestore.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyDmoTnhEFG1QYV7GHL0Ag3ICiGwWidcWkY",
+    authDomain: "thecomingkingministries-26250.firebaseapp.com",
+    projectId: "thecomingkingministries-26250",
+    storageBucket: "thecomingkingministries-26250.firebasestorage.app",
+    messagingSenderId: "1060064890115",
+    appId: "1:1060064890115:web:7ae456f7690f596c912d36"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+
+  async function loadSermons() {
+    const grid = document.getElementById('sermons-grid');
+    if (!grid) return;
+    
+    try {
+      const q = query(collection(db, 'video_sermons'), orderBy('createdAt', 'desc'));
+      const snap = await getDocs(q);
+      
+      if (snap.empty) {
+        grid.innerHTML = '<div class="col-span-full py-20 text-center"><p class="text-on-surface-variant">No sermons found. Please check back later!</p></div>';
+        document.getElementById('featured-sermon-container').style.display = 'none';
+        return;
+      }
+      
+      grid.innerHTML = '';
+      let isFirst = true;
+      
+      snap.forEach(docSnap => {
+        const d = docSnap.data();
+        const dateStr = d.createdAt ? d.createdAt.toDate().toLocaleDateString('en-US', {month: 'short', year: 'numeric'}) : '';
+        const cat = (d.category || 'all').toLowerCase();
+        
+        let thumbUrl = 'https://images.unsplash.com/photo-1438283173091-5dbf5c5a3206?auto=format&fit=crop&q=80&w=800'; 
+        if (d.link && d.link.includes('youtube.com/watch?v=')) {
+          const videoId = d.link.split('v=')[1].split('&')[0];
+          thumbUrl = `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
+        } else if (d.link && d.link.includes('youtu.be/')) {
+          const videoId = d.link.split('youtu.be/')[1].split('?')[0];
+          thumbUrl = `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
+        }
+        
+        if (isFirst) {
+           document.getElementById('featured-title').textContent = d.title || 'Latest Message';
+           document.getElementById('featured-desc').textContent = d.description || `Message by ${d.speaker || 'Pastor Akinboye Michael'}`;
+           document.getElementById('featured-btn').href = d.link || '#';
+           document.getElementById('featured-img').src = thumbUrl;
+           isFirst = false;
+        }
+
+        const isVideo = d.type !== 'audio';
+        const icon = isVideo ? 'play_circle' : 'headphones';
+        const linkText = isVideo ? 'Watch' : 'Listen';
+
+        grid.innerHTML += `
+        <div class="sermon-card group cursor-pointer bg-surface-container-low rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-all" data-title="${d.title || ''}" data-cat="${cat}">
+          <div class="relative aspect-video overflow-hidden bg-secondary">
+            <img class="w-full h-full object-cover" src="${thumbUrl}" alt="Sermon" loading="lazy">
+            <div class="absolute inset-0 bg-primary/20 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+              <span class="material-symbols-outlined text-white text-6xl" style="font-variation-settings:'FILL' 1;">${icon}</span>
+            </div>
+            <span class="absolute top-3 left-3 bg-primary text-white text-label-caps px-2 py-1 rounded capitalize">${d.category || 'Message'}</span>
+          </div>
+          <div class="p-6 flex flex-col h-full">
+            <h3 class="text-headline-sm text-on-background mb-2 group-hover:text-primary transition-colors line-clamp-2">${d.title || ''}</h3>
+            <p class="text-on-surface-variant text-body-md mb-3">${d.speaker || ''}</p>
+            <p class="text-body-md text-on-surface-variant text-sm mb-4 line-clamp-3">${d.description || ''}</p>
+            <div class="mt-auto flex items-center justify-between border-t border-surface-container-high pt-4">
+              <span class="text-label-md text-on-surface-variant">${dateStr}</span>
+              <a href="${d.link || '#'}" target="_blank" class="text-primary text-label-md font-bold flex items-center gap-1 hover:underline">${linkText} <span class="material-symbols-outlined text-sm">open_in_new</span></a>
+            </div>
+          </div>
+        </div>`;
+      });
+      
+    } catch(e) {
+      console.error(e);
+      grid.innerHTML = '<div class="col-span-full py-20 text-center text-red-500">Failed to load sermons. Please refresh the page.</div>';
+    }
+  }
+
+  loadSermons();
 </script>
 </body>
 </html>

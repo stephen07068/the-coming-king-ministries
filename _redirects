@@ -1,3 +1,21 @@
 /    /home_page_the_coming_king_ministries.html    200
+/home    /home_page_the_coming_king_ministries.html    200
+
+# Admin routes
 /admin    /admin-login.html    200
 /admin/   /admin-login.html    200
+/admin/login    /admin-login.html    200
+/admin/super    /admin-super.html    200
+/admin/content    /admin-content.html    200
+/admin/media    /admin-media.html    200
+
+# Public pages
+/about    /about.html    200
+/leadership    /leadership.html    200
+/sermons    /sermons.html    200
+/events    /events.html    200
+/gallery    /gallery.html    200
+/bible-school    /bible-school.html    200
+/giving    /giving.html    200
+/contact    /contact.html    200
+/services    /services.html    200
