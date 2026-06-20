@@ -470,14 +470,20 @@
     if (!user) {
       window.location.href = '/admin-login.html';
     } else {
-      let role = sessionStorage.getItem('tck_role');
+      let role = localStorage.getItem('tck_role');
       if (!role) {
         try {
           const roleDoc = await getDoc(doc(db, 'admin_roles', user.uid));
           if (roleDoc.exists()) {
             role = roleDoc.data().role.toLowerCase().trim();
-            sessionStorage.setItem('tck_role', role);
+          } else {
+            // Fallback to email detection if missing from database
+            const email = user.email ? user.email.toLowerCase() : '';
+            if (email.includes('superadmin')) role = 'super';
+            else if (email.includes('media')) role = 'media';
+            else role = 'content';
           }
+          localStorage.setItem('tck_role', role);
         } catch (e) {
           console.error("Error fetching role:", e);
         }
@@ -498,7 +504,7 @@
 
   // Logout function
   window.handleLogout = async function() {
-    sessionStorage.clear();
+    localStorage.clear();
     await signOut(auth);
     window.location.href = '/admin-login.html';
   };

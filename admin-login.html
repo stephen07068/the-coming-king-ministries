@@ -130,8 +130,8 @@
         else if (email.includes('media')) role = 'media';
         else role = 'content';
       }
-      sessionStorage.setItem('tck_role', role);
-      sessionStorage.setItem('tck_user', email);
+      localStorage.setItem('tck_role', role);
+      localStorage.setItem('tck_user', email);
       window.location.href = roleRedirects[role] || '/admin-super.html';
     } catch (err) {
       btn.disabled = false;
