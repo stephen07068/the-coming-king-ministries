@@ -360,19 +360,11 @@
     <div id="panel-banners" class="panel">
       <div class="bg-surface-container-lowest rounded-xl border border-outline-variant shadow-sm p-6">
         <h3 class="font-display text-lg font-bold text-midnight-navy mb-6">Homepage Banners</h3>
-        <div class="space-y-4">
-          <div class="flex items-center gap-4 p-4 bg-surface-container-low rounded-xl">
-            <img src="https://images.unsplash.com/photo-1438232992991-995b7058bbb3?q=80&w=200&auto=format&fit=crop" class="w-24 h-16 object-cover rounded-lg flex-shrink-0" alt="Banner"/ loading="lazy">
-            <div class="flex-1">
-              <p class="text-sm font-semibold text-midnight-navy">Hero Background Image</p>
-              <p class="text-xs text-on-surface-variant">Currently active on homepage</p>
-            </div>
-            <button class="px-4 py-2 border border-outline-variant rounded-lg text-sm text-on-surface-variant hover:bg-surface-container transition-all flex items-center gap-2">
-              <span class="material-symbols-outlined text-[16px]">swap_horiz</span> Replace
-            </button>
-          </div>
+        <div id="banners-list" class="space-y-4">
+          <p class="text-xs text-on-surface-variant">Loading banners...</p>
         </div>
-        <button class="mt-4 px-5 py-2.5 bg-primary text-white text-sm font-bold rounded-lg hover:opacity-90 flex items-center gap-2">
+        <input type="file" id="banner-input" class="hidden" accept="image/*" onchange="uploadBanner(this)"/>
+        <button onclick="document.getElementById('banner-input').click()" class="mt-4 px-5 py-2.5 bg-primary text-white text-sm font-bold rounded-lg hover:opacity-90 flex items-center gap-2">
           <span class="material-symbols-outlined text-[16px]">add</span> Add New Banner
         </button>
       </div>
@@ -382,28 +374,13 @@
     <div id="panel-leadership-photos" class="panel">
       <div class="bg-surface-container-lowest rounded-xl border border-outline-variant shadow-sm p-6">
         <h3 class="font-display text-lg font-bold text-midnight-navy mb-6">Leadership Photos</h3>
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
-          <div class="text-center">
-            <div class="w-24 h-24 mx-auto rounded-full overflow-hidden border-2 border-primary mb-3 relative group cursor-pointer">
-              <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDCOz29hfR3d7IhSsleV9Js-CQBn1_tRoU3b5JysmSsDSVQnPKBKSGbP4nOpPoc1zVIvlRA85ZwV6Nq2vglvm7INJUg96ZPbxU3y1Kwo_H2iGqvbh0F1CJUbvyapWGev-DdkeQJQRh_HtLnFYCxJoyw8HI0A2CVXesVvZLRnguLPXa-2_DklHGQAKYnaZq-PgwyRJxr6e_0nAcBFVdl0l1DW2BAOUvD8Xidxjv6Moi0ClauXn1fYSwlX8mdSHPrO1F5jAH8hESAsrk8" class="w-full h-full object-cover" alt=""/ loading="lazy">
-              <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                <span class="material-symbols-outlined text-white text-[20px]">edit</span>
-              </div>
-            </div>
-            <p class="text-xs font-semibold text-midnight-navy">Pastor Akinboye Michael</p>
-            <p class="text-[10px] text-primary">General Overseer</p>
-          </div>
-          <div class="text-center">
-            <div class="w-24 h-24 mx-auto rounded-full overflow-hidden border-2 border-surface-container-high mb-3 relative group cursor-pointer bg-surface-container flex items-center justify-center">
-              <span class="material-symbols-outlined text-on-surface-variant text-4xl">person</span>
-              <div class="absolute inset-0 bg-primary/80 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center rounded-full">
-                <span class="material-symbols-outlined text-white text-[20px]">add_photo_alternate</span>
-              </div>
-            </div>
-            <p class="text-xs font-semibold text-midnight-navy">Pastor Ruth O. Olatoye</p>
-            <p class="text-[10px] text-on-surface-variant">Upload photo</p>
-          </div>
+        <div id="leadership-list" class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-6">
+          <p class="text-xs text-on-surface-variant col-span-full">Loading leadership photos...</p>
         </div>
+        <input type="file" id="leadership-input" class="hidden" accept="image/*" onchange="handleLeadershipUpload(this)"/>
+        <button onclick="addLeadershipPrompt()" class="px-5 py-2.5 bg-primary text-white text-sm font-bold rounded-lg hover:opacity-90 flex items-center gap-2">
+          <span class="material-symbols-outlined text-[16px]">add</span> Add Leader
+        </button>
       </div>
     </div>
 
@@ -417,17 +394,17 @@
         <div class="space-y-4">
           <div>
             <label class="text-xs font-bold uppercase tracking-wider text-on-surface-variant block mb-2">Channel URL</label>
-            <input value="https://youtube.com/@thecomingkingministriesnigeria" class="w-full px-4 py-2.5 rounded-lg border border-outline-variant text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary"/>
+            <input id="yt-url" class="w-full px-4 py-2.5 rounded-lg border border-outline-variant text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary"/>
           </div>
           <div>
             <label class="text-xs font-bold uppercase tracking-wider text-on-surface-variant block mb-2">Channel Name</label>
-            <input value="@thecomingkingministriesnigeria" class="w-full px-4 py-2.5 rounded-lg border border-outline-variant text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary"/>
+            <input id="yt-name" class="w-full px-4 py-2.5 rounded-lg border border-outline-variant text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary"/>
           </div>
           <div>
             <label class="text-xs font-bold uppercase tracking-wider text-on-surface-variant block mb-2">Featured Video Embed URL (for homepage)</label>
-            <input placeholder="https://www.youtube.com/embed/VIDEO_ID" class="w-full px-4 py-2.5 rounded-lg border border-outline-variant text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary"/>
+            <input id="yt-embed" placeholder="https://www.youtube.com/embed/VIDEO_ID" class="w-full px-4 py-2.5 rounded-lg border border-outline-variant text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary"/>
           </div>
-          <button class="px-6 py-2.5 bg-primary text-white text-sm font-bold rounded-lg hover:opacity-90">Save YouTube Settings</button>
+          <button onclick="saveSocialSettings(this)" class="px-6 py-2.5 bg-primary text-white text-sm font-bold rounded-lg hover:opacity-90">Save YouTube Settings</button>
         </div>
       </div>
     </div>
@@ -442,9 +419,9 @@
         <div class="space-y-4">
           <div>
             <label class="text-xs font-bold uppercase tracking-wider text-on-surface-variant block mb-2">Facebook Page URL</label>
-            <input value="https://www.facebook.com/profile.php?id=100080477388903" class="w-full px-4 py-2.5 rounded-lg border border-outline-variant text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary"/>
+            <input id="fb-url" class="w-full px-4 py-2.5 rounded-lg border border-outline-variant text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary"/>
           </div>
-          <button class="px-6 py-2.5 bg-primary text-white text-sm font-bold rounded-lg hover:opacity-90">Save Facebook Settings</button>
+          <button onclick="saveSocialSettings(this)" class="px-6 py-2.5 bg-primary text-white text-sm font-bold rounded-lg hover:opacity-90">Save Facebook Settings</button>
         </div>
       </div>
     </div>
@@ -459,9 +436,9 @@
         <div class="space-y-4">
           <div>
             <label class="text-xs font-bold uppercase tracking-wider text-on-surface-variant block mb-2">Instagram Profile URL</label>
-            <input placeholder="https://instagram.com/thecomingkingministries" class="w-full px-4 py-2.5 rounded-lg border border-outline-variant text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary"/>
+            <input id="ig-url" placeholder="https://instagram.com/thecomingkingministries" class="w-full px-4 py-2.5 rounded-lg border border-outline-variant text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary"/>
           </div>
-          <button class="px-6 py-2.5 bg-primary text-white text-sm font-bold rounded-lg hover:opacity-90">Save Instagram Settings</button>
+          <button onclick="saveSocialSettings(this)" class="px-6 py-2.5 bg-primary text-white text-sm font-bold rounded-lg hover:opacity-90">Save Instagram Settings</button>
         </div>
       </div>
     </div>
@@ -472,7 +449,7 @@
 <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-app.js";
   import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-auth.js";
-  import { getFirestore, collection, addDoc, getDocs, deleteDoc, doc, serverTimestamp, query, orderBy } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-firestore.js";
+  import { getFirestore, collection, addDoc, getDocs, deleteDoc, doc, serverTimestamp, query, orderBy, setDoc, getDoc } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-firestore.js";
 
   const firebaseConfig = {
     apiKey: "AIzaSyDmoTnhEFG1QYV7GHL0Ag3ICiGwWidcWkY",
@@ -744,6 +721,143 @@
     if (name === 'gallery') loadGallery();
     if (name === 'events') loadEvents();
     if (name === 'video-sermons') loadVideoSermons();
+    if (name === 'leadership-photos') loadLeadership();
+    if (name === 'banners') loadBanners();
+    if (name === 'social-links' || name === 'youtube' || name === 'facebook' || name === 'instagram') loadSocialSettings();
+  };
+
+  // ── BANNERS ──────────────────────────────────────────────
+  async function loadBanners() {
+    const list = document.getElementById('banners-list');
+    if (!list) return;
+    list.innerHTML = '<p class="text-xs text-on-surface-variant">Loading banners...</p>';
+    try {
+      const q = query(collection(db, 'banners'), orderBy('createdAt', 'desc'));
+      const snap = await getDocs(q);
+      if (snap.empty) { list.innerHTML = '<p class="text-sm text-on-surface-variant">No banners uploaded yet.</p>'; return; }
+      list.innerHTML = '';
+      snap.forEach(docSnap => {
+        const d = docSnap.data();
+        list.innerHTML += `
+          <div class="flex items-center gap-4 p-4 bg-surface-container-low rounded-xl">
+            <img src="${d.imageUrl}" class="w-24 h-16 object-cover rounded-lg flex-shrink-0" alt="Banner" loading="lazy">
+            <div class="flex-1">
+              <p class="text-sm font-semibold text-midnight-navy">Hero Background Image</p>
+              <p class="text-xs text-on-surface-variant">${d.createdAt?.toDate().toLocaleDateString() || ''}</p>
+            </div>
+            <button onclick="deleteBanner('${docSnap.id}', this)" class="px-4 py-2 border border-outline-variant rounded-lg text-sm text-red-500 hover:bg-surface-container transition-all flex items-center gap-2">
+              <span class="material-symbols-outlined text-[16px]">delete</span> Delete
+            </button>
+          </div>
+        `;
+      });
+    } catch(e) { console.error(e); }
+  }
+  window.deleteBanner = async function(id, btn) {
+    if(!confirm('Delete banner?')) return;
+    try { await deleteDoc(doc(db, 'banners', id)); btn.closest('.flex').remove(); } catch(e) { alert(e.message); }
+  };
+  window.uploadBanner = async function(input) {
+    if (!input.files.length) return;
+    const file = input.files[0];
+    if (file.size > 2*1024*1024) { alert('Max 2MB'); return; }
+    try {
+      const base64Url = await new Promise((res, rej) => {
+        const r = new FileReader(); r.onload=e=>res(e.target.result); r.onerror=rej; r.readAsDataURL(file);
+      });
+      await addDoc(collection(db, 'banners'), { imageUrl: base64Url, createdAt: serverTimestamp() });
+      input.value = '';
+      loadBanners();
+      alert('Banner uploaded!');
+    } catch(e) { alert(e.message); }
+  };
+
+  // ── LEADERSHIP ───────────────────────────────────────────
+  let pendingLeadershipName = '';
+  let pendingLeadershipRole = '';
+  window.addLeadershipPrompt = function() {
+    pendingLeadershipName = prompt('Enter leader name (e.g. Pastor John):');
+    if (!pendingLeadershipName) return;
+    pendingLeadershipRole = prompt('Enter leader role (e.g. General Overseer):');
+    if (!pendingLeadershipRole) return;
+    document.getElementById('leadership-input').click();
+  };
+  window.handleLeadershipUpload = async function(input) {
+    if (!input.files.length) return;
+    const file = input.files[0];
+    if (file.size > 1*1024*1024) { alert('Max 1MB'); return; }
+    try {
+      const base64Url = await new Promise((res, rej) => {
+        const r = new FileReader(); r.onload=e=>res(e.target.result); r.onerror=rej; r.readAsDataURL(file);
+      });
+      await addDoc(collection(db, 'leadership_photos'), { 
+        name: pendingLeadershipName, role: pendingLeadershipRole, imageUrl: base64Url, createdAt: serverTimestamp() 
+      });
+      input.value = '';
+      loadLeadership();
+      alert('Leader added!');
+    } catch(e) { alert(e.message); }
+  };
+  async function loadLeadership() {
+    const list = document.getElementById('leadership-list');
+    if (!list) return;
+    list.innerHTML = '<p class="text-xs text-on-surface-variant col-span-full">Loading...</p>';
+    try {
+      const q = query(collection(db, 'leadership_photos'), orderBy('createdAt', 'asc'));
+      const snap = await getDocs(q);
+      if (snap.empty) { list.innerHTML = '<p class="text-sm text-on-surface-variant col-span-full">No leaders added.</p>'; return; }
+      list.innerHTML = '';
+      snap.forEach(docSnap => {
+        const d = docSnap.data();
+        list.innerHTML += `
+          <div class="text-center relative group">
+            <div class="w-24 h-24 mx-auto rounded-full overflow-hidden border-2 border-primary mb-3">
+              <img src="${d.imageUrl}" class="w-full h-full object-cover" alt="Leader" loading="lazy">
+            </div>
+            <p class="text-xs font-semibold text-midnight-navy">${d.name}</p>
+            <p class="text-[10px] text-primary">${d.role}</p>
+            <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center rounded-lg">
+              <button onclick="deleteLeadership('${docSnap.id}', this)" class="p-2 bg-red-500 rounded-full text-white"><span class="material-symbols-outlined text-[16px]">delete</span></button>
+            </div>
+          </div>
+        `;
+      });
+    } catch(e) { console.error(e); }
+  }
+  window.deleteLeadership = async function(id, btn) {
+    if(!confirm('Delete this leader?')) return;
+    try { await deleteDoc(doc(db, 'leadership_photos', id)); btn.closest('.text-center').remove(); } catch(e) { alert(e.message); }
+  };
+
+  // ── SOCIAL LINKS ─────────────────────────────────────────
+  async function loadSocialSettings() {
+    try {
+      const docSnap = await getDoc(doc(db, 'settings', 'social'));
+      if (docSnap.exists()) {
+        const d = docSnap.data();
+        if(document.getElementById('yt-url')) document.getElementById('yt-url').value = d.ytUrl || '';
+        if(document.getElementById('yt-name')) document.getElementById('yt-name').value = d.ytName || '';
+        if(document.getElementById('yt-embed')) document.getElementById('yt-embed').value = d.ytEmbed || '';
+        if(document.getElementById('fb-url')) document.getElementById('fb-url').value = d.fbUrl || '';
+        if(document.getElementById('ig-url')) document.getElementById('ig-url').value = d.igUrl || '';
+      }
+    } catch(e) { console.error(e); }
+  }
+  window.saveSocialSettings = async function(btn) {
+    btn.disabled = true; btn.textContent = 'Saving...';
+    try {
+      const data = {
+        ytUrl: document.getElementById('yt-url')?.value || '',
+        ytName: document.getElementById('yt-name')?.value || '',
+        ytEmbed: document.getElementById('yt-embed')?.value || '',
+        fbUrl: document.getElementById('fb-url')?.value || '',
+        igUrl: document.getElementById('ig-url')?.value || '',
+        updatedAt: serverTimestamp()
+      };
+      await setDoc(doc(db, 'settings', 'social'), data, { merge: true });
+      alert('Settings saved!');
+    } catch(e) { alert(e.message); }
+    finally { btn.disabled = false; btn.textContent = 'Save Settings'; }
   };
 
   // ── MODALS ───────────────────────────────────────────────
@@ -827,6 +941,9 @@
 
   // ── INITIAL LOAD ─────────────────────────────────────────
   loadGallery();
+  loadLeadership();
+  loadBanners();
+  loadSocialSettings();
 </script>
 </body>
 </html>
