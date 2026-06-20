@@ -91,40 +91,8 @@
             <th class="px-6 py-3 text-[10px] uppercase tracking-wider text-on-surface-variant font-bold">Status</th>
             <th class="px-6 py-3 text-[10px] uppercase tracking-wider text-on-surface-variant font-bold">Actions</th>
           </tr></thead>
-          <tbody class="divide-y divide-outline-variant/20">
-            <tr class="hover:bg-surface-container-low/20 transition-colors">
-              <td class="px-6 py-3 font-semibold text-midnight-navy text-sm">The Authority of the Believer</td>
-              <td class="px-6 py-3"><span class="text-[10px] font-bold px-2 py-1 bg-red-50 text-red-600 rounded-full flex items-center gap-1 w-fit"><span class="material-symbols-outlined text-[12px]">smart_display</span> Video</span></td>
-              <td class="px-6 py-3 text-xs text-on-surface-variant">Pastor Akinboye Michael</td>
-              <td class="px-6 py-3 text-xs text-on-surface-variant">Faith</td>
-              <td class="px-6 py-3"><span class="text-[10px] font-bold px-2 py-1 bg-blue-50 text-blue-700 rounded-full">PUBLISHED</span></td>
-              <td class="px-6 py-3 flex gap-2">
-                <button class="p-1.5 text-on-surface-variant hover:text-primary"><span class="material-symbols-outlined text-[18px]">edit</span></button>
-                <button onclick="deleteRow(this,'The Authority of the Believer')" class="p-1.5 text-on-surface-variant hover:text-red-500"><span class="material-symbols-outlined text-[18px]">delete</span></button>
-              </td>
-            </tr>
-            <tr class="hover:bg-surface-container-low/20 transition-colors">
-              <td class="px-6 py-3 font-semibold text-midnight-navy text-sm">Behold He Cometh: The Signs</td>
-              <td class="px-6 py-3"><span class="text-[10px] font-bold px-2 py-1 bg-purple-50 text-purple-600 rounded-full flex items-center gap-1 w-fit"><span class="material-symbols-outlined text-[12px]">headphones</span> Audio</span></td>
-              <td class="px-6 py-3 text-xs text-on-surface-variant">Pastor Akinboye Michael</td>
-              <td class="px-6 py-3 text-xs text-on-surface-variant">Prophecy</td>
-              <td class="px-6 py-3"><span class="text-[10px] font-bold px-2 py-1 bg-amber-50 text-amber-700 rounded-full">PENDING</span></td>
-              <td class="px-6 py-3 flex gap-2">
-                <button class="p-1.5 text-on-surface-variant hover:text-primary"><span class="material-symbols-outlined text-[18px]">edit</span></button>
-                <button onclick="deleteRow(this,'Behold He Cometh: The Signs')" class="p-1.5 text-on-surface-variant hover:text-red-500"><span class="material-symbols-outlined text-[18px]">delete</span></button>
-              </td>
-            </tr>
-            <tr class="hover:bg-surface-container-low/20 transition-colors">
-              <td class="px-6 py-3 font-semibold text-midnight-navy text-sm">Walking in Holiness</td>
-              <td class="px-6 py-3"><span class="text-[10px] font-bold px-2 py-1 bg-red-50 text-red-600 rounded-full flex items-center gap-1 w-fit"><span class="material-symbols-outlined text-[12px]">smart_display</span> Video</span></td>
-              <td class="px-6 py-3 text-xs text-on-surface-variant">Pastor Ruth O. Olatoye</td>
-              <td class="px-6 py-3 text-xs text-on-surface-variant">Holiness</td>
-              <td class="px-6 py-3"><span class="text-[10px] font-bold px-2 py-1 bg-gray-100 text-gray-600 rounded-full">DRAFT</span></td>
-              <td class="px-6 py-3 flex gap-2">
-                <button class="p-1.5 text-on-surface-variant hover:text-primary"><span class="material-symbols-outlined text-[18px]">edit</span></button>
-                <button onclick="deleteRow(this,'Walking in Holiness')" class="p-1.5 text-on-surface-variant hover:text-red-500"><span class="material-symbols-outlined text-[18px]">delete</span></button>
-              </td>
-            </tr>
+          <tbody id="sermons-tbody" class="divide-y divide-outline-variant/20">
+            <tr><td colspan="6" class="p-4 text-center text-sm text-on-surface-variant">Loading...</td></tr>
           </tbody>
         </table>
       </div>
@@ -147,39 +115,8 @@
             <th class="px-6 py-3 text-[10px] uppercase tracking-wider text-on-surface-variant font-bold">Status</th>
             <th class="px-6 py-3 text-[10px] uppercase tracking-wider text-on-surface-variant font-bold">Actions</th>
           </tr></thead>
-          <tbody class="divide-y divide-outline-variant/20">
-            <tr class="hover:bg-surface-container-low/20 transition-colors">
-              <td class="px-6 py-3 font-semibold text-midnight-navy text-sm">Walking in the Spirit</td>
-              <td class="px-6 py-3 text-xs text-on-surface-variant">Lesson 1</td>
-              <td class="px-6 py-3 text-xs text-on-surface-variant">Jan 5, 2025</td>
-              <td class="px-6 py-3"><span class="text-[10px] font-bold px-2 py-1 bg-blue-50 text-blue-700 rounded-full">PUBLISHED</span></td>
-              <td class="px-6 py-3 flex gap-2">
-                <button class="p-1.5 text-on-surface-variant hover:text-primary"><span class="material-symbols-outlined text-[18px]">edit</span></button>
-                <button class="p-1.5 text-on-surface-variant hover:text-primary"><span class="material-symbols-outlined text-[18px]">picture_as_pdf</span></button>
-                <button onclick="deleteRow(this,'Walking in the Spirit')" class="p-1.5 text-on-surface-variant hover:text-red-500"><span class="material-symbols-outlined text-[18px]">delete</span></button>
-              </td>
-            </tr>
-            <tr class="hover:bg-surface-container-low/20 transition-colors">
-              <td class="px-6 py-3 font-semibold text-midnight-navy text-sm">The Second Coming of Christ</td>
-              <td class="px-6 py-3 text-xs text-on-surface-variant">Lesson 2</td>
-              <td class="px-6 py-3 text-xs text-on-surface-variant">Jan 12, 2025</td>
-              <td class="px-6 py-3"><span class="text-[10px] font-bold px-2 py-1 bg-blue-50 text-blue-700 rounded-full">PUBLISHED</span></td>
-              <td class="px-6 py-3 flex gap-2">
-                <button class="p-1.5 text-on-surface-variant hover:text-primary"><span class="material-symbols-outlined text-[18px]">edit</span></button>
-                <button class="p-1.5 text-on-surface-variant hover:text-primary"><span class="material-symbols-outlined text-[18px]">picture_as_pdf</span></button>
-                <button onclick="deleteRow(this,'The Second Coming of Christ')" class="p-1.5 text-on-surface-variant hover:text-red-500"><span class="material-symbols-outlined text-[18px]">delete</span></button>
-              </td>
-            </tr>
-            <tr class="hover:bg-surface-container-low/20 transition-colors">
-              <td class="px-6 py-3 font-semibold text-midnight-navy text-sm">Bible School Lesson 7 — 2025</td>
-              <td class="px-6 py-3 text-xs text-on-surface-variant">Lesson 7</td>
-              <td class="px-6 py-3 text-xs text-on-surface-variant">Feb 16, 2025</td>
-              <td class="px-6 py-3"><span class="text-[10px] font-bold px-2 py-1 bg-amber-50 text-amber-700 rounded-full">PENDING</span></td>
-              <td class="px-6 py-3 flex gap-2">
-                <button class="p-1.5 text-on-surface-variant hover:text-primary"><span class="material-symbols-outlined text-[18px]">edit</span></button>
-                <button onclick="deleteRow(this,'Bible School Lesson 7 — 2025')" class="p-1.5 text-on-surface-variant hover:text-red-500"><span class="material-symbols-outlined text-[18px]">delete</span></button>
-              </td>
-            </tr>
+          <tbody id="bible-tbody" class="divide-y divide-outline-variant/20">
+            <tr><td colspan="5" class="p-4 text-center text-sm text-on-surface-variant">Loading...</td></tr>
           </tbody>
         </table>
       </div>
@@ -244,6 +181,7 @@
 <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-app.js";
   import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-auth.js";
+  import { getFirestore, collection, addDoc, getDocs, deleteDoc, doc, serverTimestamp, query, orderBy } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-firestore.js";
 
   const firebaseConfig = {
     apiKey: "AIzaSyDmoTnhEFG1QYV7GHL0Ag3ICiGwWidcWkY",
@@ -256,6 +194,7 @@
 
   const app = initializeApp(firebaseConfig);
   const auth = getAuth(app);
+  const db = getFirestore(app);
 
   // Auth guard — redirect to login if not signed in
   onAuthStateChanged(auth, user => {
@@ -268,6 +207,164 @@
     await signOut(auth);
     window.location.href = '/admin-login.html';
   };
+
+  // ── Load Sermons from Firestore ──
+  async function loadSermons() {
+    const tbody = document.getElementById('sermons-tbody');
+    tbody.innerHTML = '<tr><td colspan="6" class="p-4 text-center text-sm text-on-surface-variant">Loading...</td></tr>';
+    try {
+      const q = query(collection(db, 'video_sermons'), orderBy('createdAt', 'desc'));
+      const snap = await getDocs(q);
+      tbody.innerHTML = '';
+      if (snap.empty) {
+        tbody.innerHTML = '<tr><td colspan="6" class="p-4 text-center text-sm text-on-surface-variant">No sermons yet.</td></tr>';
+        return;
+      }
+      snap.forEach(d => {
+        const s = d.data();
+        const isVideo = s.type === 'video';
+        const badgeBg = isVideo ? 'bg-red-50 text-red-600' : 'bg-purple-50 text-purple-600';
+        const badgeIcon = isVideo ? 'smart_display' : 'headphones';
+        const badgeLabel = isVideo ? 'Video' : 'Audio';
+        const tr = document.createElement('tr');
+        tr.className = 'hover:bg-surface-container-low/20 transition-colors';
+        tr.innerHTML = `
+          <td class="px-6 py-3 font-semibold text-midnight-navy text-sm">${s.title || ''}</td>
+          <td class="px-6 py-3"><span class="text-[10px] font-bold px-2 py-1 ${badgeBg} rounded-full flex items-center gap-1 w-fit"><span class="material-symbols-outlined text-[12px]">${badgeIcon}</span> ${badgeLabel}</span></td>
+          <td class="px-6 py-3 text-xs text-on-surface-variant">${s.speaker || ''}</td>
+          <td class="px-6 py-3 text-xs text-on-surface-variant">${s.category || ''}</td>
+          <td class="px-6 py-3"><span class="text-[10px] font-bold px-2 py-1 bg-blue-50 text-blue-700 rounded-full">PUBLISHED</span></td>
+          <td class="px-6 py-3 flex gap-2">
+            <button class="p-1.5 text-on-surface-variant hover:text-primary"><span class="material-symbols-outlined text-[18px]">edit</span></button>
+            <button onclick="deleteSermon('${d.id}', this)" class="p-1.5 text-on-surface-variant hover:text-red-500"><span class="material-symbols-outlined text-[18px]">delete</span></button>
+          </td>`;
+        tbody.appendChild(tr);
+      });
+    } catch (e) {
+      console.error('loadSermons error:', e);
+      tbody.innerHTML = '<tr><td colspan="6" class="p-4 text-center text-sm text-red-500">Error loading sermons.</td></tr>';
+    }
+  }
+
+  // ── Load Bible Lessons from Firestore ──
+  async function loadBibleLessons() {
+    const tbody = document.getElementById('bible-tbody');
+    tbody.innerHTML = '<tr><td colspan="5" class="p-4 text-center text-sm text-on-surface-variant">Loading...</td></tr>';
+    try {
+      const q = query(collection(db, 'bible_school'), orderBy('createdAt', 'desc'));
+      const snap = await getDocs(q);
+      tbody.innerHTML = '';
+      if (snap.empty) {
+        tbody.innerHTML = '<tr><td colspan="5" class="p-4 text-center text-sm text-on-surface-variant">No lessons yet.</td></tr>';
+        return;
+      }
+      snap.forEach(d => {
+        const s = d.data();
+        const dateStr = s.createdAt ? s.createdAt.toDate().toLocaleDateString('en-US', { month:'short', day:'numeric', year:'numeric' }) : '';
+        const tr = document.createElement('tr');
+        tr.className = 'hover:bg-surface-container-low/20 transition-colors';
+        tr.innerHTML = `
+          <td class="px-6 py-3 font-semibold text-midnight-navy text-sm">${s.title || ''}</td>
+          <td class="px-6 py-3 text-xs text-on-surface-variant">${s.week || ''}</td>
+          <td class="px-6 py-3 text-xs text-on-surface-variant">${dateStr}</td>
+          <td class="px-6 py-3"><span class="text-[10px] font-bold px-2 py-1 bg-blue-50 text-blue-700 rounded-full">PUBLISHED</span></td>
+          <td class="px-6 py-3 flex gap-2">
+            <button class="p-1.5 text-on-surface-variant hover:text-primary"><span class="material-symbols-outlined text-[18px]">edit</span></button>
+            <button class="p-1.5 text-on-surface-variant hover:text-primary"><span class="material-symbols-outlined text-[18px]">picture_as_pdf</span></button>
+            <button onclick="deleteBibleLesson('${d.id}', this)" class="p-1.5 text-on-surface-variant hover:text-red-500"><span class="material-symbols-outlined text-[18px]">delete</span></button>
+          </td>`;
+        tbody.appendChild(tr);
+      });
+    } catch (e) {
+      console.error('loadBibleLessons error:', e);
+      tbody.innerHTML = '<tr><td colspan="5" class="p-4 text-center text-sm text-red-500">Error loading lessons.</td></tr>';
+    }
+  }
+
+  // ── Delete Sermon ──
+  window.deleteSermon = async function(id, btn) {
+    if (!confirm('Delete this sermon? This cannot be undone.')) return;
+    try {
+      await deleteDoc(doc(db, 'video_sermons', id));
+      const row = btn.closest('tr');
+      if (row) { row.style.transition = 'opacity 0.3s'; row.style.opacity = '0'; setTimeout(() => row.remove(), 300); }
+    } catch (e) {
+      console.error('deleteSermon error:', e);
+      alert('Failed to delete sermon.');
+    }
+  };
+
+  // ── Delete Bible Lesson ──
+  window.deleteBibleLesson = async function(id, btn) {
+    if (!confirm('Delete this lesson? This cannot be undone.')) return;
+    try {
+      await deleteDoc(doc(db, 'bible_school', id));
+      const row = btn.closest('tr');
+      if (row) { row.style.transition = 'opacity 0.3s'; row.style.opacity = '0'; setTimeout(() => row.remove(), 300); }
+    } catch (e) {
+      console.error('deleteBibleLesson error:', e);
+      alert('Failed to delete lesson.');
+    }
+  };
+
+  // ── Publish Content ──
+  window.publishContent = async function() {
+    const type = document.getElementById('content-type-select').value;
+    const inputs = document.querySelectorAll('#modal input[type="text"]');
+    const title = inputs[0] ? inputs[0].value.trim() : '';
+    const speaker = inputs[1] ? inputs[1].value.trim() : '';
+    const description = document.querySelector('#modal textarea').value.trim();
+
+    if (!title) { alert('Please enter a title.'); return; }
+
+    try {
+      if (type === 'sermon-video' || type === 'sermon-audio') {
+        const link = document.getElementById('sermon-link').value.trim();
+        await addDoc(collection(db, 'video_sermons'), {
+          title,
+          speaker,
+          link,
+          type: type === 'sermon-video' ? 'video' : 'audio',
+          description,
+          createdAt: serverTimestamp()
+        });
+        closeModal();
+        await loadSermons();
+        alert('✅ "' + title + '" published successfully!');
+      } else {
+        // Bible school lesson — read image as base64
+        const fileInput = document.getElementById('bible-img');
+        let imageUrl = '';
+        if (fileInput.files.length) {
+          imageUrl = await new Promise((resolve, reject) => {
+            const reader = new FileReader();
+            reader.onload = () => resolve(reader.result);
+            reader.onerror = reject;
+            reader.readAsDataURL(fileInput.files[0]);
+          });
+        }
+        const week = description || '';
+        await addDoc(collection(db, 'bible_school'), {
+          title,
+          teacher: speaker,
+          description,
+          imageUrl,
+          week,
+          createdAt: serverTimestamp()
+        });
+        closeModal();
+        await loadBibleLessons();
+        alert('✅ "' + title + '" published successfully!');
+      }
+    } catch (e) {
+      console.error('publishContent error:', e);
+      alert('Failed to publish content. Check console for details.');
+    }
+  };
+
+  // ── Initial load ──
+  loadSermons();
+  loadBibleLessons();
 </script>
 
 <script>
@@ -336,16 +433,7 @@ function validateBibleImg(input) {
     okEl.querySelector('span:last-child').textContent = `"${file.name}" (${sizeKB}KB) — ready to upload ✓`;
   }
 }
-function publishContent() {
-  const title = document.querySelector('#modal input[type="text"]').value || 'New Content';
-  closeModal();
-  alert('✅ "' + title + '" published successfully!');
-}
-function deleteRow(btn, name) {
-  if (!confirm('Delete "' + name + '"? This cannot be undone.')) return;
-  const row = btn.closest('tr');
-  if (row) { row.style.transition = 'opacity 0.3s'; row.style.opacity = '0'; setTimeout(() => row.remove(), 300); }
-}
+
 </script>
 </body>
 </html>
