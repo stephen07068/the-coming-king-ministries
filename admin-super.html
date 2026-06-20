@@ -345,9 +345,21 @@
   const auth = getAuth(app);
   const db = getFirestore(app);
 
-  // Auth guard — redirect to login if not signed in
+  // Auth guard — redirect to login if not signed in or not super admin
   onAuthStateChanged(auth, user => {
-    if (!user) window.location.href = '/admin-login.html';
+    if (!user) {
+      window.location.href = '/admin-login.html';
+    } else {
+      const role = sessionStorage.getItem('tck_role');
+      if (role && role !== 'super') {
+        alert('Access denied. Super Admin privileges required.');
+        window.location.href = '/admin-login.html';
+        return;
+      }
+      loadAllContent();
+      loadChurchSettings();
+      loadUsers();
+    }
   });
 
   // Logout function
@@ -526,10 +538,7 @@
     } catch(e) { alert('Error: ' + e.message); }
   };
 
-  // Load content on page ready
-  loadAllContent();
-  loadChurchSettings();
-  loadUsers();
+  // Load content on page ready is now handled by onAuthStateChanged
 </script>
 </body>
 </html>

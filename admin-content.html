@@ -67,7 +67,9 @@
       <button id="new-btn" onclick="openModal()" class="px-5 py-2 bg-primary text-white text-sm font-bold rounded-lg hover:opacity-90 transition-all flex items-center gap-2">
         <span class="material-symbols-outlined text-[18px]">add</span> New Entry
       </button>
-      <a href="admin-super.html" class="px-4 py-2 border border-outline-variant rounded-lg text-sm text-on-surface-variant hover:bg-surface-container transition-all">Switch to Super Admin</a>
+      <a href="home_page_the_coming_king_ministries.html" target="_blank" class="px-4 py-2 border border-outline-variant rounded-lg text-sm text-on-surface-variant hover:bg-surface-container transition-all flex items-center gap-2">
+        <span class="material-symbols-outlined text-[18px]">open_in_new</span> View Site
+      </a>
     </div>
   </header>
 
@@ -198,7 +200,12 @@
 
   // Auth guard — redirect to login if not signed in
   onAuthStateChanged(auth, user => {
-    if (!user) window.location.href = '/admin-login.html';
+    if (!user) {
+      window.location.href = '/admin-login.html';
+    } else {
+      loadSermons();
+      loadBibleLessons();
+    }
   });
 
   // Logout function
@@ -362,9 +369,7 @@
     }
   };
 
-  // ── Initial load ──
-  loadSermons();
-  loadBibleLessons();
+  // ── Initial load is now handled by onAuthStateChanged ──
 </script>
 
 <script>
