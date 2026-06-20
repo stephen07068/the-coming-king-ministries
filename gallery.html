@@ -176,16 +176,54 @@
   <!-- Gallery Grid -->
   <section class="py-section-gap px-margin-mobile md:px-margin-desktop bg-surface-container-low">
     <div class="max-w-[1440px] mx-auto">
-      <div id="gallery-grid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-
-        <div class="col-span-full py-20 text-center"><p class="text-on-surface-variant">Loading gallery...</p></div>
-      </div>
+      <!-- Firebase gallery items load here first -->
+      <div id="firebase-gallery" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mb-4"></div>
       
-      <!-- No Results State -->
+      <!-- Permanent local church photos -->
+      <div id="gallery-grid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+        <div class="gallery-item h-64" data-cat="worship" onclick="openLightbox(this)">
+          <img src="IMG_7662.jpg" alt="The Coming King Ministries" loading="lazy" class="w-full h-full object-cover rounded-lg">
+        </div>
+        <div class="gallery-item h-64" data-cat="leadership" onclick="openLightbox(this)">
+          <img src="IMG_20260616_181816.png" alt="Pastor & Pastor (Mrs) Akinboye Michael — General Overseer" loading="lazy" class="w-full h-full object-cover rounded-lg">
+        </div>
+        <div class="gallery-item h-64" data-cat="leadership" onclick="openLightbox(this)">
+          <img src="IMG_7666.jpg" alt="The Coming King Ministries Leadership" loading="lazy" class="w-full h-full object-cover rounded-lg">
+        </div>
+        <div class="gallery-item h-64" data-cat="building" onclick="openLightbox(this)">
+          <img src="IMG_7667.jpg" alt="The Coming King Ministries Church Building" loading="lazy" class="w-full h-full object-cover rounded-lg">
+        </div>
+        <div class="gallery-item h-64" data-cat="worship" onclick="openLightbox(this)">
+          <img src="IMG_7673.jpg" alt="The Coming King Ministries" loading="lazy" class="w-full h-full object-cover rounded-lg">
+        </div>
+        <div class="gallery-item h-64" data-cat="building" onclick="openLightbox(this)">
+          <img src="IMG_7674.jpg" alt="The Coming King Ministries Church Building" loading="lazy" class="w-full h-full object-cover rounded-lg">
+        </div>
+        <div class="gallery-item h-64" data-cat="leadership" onclick="openLightbox(this)">
+          <img src="IMG_7676 (1).jpg" alt="The Coming King Ministries Leadership" loading="lazy" class="w-full h-full object-cover rounded-lg">
+        </div>
+        <div class="gallery-item h-64" data-cat="worship" onclick="openLightbox(this)">
+          <img src="IMG_7678 (1).jpg" alt="The Coming King Ministries" loading="lazy" class="w-full h-full object-cover rounded-lg">
+        </div>
+        <div class="gallery-item h-64" data-cat="events" onclick="openLightbox(this)">
+          <img src="IMG_7678 (2).jpg" alt="The Coming King Ministries" loading="lazy" class="w-full h-full object-cover rounded-lg">
+        </div>
+        <div class="gallery-item h-64 col-span-2" data-cat="worship" onclick="openLightbox(this)">
+          <img src="IMG_7679 (1).jpg" alt="The Coming King Ministries" loading="lazy" class="w-full h-full object-cover rounded-lg">
+        </div>
+        <div class="gallery-item h-64" data-cat="events" onclick="openLightbox(this)">
+          <img src="IMG_7679 (2).jpg" alt="The Coming King Ministries" loading="lazy" class="w-full h-full object-cover rounded-lg">
+        </div>
+        <div class="gallery-item h-64" data-cat="worship" onclick="openLightbox(this)">
+          <img src="IMG_7683 (2).jpg" alt="The Coming King Ministries" loading="lazy" class="w-full h-full object-cover rounded-lg">
+        </div>
+      </div>
+
+      <!-- No Results State (for filtering) -->
       <div id="no-results" class="hidden text-center py-20">
         <span class="material-symbols-outlined text-6xl text-surface-container-high mb-4">image_not_supported</span>
         <h3 class="text-headline-sm text-midnight-navy mb-2">No photos found</h3>
-        <p class="text-body-md text-on-surface-variant">Check back later for new memories.</p>
+        <p class="text-body-md text-on-surface-variant">Try a different filter category.</p>
       </div>
     </div>
   </section>
@@ -277,42 +315,14 @@ document.addEventListener('keydown', e => { if(e.key==='Escape') closeLightbox()
   const app = initializeApp(firebaseConfig);
   const db = getFirestore(app);
 
-  // Static leadership photos — always shown in gallery under "leadership" category
-  const leadershipPhotos = [
-    { src: 'IMG_20260616_181816.jpg', caption: 'Pastor & Pastor (Mrs) Akinboye Michael — General Overseer' },
-    { src: 'file_00000000f5b872438b97e82d2f9005bb.jpg', caption: 'Late Apostle Daniel Olaide Olabosipo Olatoye — Founder' },
-    { src: 'IMG_7676 (1).jpg', caption: 'Pastor (Mrs) Olatoye — Mother in Israel' },
-    { src: 'IMG-20260616-WA0032.jpg', caption: 'Pastor Okewale A. Isaiah — Abeokuta Area Pastor' },
-    { src: '1781947300578.jpg', caption: 'Pastor Samuel O. Olatoye — Ijebu Area Pastor' },
-    { src: '1781958223377.jpg', caption: 'Pastor Samuel Olorundare — Ibadan Area Pastor' },
-  ];
-
-  function renderLeadershipPhotos(grid) {
-    leadershipPhotos.forEach((p, i) => {
-      const colSpanClass = (i === 0) ? 'col-span-2' : '';
-      grid.innerHTML += `
-      <div class="gallery-item h-64 ${colSpanClass} cursor-pointer relative group" data-cat="leadership" onclick="openLightbox(this)">
-        <img src="${p.src}" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" alt="${p.caption}" loading="lazy">
-        <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
-          <p class="text-white text-sm font-bold line-clamp-2">${p.caption}</p>
-        </div>
-      </div>`;
-    });
-  }
-
   async function loadGallery() {
-    const grid = document.getElementById('gallery-grid');
+    const grid = document.getElementById('firebase-gallery');
     if (!grid) return;
-
-    // Show leadership photos immediately — don't wait for Firebase
-    grid.innerHTML = '';
-    renderLeadershipPhotos(grid);
     
     try {
       const q = query(collection(db, 'gallery'), orderBy('createdAt', 'desc'));
       const snap = await getDocs(q);
       
-      // Append Firebase photos after leadership photos
       let index = 0;
       snap.forEach(docSnap => {
         const d = docSnap.data();
@@ -329,8 +339,7 @@ document.addEventListener('keydown', e => { if(e.key==='Escape') closeLightbox()
       });
       
     } catch(e) {
-      console.error(e);
-      // Leadership photos already showing — Firebase just failed silently
+      console.error('Firebase gallery load error:', e);
     }
   }
 
