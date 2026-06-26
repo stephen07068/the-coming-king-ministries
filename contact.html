@@ -25,19 +25,19 @@
 <!-- Nav -->
 <!-- TopNavBar -->
 <header class="fixed top-0 w-full z-50 bg-white border-b border-surface-container-high shadow-sm">
-  <div class="flex justify-between items-center px-4 md:px-margin-desktop h-16 md:h-20 max-w-[1440px] mx-auto">
+  <div class="flex justify-between items-center px-4 xl:px-8 h-16 md:h-20 max-w-[1440px] mx-auto">
 
     <!-- Logo -->
     <a href="home_page_the_coming_king_ministries.html" class="flex items-center gap-3 flex-shrink-0">
       <img src="IMG_7893.PNG" alt="The Coming King Ministries Logo" class="h-10 w-10 md:h-12 md:w-12 object-contain rounded-full" loading="eager" fetchpriority="high"/>
-      <span class="text-sm md:text-headline-sm font-bold text-primary tracking-tight leading-tight">
+      <span class="text-sm md:text-lg xl:text-headline-sm font-bold text-primary tracking-tight leading-tight">
         <span class="hidden sm:inline">The Coming King Ministries</span>
         <span class="sm:hidden">TCKM</span>
       </span>
     </a>
 
     <!-- Desktop Nav -->
-    <nav class="hidden md:flex items-center gap-6 lg:gap-8">
+    <nav class="hidden 2xl:flex items-center gap-4 2xl:gap-6">
     <a class="text-label-md text-on-surface-variant hover:text-primary transition-colors" href="home_page_the_coming_king_ministries.html">Home</a>
     <a class="text-label-md text-on-surface-variant hover:text-primary transition-colors" href="about.html">About</a>
     <a class="text-label-md text-on-surface-variant hover:text-primary transition-colors" href="leadership.html">Leadership</a>
@@ -45,17 +45,18 @@
     <a class="text-label-md text-on-surface-variant hover:text-primary transition-colors" href="events.html">Events</a>
     <a class="text-label-md text-on-surface-variant hover:text-primary transition-colors" href="gallery.html">Gallery</a>
     <a class="text-label-md text-on-surface-variant hover:text-primary transition-colors" href="bible-school.html">Bible School</a>
+    <a class="text-label-md text-on-surface-variant hover:text-primary transition-colors" href="children.html">Children</a>
     <a class="text-label-md text-on-surface-variant hover:text-primary transition-colors" href="services.html">Services</a>
     </nav>
 
     <!-- Desktop CTA Buttons -->
-    <div class="hidden md:flex items-center gap-3">
+    <div class="hidden 2xl:flex items-center gap-3">
       <a href="giving.html" class="px-5 py-2 rounded-lg bg-primary text-white text-label-md hover:opacity-90 transition-all shadow-sm">Giving</a>
       <a href="contact.html" class="px-5 py-2 rounded-lg border border-primary text-primary text-label-md hover:bg-primary hover:text-white transition-all">Contact</a>
     </div>
 
     <!-- Mobile Hamburger Button -->
-    <button id="mobile-menu-btn" onclick="toggleMobileMenu()" aria-label="Open menu" class="md:hidden flex flex-col gap-1.5 p-2 rounded-lg hover:bg-surface-container transition-colors">
+    <button id="mobile-menu-btn" onclick="toggleMobileMenu()" aria-label="Open menu" class="2xl:hidden flex flex-col gap-1.5 p-2 rounded-lg hover:bg-surface-container transition-colors">
       <span id="ham-line-1" class="block w-6 h-0.5 bg-on-background transition-all duration-300"></span>
       <span id="ham-line-2" class="block w-6 h-0.5 bg-on-background transition-all duration-300"></span>
       <span id="ham-line-3" class="block w-4 h-0.5 bg-on-background transition-all duration-300"></span>
@@ -63,7 +64,7 @@
   </div>
 
   <!-- Mobile Drawer Menu -->
-  <div id="mobile-menu" class="md:hidden fixed inset-0 z-40 pointer-events-none">
+  <div id="mobile-menu" class="2xl:hidden fixed inset-0 z-40 pointer-events-none">
     <!-- Backdrop -->
     <div id="mobile-backdrop" onclick="closeMobileMenu()" class="absolute inset-0 bg-black/50 opacity-0 transition-opacity duration-300"></div>
     <!-- Slide-in panel -->
@@ -82,11 +83,12 @@
       <a class="block px-4 py-3 text-on-surface-variant hover:text-primary hover:bg-surface-container-low transition-colors rounded-lg" href="events.html" onclick="closeMobileMenu()">Events</a>
       <a class="block px-4 py-3 text-on-surface-variant hover:text-primary hover:bg-surface-container-low transition-colors rounded-lg" href="gallery.html" onclick="closeMobileMenu()">Gallery</a>
       <a class="block px-4 py-3 text-on-surface-variant hover:text-primary hover:bg-surface-container-low transition-colors rounded-lg" href="bible-school.html" onclick="closeMobileMenu()">Bible School</a>
+      <a class="block px-4 py-3 text-on-surface-variant hover:text-primary hover:bg-surface-container-low transition-colors rounded-lg" href="children.html" onclick="closeMobileMenu()">Children</a>
       <a class="block px-4 py-3 text-on-surface-variant hover:text-primary hover:bg-surface-container-low transition-colors rounded-lg" href="services.html" onclick="closeMobileMenu()">Services</a>
       </nav>
       <div class="p-4 border-t border-surface-container space-y-3 mt-4">
-        <a href="giving.html" class="block w-full text-center px-6 py-3 rounded-lg bg-primary text-white font-bold text-sm hover:opacity-90 transition-all shadow-sm">💝 Give Online</a>
-        <a href="contact.html" class="block w-full text-center px-6 py-3 rounded-lg border-2 border-primary text-primary font-bold text-sm hover:bg-primary hover:text-white transition-all">📞 Contact Us</a>
+        <a href="giving.html" class="block w-full text-center px-6 py-3 rounded-lg bg-primary text-white font-bold text-sm hover:opacity-90 transition-all shadow-sm">?? Give Online</a>
+        <a href="contact.html" class="block w-full text-center px-6 py-3 rounded-lg border-2 border-primary text-primary font-bold text-sm hover:bg-primary hover:text-white transition-all">?? Contact Us</a>
       </div>
     </div>
   </div>
@@ -168,7 +170,7 @@
             </div>
             <div>
               <p class="text-label-md text-on-surface-variant uppercase tracking-wider mb-1">Headquarters Address</p>
-              <p class="text-body-lg text-on-background font-semibold">Olorunsogo, Idi-Aba</p>
+              <p class="text-body-lg text-on-background font-semibold">7, Olorunsogo, Idi-Aba</p>
               <p class="text-body-md text-on-surface-variant">Abeokuta, Ogun State, Nigeria</p>
             </div>
           </div>
@@ -180,7 +182,7 @@
             <div>
               <p class="text-label-md text-on-surface-variant uppercase tracking-wider mb-1">Phone Numbers</p>
               <a href="tel:+2348064694851" class="text-body-lg text-on-background font-semibold hover:text-primary transition-colors block">08064694851</a>
-              <a href="tel:+2348067907017" class="text-body-md text-on-surface-variant hover:text-primary transition-colors block">08067907017</a>
+              <a href="tel:+2349055274255" class="text-body-md text-on-surface-variant hover:text-primary transition-colors block">09055274255</a>
             </div>
           </div>
 
@@ -295,75 +297,75 @@
             <!-- x = (lon - 3.2) / (4.1-3.2) * 100% -->
             <!-- y = (7.4 - lat) / (7.4-6.8) * 100% -->
 
-            <!-- HQ 7.1475, 3.3455 → x=16.2%, y=42.1% -->
+            <!-- HQ 7.1475, 3.3455 ? x=16.2%, y=42.1% -->
             <div style="position:absolute;left:16.2%;top:42.1%;transform:translate(-50%,-100%);text-align:center;pointer-events:auto;cursor:pointer;" title="HQ — Olorunsogo, Idi-Aba, Abeokuta&#10;Pst &amp; Pst (Mrs) Akinboye Michael — G.O.">
               <div style="background:#f59e0b;color:white;border-radius:50% 50% 50% 0;width:28px;height:28px;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:12px;border:2px solid white;box-shadow:0 2px 8px rgba(0,0,0,0.4);transform:rotate(-45deg)">
-                <span style="transform:rotate(45deg)">★</span>
+                <span style="transform:rotate(45deg)">?</span>
               </div>
               <div style="background:white;border-radius:4px;padding:2px 5px;font-size:9px;font-weight:700;color:#92400e;white-space:nowrap;box-shadow:0 1px 4px rgba(0,0,0,0.3);margin-top:2px;">HQ</div>
             </div>
 
-            <!-- Ruth — Olorunsogo branch 7.145, 3.350 → x=16.7%, y=42.5% -->
-            <div style="position:absolute;left:16.7%;top:43.5%;transform:translate(-50%,-100%);pointer-events:auto;cursor:pointer;" title="Olorunsogo, Idi-Aba&#10;Pst Ruth O. Olatoye">
+            <!-- Ruth — Olorunsogo branch 7.145, 3.350 ? x=16.7%, y=42.5% -->
+            <div style="position:absolute;left:16.7%;top:43.5%;transform:translate(-50%,-100%);pointer-events:auto;cursor:pointer;" title="Olorunsogo, Idi-Aba&#10;Pst &amp; Pst (Mrs) Akinboye Michael">
               <div style="background:#e31b23;width:14px;height:14px;border-radius:50%;border:2px solid white;box-shadow:0 2px 6px rgba(0,0,0,0.4);"></div>
             </div>
 
-            <!-- Eleweran 7.158, 3.348 → x=16.4%, y=40.3% -->
+            <!-- Eleweran 7.158, 3.348 ? x=16.4%, y=40.3% -->
             <div style="position:absolute;left:16.4%;top:40.3%;transform:translate(-50%,-100%);pointer-events:auto;cursor:pointer;" title="Eleweran, Abeokuta&#10;Pst Okewale A. Isaiah (Area Pastor)">
               <div style="background:#e31b23;width:14px;height:14px;border-radius:50%;border:2px solid white;box-shadow:0 2px 6px rgba(0,0,0,0.4);"></div>
             </div>
 
-            <!-- Abakuyamo 7.155, 3.330 → x=14.4%, y=40.8% -->
+            <!-- Abakuyamo 7.155, 3.330 ? x=14.4%, y=40.8% -->
             <div style="position:absolute;left:14.4%;top:40.8%;transform:translate(-50%,-100%);pointer-events:auto;cursor:pointer;" title="Abakuyamo, Abeokuta&#10;Pst Adegbenro Peter">
               <div style="background:#e31b23;width:14px;height:14px;border-radius:50%;border:2px solid white;box-shadow:0 2px 6px rgba(0,0,0,0.4);"></div>
             </div>
 
-            <!-- Odogba 7.140, 3.360 → x=17.8%, y=43.3% -->
+            <!-- Odogba 7.140, 3.360 ? x=17.8%, y=43.3% -->
             <div style="position:absolute;left:17.8%;top:43.3%;transform:translate(-50%,-100%);pointer-events:auto;cursor:pointer;" title="Odogba, Abeokuta&#10;Pst Shomade Timothy">
               <div style="background:#e31b23;width:14px;height:14px;border-radius:50%;border:2px solid white;box-shadow:0 2px 6px rgba(0,0,0,0.4);"></div>
             </div>
 
-            <!-- Heritage/Jaguna 7.150, 3.355 → x=17.2%, y=41.7% -->
+            <!-- Heritage/Jaguna 7.150, 3.355 ? x=17.2%, y=41.7% -->
             <div style="position:absolute;left:17.2%;top:41.7%;transform:translate(-50%,-100%);pointer-events:auto;cursor:pointer;" title="Heritage Chapel + Jaguna Centre&#10;Evang. Grace O. Gbadebo / Pst (Mrs) Abiona Gbemisola">
               <div style="background:#e31b23;width:14px;height:14px;border-radius:50%;border:2px solid white;box-shadow:0 2px 6px rgba(0,0,0,0.4);"></div>
             </div>
 
-            <!-- Damgbolu Owode 6.960, 3.985 → x=87.2%, y=73.3% -->
+            <!-- Damgbolu Owode 6.960, 3.985 ? x=87.2%, y=73.3% -->
             <div style="position:absolute;left:87.2%;top:73.3%;transform:translate(-50%,-100%);pointer-events:auto;cursor:pointer;" title="Damgbolu Owode, Ijebu&#10;Pst Samuel O. Olatoye (Ijebu Area Pastor)">
               <div style="background:#2d3132;width:16px;height:16px;border-radius:50%;border:2px solid white;box-shadow:0 2px 6px rgba(0,0,0,0.4);"></div>
             </div>
 
-            <!-- Amula 6.947, 3.983 → x=87.0%, y=75.5% -->
+            <!-- Amula 6.947, 3.983 ? x=87.0%, y=75.5% -->
             <div style="position:absolute;left:85%;top:75.5%;transform:translate(-50%,-100%);pointer-events:auto;cursor:pointer;" title="Amula, Ijebu Igbo&#10;Pst Origbeerekomi Samson">
               <div style="background:#3b82f6;width:14px;height:14px;border-radius:50%;border:2px solid white;box-shadow:0 2px 6px rgba(0,0,0,0.4);"></div>
             </div>
 
-            <!-- Odo-Amusegun 6.940, 3.975 → x=86.1%, y=76.7% -->
+            <!-- Odo-Amusegun 6.940, 3.975 ? x=86.1%, y=76.7% -->
             <div style="position:absolute;left:86.1%;top:76.7%;transform:translate(-50%,-100%);pointer-events:auto;cursor:pointer;" title="Odo-Amusegun, Ijebu Igbo&#10;Pst Kolawole Michael">
               <div style="background:#3b82f6;width:14px;height:14px;border-radius:50%;border:2px solid white;box-shadow:0 2px 6px rgba(0,0,0,0.4);"></div>
             </div>
 
-            <!-- Tanrin 6.955, 3.990 → x=87.8%, y=74.2% -->
+            <!-- Tanrin 6.955, 3.990 ? x=87.8%, y=74.2% -->
             <div style="position:absolute;left:87.8%;top:74.2%;transform:translate(-50%,-100%);pointer-events:auto;cursor:pointer;" title="Tanrin, Ijebu Igbo&#10;Pst (Mrs) Esther Olu-Oke">
               <div style="background:#3b82f6;width:14px;height:14px;border-radius:50%;border:2px solid white;box-shadow:0 2px 6px rgba(0,0,0,0.4);"></div>
             </div>
 
-            <!-- Akinlade 6.935, 3.965 → x=85.0%, y=77.5% -->
+            <!-- Akinlade 6.935, 3.965 ? x=85.0%, y=77.5% -->
             <div style="position:absolute;left:84%;top:77.5%;transform:translate(-50%,-100%);pointer-events:auto;cursor:pointer;" title="Akinlade, Ijebu Igbo&#10;Pst (Mrs) Olatoye A. Ruth">
               <div style="background:#3b82f6;width:14px;height:14px;border-radius:50%;border:2px solid white;box-shadow:0 2px 6px rgba(0,0,0,0.4);"></div>
             </div>
 
-            <!-- Omi Adio 7.265, 3.745 → x=60.6%, y=22.5% -->
+            <!-- Omi Adio 7.265, 3.745 ? x=60.6%, y=22.5% -->
             <div style="position:absolute;left:60.6%;top:22.5%;transform:translate(-50%,-100%);pointer-events:auto;cursor:pointer;" title="Omi Adio, Ibadan&#10;Pst Samuel Olorundare (Ibadan Area Pastor)">
               <div style="background:#065f46;width:16px;height:16px;border-radius:50%;border:2px solid white;box-shadow:0 2px 6px rgba(0,0,0,0.4);"></div>
             </div>
 
-            <!-- Aba-Ishola 7.270, 3.750 → x=61.1%, y=21.7% -->
+            <!-- Aba-Ishola 7.270, 3.750 ? x=61.1%, y=21.7% -->
             <div style="position:absolute;left:62%;top:20%;transform:translate(-50%,-100%);pointer-events:auto;cursor:pointer;" title="Aba-Ishola&#10;Pst Soyemi Sounmi">
               <div style="background:#059669;width:14px;height:14px;border-radius:50%;border:2px solid white;box-shadow:0 2px 6px rgba(0,0,0,0.4);"></div>
             </div>
 
-            <!-- Ajobo 7.260, 3.740 → x=60.0%, y=23.3% -->
+            <!-- Ajobo 7.260, 3.740 ? x=60.0%, y=23.3% -->
             <div style="position:absolute;left:59%;top:24%;transform:translate(-50%,-100%);pointer-events:auto;cursor:pointer;" title="Ajobo&#10;Pst Ezekiel Abel">
               <div style="background:#059669;width:14px;height:14px;border-radius:50%;border:2px solid white;box-shadow:0 2px 6px rgba(0,0,0,0.4);"></div>
             </div>
@@ -516,7 +518,8 @@
         <a class="text-body-md text-white/70 hover:text-white transition-colors" href="leadership.html">Leadership</a>
         <a class="text-body-md text-white/70 hover:text-white transition-colors" href="sermons.html">Sermons</a>
     <a class="text-label-md text-on-surface-variant hover:text-primary transition-colors" href="bible-school.html">Bible School</a>
-        <a class="text-body-md text-white/70 hover:text-white transition-colors" href="events.html">Events</a>
+        <a class="text-label-md text-on-surface-variant hover:text-primary transition-colors" href="children.html">Children</a>
+    <a class="text-body-md text-white/70 hover:text-white transition-colors" href="events.html">Events</a>
         <a class="text-body-md text-white/70 hover:text-white transition-colors" href="gallery.html">Gallery</a>
         <a class="text-body-md text-white/70 hover:text-white transition-colors" href="giving.html">Giving</a>
         <a class="text-body-md text-white/70 hover:text-white transition-colors" href="contact.html">Contact</a>
@@ -524,9 +527,9 @@
     </div>
     <div class="space-y-3">
       <h4 class="text-label-md font-bold text-primary uppercase">Headquarters</h4>
-      <p class="text-body-md text-white/70">Olorunsogo, Idi-Aba</p>
+      <p class="text-body-md text-white/70">7, Olorunsogo, Idi-Aba</p>
       <p class="text-body-md text-white/70">Abeokuta, Ogun State, Nigeria</p>
-      <p class="text-body-md text-white/70">08064694851 / 08067907017</p>
+      <p class="text-body-md text-white/70">08064694851 / 09055274255</p>
       <p class="text-body-md text-white/70 break-all">TheComingkingMinistriesNigeria@gmail.com</p>
       <p class="text-label-md text-white/50 pt-6 border-t border-white/10">© 2026 The Coming King Ministries.</p>
     </div>
@@ -551,3 +554,7 @@ function sendToWhatsApp(e) {
 </script>
 </body>
 </html>
+
+
+
+

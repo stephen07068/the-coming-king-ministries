@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html class="light" lang="en">
 <head>
 <link rel="dns-prefetch" href="//fonts.googleapis.com"/>
@@ -28,8 +28,8 @@
 </head>
 <body class="text-on-surface antialiased">
 
-<!-- Sidebar -->
-<aside class="fixed left-0 top-0 h-screen w-64 bg-surface-container-lowest border-r border-outline-variant flex flex-col z-50">
+<!-- Sidebar Backdrop --><div id="admin-backdrop" onclick="toggleAdminMenu()" class="fixed inset-0 bg-black/50 z-40 hidden md:hidden"></div><!-- Sidebar -->
+<aside id="admin-sidebar" class="fixed left-0 top-0 h-screen w-64 transform -translate-x-full md:translate-x-0 transition-transform duration-300 bg-surface-container-lowest border-r border-outline-variant flex flex-col z-50">
   <div class="px-6 py-6 flex items-center gap-3 border-b border-outline-variant">
     <img src="IMG_7893.PNG" alt="Logo" class="h-10 w-10 object-contain rounded-full"/ loading="eager" fetchpriority="high">
     <div>
@@ -44,6 +44,13 @@
     </a>
     <a href="#" onclick="showPanel('bible')" class="nav-link flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm cursor-pointer">
       <span class="material-symbols-outlined text-[20px]">school</span> Bible School
+    </a>
+      <p class="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant/50 px-3 mb-2 mt-4">Quizzes</p>
+    <a href="#" onclick="showPanel('childrenQuiz')" class="nav-link flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm cursor-pointer">
+      <span class="material-symbols-outlined text-[20px]">child_care</span> Children Bible Quiz
+    </a>
+    <a href="#" onclick="showPanel('sundayQuiz')" class="nav-link flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm cursor-pointer">
+      <span class="material-symbols-outlined text-[20px]">quiz</span> Sunday Bible Quiz
     </a>
   </nav>
   <div class="p-4 border-t border-outline-variant">
@@ -60,9 +67,9 @@
 </aside>
 
 <!-- Main -->
-<main class="ml-64 min-h-screen">
-  <header class="h-16 bg-surface-container-lowest border-b border-outline-variant px-8 flex items-center justify-between sticky top-0 z-40">
-    <h2 id="panel-title" class="font-display text-xl font-bold text-midnight-navy">Sermon Media</h2>
+<main class="w-full md:ml-64 md:w-[calc(100%-16rem)] min-h-screen">
+  <header class="h-16 bg-surface-container-lowest border-b border-outline-variant px-4 md:px-8 flex items-center justify-between sticky top-0 z-40"><div class="flex items-center gap-3"><button onclick="toggleAdminMenu()" class="md:hidden p-1 text-on-surface-variant hover:bg-surface-container rounded-lg"><span class="material-symbols-outlined">menu</span></button>
+    <h2 id="panel-title" class="font-display text-lg md:text-xl font-bold text-midnight-navy">Sermon Media</h2></div>
     <div class="flex items-center gap-4">
       <button id="new-btn" onclick="openModal()" class="px-5 py-2 bg-primary text-white text-sm font-bold rounded-lg hover:opacity-90 transition-all flex items-center gap-2">
         <span class="material-symbols-outlined text-[18px]">add</span> New Entry
@@ -124,7 +131,77 @@
       </div>
     </div>
 
-  </div>
+  
+    <!-- Children Bible Quiz Panel -->
+    <div id="panel-childrenQuiz" class="panel">
+      <div class="bg-surface-container-lowest rounded-xl border border-outline-variant shadow-sm overflow-hidden">
+        <div class="p-6 border-b border-outline-variant">
+          <h3 class="font-display text-lg font-bold text-midnight-navy mb-1">Children Bible Quiz</h3>
+          <p class="text-xs text-on-surface-variant">Create a quiz for the Children's Department (3-5 questions). Only the latest quiz will show on the website.</p>
+        </div>
+        <div class="p-6 space-y-4">
+          <div>
+            <label class="text-xs font-bold uppercase tracking-wider text-on-surface-variant block mb-2">Quiz Title</label>
+            <input type="text" id="cq-title" placeholder="e.g. Week 1 - Creation Story" class="w-full px-4 py-2.5 rounded-lg border border-outline-variant text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary"/>
+          </div>
+          <div id="cq-questions-container"></div>
+          <div class="flex gap-3">
+            <button onclick="addQuizQuestion('cq')" id="cq-add-btn" class="px-4 py-2 border border-outline-variant rounded-lg text-sm text-on-surface-variant hover:bg-surface-container transition-all flex items-center gap-2">
+              <span class="material-symbols-outlined text-[18px]">add</span> Add Question
+            </button>
+          </div>
+          <div class="pt-4 border-t border-outline-variant flex justify-end">
+            <button onclick="publishQuiz('children_quizzes', 'cq')" class="px-6 py-2.5 bg-primary text-white text-sm font-bold rounded-lg hover:opacity-90 transition-all flex items-center gap-2">
+              <span class="material-symbols-outlined text-[18px]">publish</span> Publish Quiz
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="mt-6 bg-surface-container-lowest rounded-xl border border-outline-variant shadow-sm overflow-hidden">
+        <div class="p-6 border-b border-outline-variant">
+          <h3 class="font-display text-base font-bold text-midnight-navy">Published Children Quizzes</h3>
+        </div>
+        <div id="cq-list" class="p-4">
+          <p class="text-sm text-on-surface-variant text-center py-4">Loading...</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sunday Bible Quiz Panel -->
+    <div id="panel-sundayQuiz" class="panel">
+      <div class="bg-surface-container-lowest rounded-xl border border-outline-variant shadow-sm overflow-hidden">
+        <div class="p-6 border-b border-outline-variant">
+          <h3 class="font-display text-lg font-bold text-midnight-navy mb-1">Sunday Bible Quiz</h3>
+          <p class="text-xs text-on-surface-variant">Create a quiz for the Bible School page (3-5 questions). Only the latest quiz will show on the website.</p>
+        </div>
+        <div class="p-6 space-y-4">
+          <div>
+            <label class="text-xs font-bold uppercase tracking-wider text-on-surface-variant block mb-2">Quiz Title</label>
+            <input type="text" id="sq-title" placeholder="e.g. Week 1 - Book of Genesis" class="w-full px-4 py-2.5 rounded-lg border border-outline-variant text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary"/>
+          </div>
+          <div id="sq-questions-container"></div>
+          <div class="flex gap-3">
+            <button onclick="addQuizQuestion('sq')" id="sq-add-btn" class="px-4 py-2 border border-outline-variant rounded-lg text-sm text-on-surface-variant hover:bg-surface-container transition-all flex items-center gap-2">
+              <span class="material-symbols-outlined text-[18px]">add</span> Add Question
+            </button>
+          </div>
+          <div class="pt-4 border-t border-outline-variant flex justify-end">
+            <button onclick="publishQuiz('sunday_quizzes', 'sq')" class="px-6 py-2.5 bg-primary text-white text-sm font-bold rounded-lg hover:opacity-90 transition-all flex items-center gap-2">
+              <span class="material-symbols-outlined text-[18px]">publish</span> Publish Quiz
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="mt-6 bg-surface-container-lowest rounded-xl border border-outline-variant shadow-sm overflow-hidden">
+        <div class="p-6 border-b border-outline-variant">
+          <h3 class="font-display text-base font-bold text-midnight-navy">Published Sunday Quizzes</h3>
+        </div>
+        <div id="sq-list" class="p-4">
+          <p class="text-sm text-on-surface-variant text-center py-4">Loading...</p>
+        </div>
+      </div>
+    </div>
+</div>
 </main>
 
 <!-- New Entry Modal -->
@@ -138,8 +215,8 @@
       <div>
         <label class="text-xs font-bold uppercase tracking-wider text-on-surface-variant block mb-2">Content Type</label>
         <select id="content-type-select" onchange="toggleContentFields(this)" class="w-full px-4 py-2.5 rounded-lg border border-outline-variant text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary">
-          <option value="sermon-video">Sermon — Video (YouTube)</option>
-          <option value="sermon-audio">Sermon — Audio (YouTube)</option>
+          <option value="sermon-video">Sermon â€” Video (YouTube)</option>
+          <option value="sermon-audio">Sermon â€” Audio (YouTube)</option>
           <option value="bible">Bible School Lesson</option>
         </select>
       </div>
@@ -158,7 +235,7 @@
           <p id="sermon-link-hint" class="text-[10px] text-on-surface-variant mt-1.5">Paste the YouTube video or audio link for this sermon</p>
         </div>
         <div id="bible-field" style="display:none">
-          <label class="text-xs font-bold uppercase tracking-wider text-on-surface-variant block mb-2">Lesson Image / Flyer <span class="text-red-500 font-bold">— Max 100KB</span></label>
+          <label class="text-xs font-bold uppercase tracking-wider text-on-surface-variant block mb-2">Lesson Image / Flyer <span class="text-red-500 font-bold">â€” Max 100KB</span></label>
           <input type="file" id="bible-img" accept="image/*" onchange="validateBibleImg(this)" class="w-full px-4 py-2.5 rounded-lg border border-outline-variant text-sm"/>
           <div id="bible-img-error" class="hidden mt-2 p-2 bg-red-50 border border-red-200 rounded-lg text-xs text-red-600 flex items-center gap-2">
             <span class="material-symbols-outlined text-[16px]">cancel</span><span></span>
@@ -198,7 +275,7 @@
   const auth = getAuth(app);
   const db = getFirestore(app);
 
-  // Auth guard — redirect to login if not signed in
+  // Auth guard â€” redirect to login if not signed in
   onAuthStateChanged(auth, async user => {
     if (!user) {
       window.location.href = '/admin-login.html';
@@ -239,7 +316,7 @@
     window.location.href = '/admin-login.html';
   };
 
-  // ── Load Sermons from Firestore ──
+  // â”€â”€ Load Sermons from Firestore â”€â”€
   async function loadSermons() {
     const tbody = document.getElementById('sermons-tbody');
     tbody.innerHTML = '<tr><td colspan="6" class="p-4 text-center text-sm text-on-surface-variant">Loading...</td></tr>';
@@ -277,7 +354,7 @@
     }
   }
 
-  // ── Load Bible Lessons from Firestore ──
+  // â”€â”€ Load Bible Lessons from Firestore â”€â”€
   async function loadBibleLessons() {
     const tbody = document.getElementById('bible-tbody');
     tbody.innerHTML = '<tr><td colspan="5" class="p-4 text-center text-sm text-on-surface-variant">Loading...</td></tr>';
@@ -312,7 +389,7 @@
     }
   }
 
-  // ── Delete Sermon ──
+  // â”€â”€ Delete Sermon â”€â”€
   window.deleteSermon = async function(id, btn) {
     if (!confirm('Delete this sermon? This cannot be undone.')) return;
     try {
@@ -325,7 +402,7 @@
     }
   };
 
-  // ── Delete Bible Lesson ──
+  // â”€â”€ Delete Bible Lesson â”€â”€
   window.deleteBibleLesson = async function(id, btn) {
     if (!confirm('Delete this lesson? This cannot be undone.')) return;
     try {
@@ -338,7 +415,7 @@
     }
   };
 
-  // ── Publish Content ──
+  // â”€â”€ Publish Content â”€â”€
   window.publishContent = async function() {
     const type = document.getElementById('content-type-select').value;
     const inputs = document.querySelectorAll('#modal input[type="text"]');
@@ -361,9 +438,9 @@
         });
         closeModal();
         await loadSermons();
-        alert('✅ "' + title + '" published successfully!');
+        alert('âœ… "' + title + '" published successfully!');
       } else {
-        // Bible school lesson — read image as base64
+        // Bible school lesson â€” read image as base64
         const fileInput = document.getElementById('bible-img');
         let imageUrl = '';
         if (fileInput.files.length) {
@@ -385,7 +462,7 @@
         });
         closeModal();
         await loadBibleLessons();
-        alert('✅ "' + title + '" published successfully!');
+        alert('âœ… "' + title + '" published successfully!');
       }
     } catch (e) {
       console.error('publishContent error:', e);
@@ -393,15 +470,106 @@
     }
   };
 
-  // ── Initial load is now handled by onAuthStateChanged ──
+  // â”€â”€ Initial load is now handled by onAuthStateChanged â”€â”€
+
+  // ===== QUIZ FIREBASE FUNCTIONS =====
+  window.publishQuiz = async function(collectionName, prefix) {
+    const title = document.getElementById(prefix + '-title').value.trim();
+    if (!title) { alert('Please enter a quiz title.'); return; }
+    
+    const questions = [];
+    const container = document.getElementById(prefix + '-questions-container');
+    const qDivs = container.querySelectorAll('[id^="' + prefix + '-q"]');
+    
+    for (const div of qDivs) {
+      const id = div.id;
+      const idx = id.replace(prefix + '-q', '');
+      const qText = document.getElementById(prefix + '-q' + idx + '-text');
+      if (!qText) continue;
+      const question = qText.value.trim();
+      const optA = document.getElementById(prefix + '-q' + idx + '-a').value.trim();
+      const optB = document.getElementById(prefix + '-q' + idx + '-b').value.trim();
+      const optC = document.getElementById(prefix + '-q' + idx + '-c').value.trim();
+      const optD = document.getElementById(prefix + '-q' + idx + '-d').value.trim();
+      const correct = parseInt(document.getElementById(prefix + '-q' + idx + '-correct').value);
+      
+      if (!question || !optA || !optB || !optC || !optD) { alert('Please fill in all fields for each question.'); return; }
+      questions.push({ question, options: [optA, optB, optC, optD], correctAnswer: correct });
+    }
+    
+    if (questions.length < 3) { alert('Please add at least 3 questions.'); return; }
+    if (questions.length > 5) { alert('Maximum 5 questions allowed.'); return; }
+    
+    try {
+      await addDoc(collection(db, collectionName), {
+        title: title,
+        questions: questions,
+        date: new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }),
+        createdAt: serverTimestamp()
+      });
+      alert('Quiz published successfully!');
+      document.getElementById(prefix + '-title').value = '';
+      document.getElementById(prefix + '-questions-container').innerHTML = '';
+      window.quizCounters = window.quizCounters || {};
+      window.quizCounters[prefix] = 0;
+      loadQuizList(collectionName, prefix);
+    } catch (err) {
+      alert('Error publishing quiz: ' + err.message);
+    }
+  };
+
+  async function loadQuizList(collectionName, prefix) {
+    const listEl = document.getElementById(prefix + '-list');
+    try {
+      const q = query(collection(db, collectionName), orderBy('createdAt', 'desc'));
+      const snap = await getDocs(q);
+      if (snap.empty) {
+        listEl.innerHTML = '<p class="text-sm text-on-surface-variant text-center py-4">No quizzes published yet.</p>';
+        return;
+      }
+      let html = '';
+      snap.forEach(docSnap => {
+        const d = docSnap.data();
+        html += `<div class="flex justify-between items-center p-3 border-b border-outline-variant/20 last:border-0">
+          <div>
+            <p class="text-sm font-semibold text-midnight-navy">${d.title}</p>
+            <p class="text-[10px] text-on-surface-variant">${d.date || 'No date'} &bull; ${d.questions ? d.questions.length : 0} questions</p>
+          </div>
+          <button onclick="deleteQuiz('${collectionName}', '${docSnap.id}', '${prefix}')" class="text-xs text-red-500 hover:underline flex items-center gap-1">
+            <span class="material-symbols-outlined text-[14px]">delete</span> Delete
+          </button>
+        </div>`;
+      });
+      listEl.innerHTML = html;
+    } catch (err) {
+      listEl.innerHTML = '<p class="text-sm text-red-500 text-center py-4">Error loading quizzes.</p>';
+    }
+  }
+
+  window.deleteQuiz = async function(collectionName, docId, prefix) {
+    if (!confirm('Are you sure you want to delete this quiz?')) return;
+    try {
+      await deleteDoc(doc(db, collectionName, docId));
+      loadQuizList(collectionName, prefix);
+    } catch (err) {
+      alert('Error deleting: ' + err.message);
+    }
+  };
+
+  // Load quiz lists on auth
+  const origAuthHandler = onAuthStateChanged;
+  loadQuizList('children_quizzes', 'cq');
+  loadQuizList('sunday_quizzes', 'sq');
+
 </script>
 
 <script>
 function showPanel(name) {
   document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
   document.getElementById('panel-' + name).classList.add('active');
-  const titles = {sermons:'Sermon Media', bible:'Bible School Lessons'};
+  const titles = {sermons:'Sermon Media', bible:'Bible School Lessons', childrenQuiz:'Children Bible Quiz', sundayQuiz:'Sunday Bible Quiz'};
   document.getElementById('panel-title').textContent = titles[name] || 'Content Admin';
+  document.getElementById('new-btn').style.display = (name === 'childrenQuiz' || name === 'sundayQuiz') ? 'none' : 'flex';
   document.querySelectorAll('aside nav a').forEach(a => { a.classList.remove('nav-active'); a.classList.add('nav-link'); });
   event.currentTarget.classList.add('nav-active'); event.currentTarget.classList.remove('nav-link');
 }
@@ -455,14 +623,73 @@ function validateBibleImg(input) {
 
   if (file.size > MAX_BYTES) {
     errEl.classList.remove('hidden');
-    errEl.querySelector('span:last-child').textContent = `"${file.name}" is ${sizeKB}KB — exceeds the 100KB limit. Please compress the image.`;
+    errEl.querySelector('span:last-child').textContent = `"${file.name}" is ${sizeKB}KB â€” exceeds the 100KB limit. Please compress the image.`;
     input.value = '';
   } else {
     okEl.classList.remove('hidden');
-    okEl.querySelector('span:last-child').textContent = `"${file.name}" (${sizeKB}KB) — ready to upload ✓`;
+    okEl.querySelector('span:last-child').textContent = `"${file.name}" (${sizeKB}KB) â€” ready to upload âœ“`;
   }
 }
 
+
+// ===== QUIZ MANAGEMENT =====
+let quizCounters = { cq: 0, sq: 0 };
+
+function addQuizQuestion(prefix) {
+  if (quizCounters[prefix] >= 5) { alert('Maximum 5 questions per quiz.'); return; }
+  quizCounters[prefix]++;
+  const idx = quizCounters[prefix];
+  const container = document.getElementById(prefix + '-questions-container');
+  const div = document.createElement('div');
+  div.className = 'p-4 border border-outline-variant rounded-xl space-y-3 bg-surface-container-low/30';
+  div.id = prefix + '-q' + idx;
+  div.innerHTML = `
+    <div class="flex justify-between items-center">
+      <p class="text-sm font-bold text-midnight-navy">Question ${idx}</p>
+      <button onclick="removeQuizQuestion('${prefix}', ${idx})" class="text-xs text-red-500 hover:underline">Remove</button>
+    </div>
+    <input type="text" placeholder="Enter question..." class="w-full px-4 py-2.5 rounded-lg border border-outline-variant text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary" id="${prefix}-q${idx}-text"/>
+    <div class="grid grid-cols-2 gap-2">
+      <input type="text" placeholder="Option A" class="px-3 py-2 rounded-lg border border-outline-variant text-sm" id="${prefix}-q${idx}-a"/>
+      <input type="text" placeholder="Option B" class="px-3 py-2 rounded-lg border border-outline-variant text-sm" id="${prefix}-q${idx}-b"/>
+      <input type="text" placeholder="Option C" class="px-3 py-2 rounded-lg border border-outline-variant text-sm" id="${prefix}-q${idx}-c"/>
+      <input type="text" placeholder="Option D" class="px-3 py-2 rounded-lg border border-outline-variant text-sm" id="${prefix}-q${idx}-d"/>
+    </div>
+    <div>
+      <label class="text-xs font-bold uppercase tracking-wider text-on-surface-variant block mb-1">Correct Answer</label>
+      <select class="px-3 py-2 rounded-lg border border-outline-variant text-sm" id="${prefix}-q${idx}-correct">
+        <option value="0">A</option><option value="1">B</option><option value="2">C</option><option value="3">D</option>
+      </select>
+    </div>
+  `;
+  container.appendChild(div);
+  if (quizCounters[prefix] >= 5) document.getElementById(prefix + '-add-btn').style.display = 'none';
+}
+
+function removeQuizQuestion(prefix, idx) {
+  const el = document.getElementById(prefix + '-q' + idx);
+  if (el) el.remove();
+  quizCounters[prefix]--;
+  if (quizCounters[prefix] < 5) document.getElementById(prefix + '-add-btn').style.display = 'flex';
+}
+function toggleAdminMenu() {
+  const sidebar = document.getElementById("admin-sidebar");
+  const backdrop = document.getElementById("admin-backdrop");
+  if (sidebar.classList.contains("-translate-x-full")) {
+    sidebar.classList.remove("-translate-x-full");
+    backdrop.classList.remove("hidden");
+  } else {
+    sidebar.classList.add("-translate-x-full");
+    backdrop.classList.add("hidden");
+  }
+}
 </script>
 </body>
 </html>
+
+
+
+
+
+
+

@@ -52,19 +52,19 @@
 <!-- Nav -->
 <!-- TopNavBar -->
 <header class="fixed top-0 w-full z-50 bg-white border-b border-surface-container-high shadow-sm">
-  <div class="flex justify-between items-center px-4 md:px-margin-desktop h-16 md:h-20 max-w-[1440px] mx-auto">
+  <div class="flex justify-between items-center px-4 xl:px-8 h-16 md:h-20 max-w-[1440px] mx-auto">
 
     <!-- Logo -->
     <a href="home_page_the_coming_king_ministries.html" class="flex items-center gap-3 flex-shrink-0">
       <img src="IMG_7893.PNG" alt="The Coming King Ministries Logo" class="h-10 w-10 md:h-12 md:w-12 object-contain rounded-full" loading="eager" fetchpriority="high"/>
-      <span class="text-sm md:text-headline-sm font-bold text-primary tracking-tight leading-tight">
+      <span class="text-sm md:text-lg xl:text-headline-sm font-bold text-primary tracking-tight leading-tight">
         <span class="hidden sm:inline">The Coming King Ministries</span>
         <span class="sm:hidden">TCKM</span>
       </span>
     </a>
 
     <!-- Desktop Nav -->
-    <nav class="hidden md:flex items-center gap-6 lg:gap-8">
+    <nav class="hidden 2xl:flex items-center gap-4 2xl:gap-6">
     <a class="text-label-md text-on-surface-variant hover:text-primary transition-colors" href="home_page_the_coming_king_ministries.html">Home</a>
     <a class="text-label-md text-on-surface-variant hover:text-primary transition-colors" href="about.html">About</a>
     <a class="text-label-md text-on-surface-variant hover:text-primary transition-colors" href="leadership.html">Leadership</a>
@@ -72,17 +72,18 @@
     <a class="text-label-md text-primary border-b-2 border-primary pb-1" href="events.html">Events</a>
     <a class="text-label-md text-on-surface-variant hover:text-primary transition-colors" href="gallery.html">Gallery</a>
     <a class="text-label-md text-on-surface-variant hover:text-primary transition-colors" href="bible-school.html">Bible School</a>
+    <a class="text-label-md text-on-surface-variant hover:text-primary transition-colors" href="children.html">Children</a>
     <a class="text-label-md text-on-surface-variant hover:text-primary transition-colors" href="services.html">Services</a>
     </nav>
 
     <!-- Desktop CTA Buttons -->
-    <div class="hidden md:flex items-center gap-3">
+    <div class="hidden 2xl:flex items-center gap-3">
       <a href="giving.html" class="px-5 py-2 rounded-lg bg-primary text-white text-label-md hover:opacity-90 transition-all shadow-sm">Giving</a>
       <a href="contact.html" class="px-5 py-2 rounded-lg border border-primary text-primary text-label-md hover:bg-primary hover:text-white transition-all">Contact</a>
     </div>
 
     <!-- Mobile Hamburger Button -->
-    <button id="mobile-menu-btn" onclick="toggleMobileMenu()" aria-label="Open menu" class="md:hidden flex flex-col gap-1.5 p-2 rounded-lg hover:bg-surface-container transition-colors">
+    <button id="mobile-menu-btn" onclick="toggleMobileMenu()" aria-label="Open menu" class="2xl:hidden flex flex-col gap-1.5 p-2 rounded-lg hover:bg-surface-container transition-colors">
       <span id="ham-line-1" class="block w-6 h-0.5 bg-on-background transition-all duration-300"></span>
       <span id="ham-line-2" class="block w-6 h-0.5 bg-on-background transition-all duration-300"></span>
       <span id="ham-line-3" class="block w-4 h-0.5 bg-on-background transition-all duration-300"></span>
@@ -90,7 +91,7 @@
   </div>
 
   <!-- Mobile Drawer Menu -->
-  <div id="mobile-menu" class="md:hidden fixed inset-0 z-40 pointer-events-none">
+  <div id="mobile-menu" class="2xl:hidden fixed inset-0 z-40 pointer-events-none">
     <!-- Backdrop -->
     <div id="mobile-backdrop" onclick="closeMobileMenu()" class="absolute inset-0 bg-black/50 opacity-0 transition-opacity duration-300"></div>
     <!-- Slide-in panel -->
@@ -109,11 +110,12 @@
       <a class="block px-4 py-3 text-primary font-bold border-l-4 border-primary bg-primary/5 rounded-r-lg" href="events.html" onclick="closeMobileMenu()">Events</a>
       <a class="block px-4 py-3 text-on-surface-variant hover:text-primary hover:bg-surface-container-low transition-colors rounded-lg" href="gallery.html" onclick="closeMobileMenu()">Gallery</a>
       <a class="block px-4 py-3 text-on-surface-variant hover:text-primary hover:bg-surface-container-low transition-colors rounded-lg" href="bible-school.html" onclick="closeMobileMenu()">Bible School</a>
+      <a class="block px-4 py-3 text-on-surface-variant hover:text-primary hover:bg-surface-container-low transition-colors rounded-lg" href="children.html" onclick="closeMobileMenu()">Children</a>
       <a class="block px-4 py-3 text-on-surface-variant hover:text-primary hover:bg-surface-container-low transition-colors rounded-lg" href="services.html" onclick="closeMobileMenu()">Services</a>
       </nav>
       <div class="p-4 border-t border-surface-container space-y-3 mt-4">
-        <a href="giving.html" class="block w-full text-center px-6 py-3 rounded-lg bg-primary text-white font-bold text-sm hover:opacity-90 transition-all shadow-sm">💝 Give Online</a>
-        <a href="contact.html" class="block w-full text-center px-6 py-3 rounded-lg border-2 border-primary text-primary font-bold text-sm hover:bg-primary hover:text-white transition-all">📞 Contact Us</a>
+        <a href="giving.html" class="block w-full text-center px-6 py-3 rounded-lg bg-primary text-white font-bold text-sm hover:opacity-90 transition-all shadow-sm">?? Give Online</a>
+        <a href="contact.html" class="block w-full text-center px-6 py-3 rounded-lg border-2 border-primary text-primary font-bold text-sm hover:bg-primary hover:text-white transition-all">?? Contact Us</a>
       </div>
     </div>
   </div>
@@ -239,168 +241,6 @@
     loadEvents();
   </script>
 
-  <!-- Monthly Programs & Regular Schedule -->
-  <section class="py-section-gap px-margin-mobile md:px-margin-desktop bg-surface-container-low">
-    <div class="max-w-[1440px] mx-auto">
-      <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 gap-4">
-        <div>
-          <div class="inline-flex items-center gap-2 px-4 py-1 bg-primary/10 rounded-full mb-4">
-            <span class="material-symbols-outlined text-primary text-sm" style="font-variation-settings:'FILL' 1;">calendar_month</span>
-            <span class="text-label-caps text-primary">MONTHLY PROGRAMS</span>
-          </div>
-          <h2 class="text-headline-md text-on-background">Regular Monthly Schedule</h2>
-          <p class="text-body-md text-on-surface-variant mt-2">Our consistent monthly gatherings, vigils and prayer programs</p>
-        </div>
-      </div>
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-
-        <!-- Hours of Prayer -->
-        <div class="flex flex-col md:flex-row bg-white rounded-xl overflow-hidden hover:shadow-xl transition-all border border-surface-container-high">
-          <div class="md:w-1/3 bg-primary flex flex-col items-center justify-center p-8 min-h-[160px]">
-            <span class="text-label-caps text-white/80 font-bold">MONTHLY</span>
-            <span class="text-4xl font-bold text-white mt-1">1st</span>
-            <span class="text-label-md text-white/80 mt-1">Mon–Wed</span>
-          </div>
-          <div class="p-8 flex-1">
-            <span class="text-label-caps text-primary">MONTHLY PRAYER ROUTINE</span>
-            <h3 class="text-headline-sm text-on-background mb-3 mt-1">Hours of Prayer</h3>
-            <p class="text-on-surface-variant text-body-md mb-4">First Monday, Tuesday & Wednesday of every month. Three days of intense prayer and intercession.</p>
-            <div class="flex items-center gap-2 text-primary font-bold">
-              <span class="material-symbols-outlined text-[18px]">schedule</span>
-              <span class="text-label-md">5:00 PM daily</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Jehovah Night -->
-        <div class="flex flex-col md:flex-row bg-white rounded-xl overflow-hidden hover:shadow-xl transition-all border border-surface-container-high">
-          <div class="md:w-1/3 bg-secondary flex flex-col items-center justify-center p-8 min-h-[160px]">
-            <span class="text-label-caps text-white/80 font-bold">QUARTERLY</span>
-            <span class="text-3xl font-bold text-white mt-1">3rd</span>
-            <span class="text-label-md text-white/80">Week of Month</span>
-          </div>
-          <div class="p-8 flex-1">
-            <span class="text-label-caps text-primary">QUARTERLY PROGRAM</span>
-            <h3 class="text-headline-sm text-on-background mb-3 mt-1">Jehovah Night</h3>
-            <p class="text-on-surface-variant text-body-md mb-4">Held in the 3rd week of January, April, August and December. A powerful all-night praise and worship service.</p>
-            <div class="flex items-center gap-2 text-on-surface-variant">
-              <span class="material-symbols-outlined text-primary">location_on</span>
-              <span class="text-label-md">All Branches Simultaneously</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- 1st Friday: King's Women Vigil -->
-        <div class="flex flex-col md:flex-row bg-white rounded-xl overflow-hidden hover:shadow-xl transition-all border border-surface-container-high">
-          <div class="md:w-1/3 bg-primary/80 flex flex-col items-center justify-center p-8 min-h-[160px]">
-            <span class="text-label-caps text-white/80 font-bold">MONTHLY</span>
-            <span class="text-4xl font-bold text-white mt-1">1st</span>
-            <span class="text-label-md text-white/80 mt-1">Friday</span>
-          </div>
-          <div class="p-8 flex-1">
-            <span class="text-label-caps text-primary">FRIDAY VIGIL</span>
-            <h3 class="text-headline-sm text-on-background mb-3 mt-1">King's Women Vigil</h3>
-            <p class="text-on-surface-variant text-body-md mb-3">1st Friday of every month. A dedicated night of prayer for women of the ministry.</p>
-            <span class="inline-block px-3 py-1 bg-primary/10 text-primary text-label-caps rounded-full">Below 50 Years</span>
-          </div>
-        </div>
-
-        <!-- 2nd Friday: King's Youth Vigil -->
-        <div class="flex flex-col md:flex-row bg-white rounded-xl overflow-hidden hover:shadow-xl transition-all border border-surface-container-high">
-          <div class="md:w-1/3 bg-secondary/80 flex flex-col items-center justify-center p-8 min-h-[160px]">
-            <span class="text-label-caps text-white/80 font-bold">MONTHLY</span>
-            <span class="text-4xl font-bold text-white mt-1">2nd</span>
-            <span class="text-label-md text-white/80 mt-1">Friday</span>
-          </div>
-          <div class="p-8 flex-1">
-            <span class="text-label-caps text-primary">FRIDAY VIGIL</span>
-            <h3 class="text-headline-sm text-on-background mb-3 mt-1">King's Youth Vigil</h3>
-            <p class="text-on-surface-variant text-body-md mb-3">2nd Friday of every month. Fire and passion — young people seeking the face of God.</p>
-            <span class="inline-block px-3 py-1 bg-secondary/10 text-secondary text-label-caps rounded-full">Youth</span>
-          </div>
-        </div>
-
-        <!-- 3rd Friday: King's Men Vigil -->
-        <div class="flex flex-col md:flex-row bg-white rounded-xl overflow-hidden hover:shadow-xl transition-all border border-surface-container-high">
-          <div class="md:w-1/3 bg-primary flex flex-col items-center justify-center p-8 min-h-[160px]">
-            <span class="text-label-caps text-white/80 font-bold">MONTHLY</span>
-            <span class="text-4xl font-bold text-white mt-1">3rd</span>
-            <span class="text-label-md text-white/80 mt-1">Friday</span>
-          </div>
-          <div class="p-8 flex-1">
-            <span class="text-label-caps text-primary">FRIDAY VIGIL</span>
-            <h3 class="text-headline-sm text-on-background mb-3 mt-1">King's Men Vigil</h3>
-            <p class="text-on-surface-variant text-body-md mb-3">3rd Friday of every month. Men of God arising in prayer and intercession.</p>
-            <span class="inline-block px-3 py-1 bg-primary/10 text-primary text-label-caps rounded-full">Below 50 Years</span>
-          </div>
-        </div>
-
-        <!-- 4th Friday: King's Men & Women Vigil (50+) -->
-        <div class="flex flex-col md:flex-row bg-white rounded-xl overflow-hidden hover:shadow-xl transition-all border border-surface-container-high">
-          <div class="md:w-1/3 bg-secondary flex flex-col items-center justify-center p-8 min-h-[160px]">
-            <span class="text-label-caps text-white/80 font-bold">MONTHLY</span>
-            <span class="text-4xl font-bold text-white mt-1">4th</span>
-            <span class="text-label-md text-white/80 mt-1">Friday</span>
-          </div>
-          <div class="p-8 flex-1">
-            <span class="text-label-caps text-primary">FRIDAY VIGIL</span>
-            <h3 class="text-headline-sm text-on-background mb-3 mt-1">King's Men & Women Vigil</h3>
-            <p class="text-on-surface-variant text-body-md mb-3">4th Friday of every month. A combined vigil for the seasoned saints of the ministry.</p>
-            <span class="inline-block px-3 py-1 bg-secondary/10 text-secondary text-label-caps rounded-full">Above 50 Years</span>
-          </div>
-        </div>
-
-        <!-- Last Sunday Thanksgiving -->
-        <div class="flex flex-col md:flex-row bg-white rounded-xl overflow-hidden hover:shadow-xl transition-all border border-surface-container-high lg:col-span-2">
-          <div class="md:w-1/4 bg-primary flex flex-col items-center justify-center p-8 min-h-[140px]">
-            <span class="text-label-caps text-white/80 font-bold">MONTHLY</span>
-            <span class="text-3xl font-bold text-white mt-1">Last</span>
-            <span class="text-label-md text-white/80 mt-1">Sunday</span>
-          </div>
-          <div class="p-8 flex-1">
-            <span class="text-label-caps text-primary">MONTHLY SERVICE</span>
-            <h3 class="text-headline-sm text-on-background mb-3 mt-1">Monthly Thanksgiving Service</h3>
-            <p class="text-on-surface-variant text-body-md">Last Sunday of every month. A special service of gratitude and praise to God for His faithfulness and mercies throughout the month.</p>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- Weekly Schedule Quick View -->
-  <section class="py-section-gap px-margin-mobile md:px-margin-desktop bg-surface-container-low">
-    <div class="max-w-[1440px] mx-auto">
-      <div class="text-center mb-12">
-        <h2 class="text-headline-md text-on-background">Weekly Schedule</h2>
-        <p class="text-body-md text-on-surface-variant mt-2">Our regular weekly gatherings</p>
-      </div>
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        <div class="bg-white rounded-xl p-6 text-center shadow-sm border-t-4 border-primary">
-          <span class="text-label-caps text-primary block mb-2">MONDAY</span>
-          <h3 class="text-headline-sm text-on-background">Prayer Team</h3>
-          <p class="text-body-md text-on-surface-variant mt-2">5:00 PM</p>
-        </div>
-        <div class="bg-white rounded-xl p-6 text-center shadow-sm border-t-4 border-secondary">
-          <span class="text-label-caps text-secondary block mb-2">WEDNESDAY</span>
-          <h3 class="text-headline-sm text-on-background">Bible Study</h3>
-          <p class="text-body-md text-on-surface-variant mt-2">5:00 – 7:00 PM</p>
-        </div>
-        <div class="bg-white rounded-xl p-6 text-center shadow-sm border-t-4 border-primary">
-          <span class="text-label-caps text-primary block mb-2">THURSDAY</span>
-          <h3 class="text-headline-sm text-on-background">Evangelism</h3>
-          <p class="text-body-md text-on-surface-variant mt-2">5:00 PM</p>
-        </div>
-        <div class="bg-white rounded-xl p-6 text-center shadow-sm border-t-4 border-secondary">
-          <span class="text-label-caps text-secondary block mb-2">SUNDAY</span>
-          <h3 class="text-headline-sm text-on-background">Sunday Service</h3>
-          <p class="text-body-md text-on-surface-variant mt-1">Bible School: 7:45 AM</p>
-          <p class="text-body-md text-on-surface-variant">Service: 9:00 – 11:30 AM</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <!-- CTA -->
   <section class="py-16 px-margin-mobile md:px-margin-desktop bg-secondary text-white text-center">
     <h3 class="text-headline-md text-white mb-4">Want to Stay Updated?</h3>
@@ -430,7 +270,8 @@
         <a class="text-body-md text-white/70 hover:text-white transition-colors" href="leadership.html">Leadership</a>
         <a class="text-body-md text-white/70 hover:text-white transition-colors" href="sermons.html">Sermons</a>
     <a class="text-label-md text-on-surface-variant hover:text-primary transition-colors" href="bible-school.html">Bible School</a>
-        <a class="text-body-md text-white/70 hover:text-white transition-colors" href="events.html">Events</a>
+        <a class="text-label-md text-on-surface-variant hover:text-primary transition-colors" href="children.html">Children</a>
+    <a class="text-body-md text-white/70 hover:text-white transition-colors" href="events.html">Events</a>
         <a class="text-body-md text-white/70 hover:text-white transition-colors" href="gallery.html">Gallery</a>
         <a class="text-body-md text-white/70 hover:text-white transition-colors" href="giving.html">Giving</a>
         <a class="text-body-md text-white/70 hover:text-white transition-colors" href="contact.html">Contact</a>
@@ -439,7 +280,7 @@
     <div class="space-y-3">
       <h4 class="text-label-md font-bold text-primary uppercase">Contact</h4>
       <p class="text-body-md text-white/70">Olorunsogo, Idi-Aba, Abeokuta, Ogun State</p>
-      <p class="text-body-md text-white/70">08064694851 / 08067907017</p>
+      <p class="text-body-md text-white/70">08064694851 / 09055274255</p>
       <p class="text-body-md text-white/70 break-all">TheComingkingMinistriesNigeria@gmail.com</p>
       <p class="text-label-md text-white/50 pt-6 border-t border-white/10">© 2026 The Coming King Ministries.</p>
     </div>
@@ -447,3 +288,8 @@
 </footer>
 </body>
 </html>
+
+
+
+
+

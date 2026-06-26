@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html class="light" lang="en">
 <head>
 <link rel="dns-prefetch" href="//fonts.googleapis.com"/>
@@ -7,7 +7,7 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Sermons | The Coming King Ministries</title>
-<meta name="description" content="Watch and listen to sermons from The Coming King Ministries — YouTube, audio and archives."/>
+<meta name="description" content="Watch and listen to sermons from The Coming King Ministries â€” YouTube, audio and archives."/>
 <script src="https://cdn.tailwindcss.com"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/><link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Inter:wght@400;500;600&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&display=swap" rel="stylesheet"/>
 <script id="tailwind-config">
@@ -33,19 +33,19 @@
 <!-- Nav -->
 <!-- TopNavBar -->
 <header class="fixed top-0 w-full z-50 bg-white border-b border-surface-container-high shadow-sm">
-  <div class="flex justify-between items-center px-4 md:px-margin-desktop h-16 md:h-20 max-w-[1440px] mx-auto">
+  <div class="flex justify-between items-center px-4 xl:px-8 h-16 md:h-20 max-w-[1440px] mx-auto">
 
     <!-- Logo -->
     <a href="home_page_the_coming_king_ministries.html" class="flex items-center gap-3 flex-shrink-0">
       <img src="IMG_7893.PNG" alt="The Coming King Ministries Logo" class="h-10 w-10 md:h-12 md:w-12 object-contain rounded-full" loading="eager" fetchpriority="high"/>
-      <span class="text-sm md:text-headline-sm font-bold text-primary tracking-tight leading-tight">
+      <span class="text-sm md:text-lg xl:text-headline-sm font-bold text-primary tracking-tight leading-tight">
         <span class="hidden sm:inline">The Coming King Ministries</span>
         <span class="sm:hidden">TCKM</span>
       </span>
     </a>
 
     <!-- Desktop Nav -->
-    <nav class="hidden md:flex items-center gap-6 lg:gap-8">
+    <nav class="hidden 2xl:flex items-center gap-4 2xl:gap-6">
     <a class="text-label-md text-on-surface-variant hover:text-primary transition-colors" href="home_page_the_coming_king_ministries.html">Home</a>
     <a class="text-label-md text-on-surface-variant hover:text-primary transition-colors" href="about.html">About</a>
     <a class="text-label-md text-on-surface-variant hover:text-primary transition-colors" href="leadership.html">Leadership</a>
@@ -53,17 +53,18 @@
     <a class="text-label-md text-on-surface-variant hover:text-primary transition-colors" href="events.html">Events</a>
     <a class="text-label-md text-on-surface-variant hover:text-primary transition-colors" href="gallery.html">Gallery</a>
     <a class="text-label-md text-on-surface-variant hover:text-primary transition-colors" href="bible-school.html">Bible School</a>
+    <a class="text-label-md text-on-surface-variant hover:text-primary transition-colors" href="children.html">Children</a>
     <a class="text-label-md text-on-surface-variant hover:text-primary transition-colors" href="services.html">Services</a>
     </nav>
 
     <!-- Desktop CTA Buttons -->
-    <div class="hidden md:flex items-center gap-3">
+    <div class="hidden 2xl:flex items-center gap-3">
       <a href="giving.html" class="px-5 py-2 rounded-lg bg-primary text-white text-label-md hover:opacity-90 transition-all shadow-sm">Giving</a>
       <a href="contact.html" class="px-5 py-2 rounded-lg border border-primary text-primary text-label-md hover:bg-primary hover:text-white transition-all">Contact</a>
     </div>
 
     <!-- Mobile Hamburger Button -->
-    <button id="mobile-menu-btn" onclick="toggleMobileMenu()" aria-label="Open menu" class="md:hidden flex flex-col gap-1.5 p-2 rounded-lg hover:bg-surface-container transition-colors">
+    <button id="mobile-menu-btn" onclick="toggleMobileMenu()" aria-label="Open menu" class="2xl:hidden flex flex-col gap-1.5 p-2 rounded-lg hover:bg-surface-container transition-colors">
       <span id="ham-line-1" class="block w-6 h-0.5 bg-on-background transition-all duration-300"></span>
       <span id="ham-line-2" class="block w-6 h-0.5 bg-on-background transition-all duration-300"></span>
       <span id="ham-line-3" class="block w-4 h-0.5 bg-on-background transition-all duration-300"></span>
@@ -71,7 +72,7 @@
   </div>
 
   <!-- Mobile Drawer Menu -->
-  <div id="mobile-menu" class="md:hidden fixed inset-0 z-40 pointer-events-none">
+  <div id="mobile-menu" class="2xl:hidden fixed inset-0 z-40 pointer-events-none">
     <!-- Backdrop -->
     <div id="mobile-backdrop" onclick="closeMobileMenu()" class="absolute inset-0 bg-black/50 opacity-0 transition-opacity duration-300"></div>
     <!-- Slide-in panel -->
@@ -90,11 +91,12 @@
       <a class="block px-4 py-3 text-on-surface-variant hover:text-primary hover:bg-surface-container-low transition-colors rounded-lg" href="events.html" onclick="closeMobileMenu()">Events</a>
       <a class="block px-4 py-3 text-on-surface-variant hover:text-primary hover:bg-surface-container-low transition-colors rounded-lg" href="gallery.html" onclick="closeMobileMenu()">Gallery</a>
       <a class="block px-4 py-3 text-on-surface-variant hover:text-primary hover:bg-surface-container-low transition-colors rounded-lg" href="bible-school.html" onclick="closeMobileMenu()">Bible School</a>
+      <a class="block px-4 py-3 text-on-surface-variant hover:text-primary hover:bg-surface-container-low transition-colors rounded-lg" href="children.html" onclick="closeMobileMenu()">Children</a>
       <a class="block px-4 py-3 text-on-surface-variant hover:text-primary hover:bg-surface-container-low transition-colors rounded-lg" href="services.html" onclick="closeMobileMenu()">Services</a>
       </nav>
       <div class="p-4 border-t border-surface-container space-y-3 mt-4">
-        <a href="giving.html" class="block w-full text-center px-6 py-3 rounded-lg bg-primary text-white font-bold text-sm hover:opacity-90 transition-all shadow-sm">💝 Give Online</a>
-        <a href="contact.html" class="block w-full text-center px-6 py-3 rounded-lg border-2 border-primary text-primary font-bold text-sm hover:bg-primary hover:text-white transition-all">📞 Contact Us</a>
+        <a href="giving.html" class="block w-full text-center px-6 py-3 rounded-lg bg-primary text-white font-bold text-sm hover:opacity-90 transition-all shadow-sm">ðŸ’ Give Online</a>
+        <a href="contact.html" class="block w-full text-center px-6 py-3 rounded-lg border-2 border-primary text-primary font-bold text-sm hover:bg-primary hover:text-white transition-all">ðŸ“ž Contact Us</a>
       </div>
     </div>
   </div>
@@ -221,7 +223,7 @@
   <section class="py-section-gap px-margin-mobile md:px-margin-desktop bg-white">
     <div class="max-w-[1440px] mx-auto">
       <div id="sermons-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        <!-- Static sample sermon cards — shown until Firebase loads -->
+        <!-- Static sample sermon cards â€” shown until Firebase loads -->
         <div class="sermon-card bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-all group" data-title="Faith That Moves Mountains" data-cat="faith">
           <div class="relative overflow-hidden h-48 bg-secondary">
             <div class="w-full h-full flex items-center justify-center bg-gradient-to-br from-secondary to-primary/80">
@@ -249,7 +251,7 @@
           <div class="p-6">
             <h3 class="text-headline-sm text-on-background mb-2 group-hover:text-primary transition-colors">Holiness Unto The Lord</h3>
             <p class="text-on-surface-variant text-body-md mb-3">Pastor Akinboye Michael</p>
-            <p class="text-body-md text-on-surface-variant text-sm mb-4">God's call to holiness is not optional — it is the foundation of our walk with Him and our readiness for His return.</p>
+            <p class="text-body-md text-on-surface-variant text-sm mb-4">God's call to holiness is not optional â€” it is the foundation of our walk with Him and our readiness for His return.</p>
             <div class="flex items-center justify-between border-t border-surface-container-high pt-4">
               <span class="text-label-md text-on-surface-variant">Sep 2024</span>
               <a href="https://youtube.com/@thecomingkingministriesnigeria" target="_blank" class="text-primary text-label-md font-bold flex items-center gap-1 hover:underline">Watch <span class="material-symbols-outlined text-sm">open_in_new</span></a>
@@ -351,7 +353,7 @@
           <span class="text-label-caps text-primary">AUDIO MESSAGES</span>
         </div>
         <h2 class="text-headline-md text-on-background">Listen Anytime</h2>
-        <p class="text-body-md text-on-surface-variant mt-2">Audio sermons available via our broadcast ministry — Rockcity 101.9 FM & Family 88.5 FM, Abeokuta</p>
+        <p class="text-body-md text-on-surface-variant mt-2">Audio sermons available via our broadcast ministry â€” Rockcity 101.9 FM & Family 88.5 FM, Abeokuta</p>
       </div>
       <div class="space-y-4 max-w-3xl mx-auto">
         <div class="bg-white rounded-xl p-5 flex items-center gap-5 shadow-sm hover:shadow-md transition-all">
@@ -360,7 +362,7 @@
           </button>
           <div class="flex-1 min-w-0">
             <h4 class="text-label-md font-semibold text-on-background truncate">The Season of Divine Preparation</h4>
-            <p class="text-body-md text-on-surface-variant text-sm">Pastor Akinboye Michael • 42 min</p>
+            <p class="text-body-md text-on-surface-variant text-sm">Pastor Akinboye Michael â€¢ 42 min</p>
           </div>
           <div class="flex items-center gap-3 flex-shrink-0">
             <div class="hidden md:flex gap-1 items-end h-6">
@@ -380,7 +382,7 @@
           </button>
           <div class="flex-1 min-w-0">
             <h4 class="text-label-md font-semibold text-on-background truncate">Preparing for the King's Return</h4>
-            <p class="text-body-md text-on-surface-variant text-sm">Pastor Akinboye Michael • 38 min</p>
+            <p class="text-body-md text-on-surface-variant text-sm">Pastor Akinboye Michael â€¢ 38 min</p>
           </div>
           <div class="flex items-center gap-3 flex-shrink-0">
             <button class="text-on-surface-variant hover:text-primary"><span class="material-symbols-outlined text-[20px]">download</span></button>
@@ -392,7 +394,7 @@
           </button>
           <div class="flex-1 min-w-0">
             <h4 class="text-label-md font-semibold text-on-background truncate">Evangelism: Our Core Mandate</h4>
-            <p class="text-body-md text-on-surface-variant text-sm">Pastor Samuel O. Olatoye • 55 min</p>
+            <p class="text-body-md text-on-surface-variant text-sm">Pastor Samuel O. Olatoye â€¢ 55 min</p>
           </div>
           <div class="flex items-center gap-3 flex-shrink-0">
             <button class="text-on-surface-variant hover:text-primary"><span class="material-symbols-outlined text-[20px]">download</span></button>
@@ -441,7 +443,8 @@
         <a class="text-body-md text-white/70 hover:text-white transition-colors" href="leadership.html">Leadership</a>
         <a class="text-body-md text-white/70 hover:text-white transition-colors" href="sermons.html">Sermons</a>
     <a class="text-label-md text-on-surface-variant hover:text-primary transition-colors" href="bible-school.html">Bible School</a>
-        <a class="text-body-md text-white/70 hover:text-white transition-colors" href="events.html">Events</a>
+        <a class="text-label-md text-on-surface-variant hover:text-primary transition-colors" href="children.html">Children</a>
+    <a class="text-body-md text-white/70 hover:text-white transition-colors" href="events.html">Events</a>
         <a class="text-body-md text-white/70 hover:text-white transition-colors" href="gallery.html">Gallery</a>
         <a class="text-body-md text-white/70 hover:text-white transition-colors" href="giving.html">Giving</a>
         <a class="text-body-md text-white/70 hover:text-white transition-colors" href="contact.html">Contact</a>
@@ -450,9 +453,9 @@
     <div class="space-y-3">
       <h4 class="text-label-md font-bold text-primary uppercase">Contact</h4>
       <p class="text-body-md text-white/70">Olorunsogo, Idi-Aba, Abeokuta, Ogun State</p>
-      <p class="text-body-md text-white/70">08064694851 / 08067907017</p>
+      <p class="text-body-md text-white/70">08064694851 / 09055274255</p>
       <p class="text-body-md text-white/70 break-all">TheComingkingMinistriesNigeria@gmail.com</p>
-      <p class="text-label-md text-white/50 pt-6 border-t border-white/10">© 2026 The Coming King Ministries.</p>
+      <p class="text-label-md text-white/50 pt-6 border-t border-white/10">Â© 2026 The Coming King Ministries.</p>
     </div>
   </div>
 </footer>
@@ -576,3 +579,7 @@ function filterCat(cat) {
 </script>
 </body>
 </html>
+
+
+
+

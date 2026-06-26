@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html class="light" lang="en">
 <head>
 <link rel="dns-prefetch" href="//fonts.googleapis.com"/>
@@ -7,7 +7,7 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>About | The Coming King Ministries</title>
-<meta name="description" content="Learn about The Coming King Ministries — our history, mission, vision, and ministry arms. Founded June 6, 2004."/>
+<meta name="description" content="Learn about The Coming King Ministries â€” our history, mission, vision, and ministry arms. Founded June 6, 2004."/>
 <script src="https://cdn.tailwindcss.com"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/><link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Inter:wght@400;500;600&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&display=swap" rel="stylesheet"/>
 <script id="tailwind-config">
@@ -54,19 +54,19 @@
 <!-- Header -->
 <!-- TopNavBar -->
 <header class="fixed top-0 w-full z-50 bg-white border-b border-surface-container-high shadow-sm">
-  <div class="flex justify-between items-center px-4 md:px-margin-desktop h-16 md:h-20 max-w-[1440px] mx-auto">
+  <div class="flex justify-between items-center px-4 xl:px-8 h-16 md:h-20 max-w-[1440px] mx-auto">
 
     <!-- Logo -->
     <a href="home_page_the_coming_king_ministries.html" class="flex items-center gap-3 flex-shrink-0">
       <img src="IMG_7893.PNG" alt="The Coming King Ministries Logo" class="h-10 w-10 md:h-12 md:w-12 object-contain rounded-full" loading="eager" fetchpriority="high"/>
-      <span class="text-sm md:text-headline-sm font-bold text-primary tracking-tight leading-tight">
+      <span class="text-sm md:text-lg xl:text-headline-sm font-bold text-primary tracking-tight leading-tight">
         <span class="hidden sm:inline">The Coming King Ministries</span>
         <span class="sm:hidden">TCKM</span>
       </span>
     </a>
 
     <!-- Desktop Nav -->
-    <nav class="hidden md:flex items-center gap-6 lg:gap-8">
+    <nav class="hidden 2xl:flex items-center gap-4 2xl:gap-6">
     <a class="text-label-md text-on-surface-variant hover:text-primary transition-colors" href="home_page_the_coming_king_ministries.html">Home</a>
     <a class="text-label-md text-primary border-b-2 border-primary pb-1" href="about.html">About</a>
     <a class="text-label-md text-on-surface-variant hover:text-primary transition-colors" href="leadership.html">Leadership</a>
@@ -74,17 +74,18 @@
     <a class="text-label-md text-on-surface-variant hover:text-primary transition-colors" href="events.html">Events</a>
     <a class="text-label-md text-on-surface-variant hover:text-primary transition-colors" href="gallery.html">Gallery</a>
     <a class="text-label-md text-on-surface-variant hover:text-primary transition-colors" href="bible-school.html">Bible School</a>
+    <a class="text-label-md text-on-surface-variant hover:text-primary transition-colors" href="children.html">Children</a>
     <a class="text-label-md text-on-surface-variant hover:text-primary transition-colors" href="services.html">Services</a>
     </nav>
 
     <!-- Desktop CTA Buttons -->
-    <div class="hidden md:flex items-center gap-3">
+    <div class="hidden 2xl:flex items-center gap-3">
       <a href="giving.html" class="px-5 py-2 rounded-lg bg-primary text-white text-label-md hover:opacity-90 transition-all shadow-sm">Giving</a>
       <a href="contact.html" class="px-5 py-2 rounded-lg border border-primary text-primary text-label-md hover:bg-primary hover:text-white transition-all">Contact</a>
     </div>
 
     <!-- Mobile Hamburger Button -->
-    <button id="mobile-menu-btn" onclick="toggleMobileMenu()" aria-label="Open menu" class="md:hidden flex flex-col gap-1.5 p-2 rounded-lg hover:bg-surface-container transition-colors">
+    <button id="mobile-menu-btn" onclick="toggleMobileMenu()" aria-label="Open menu" class="2xl:hidden flex flex-col gap-1.5 p-2 rounded-lg hover:bg-surface-container transition-colors">
       <span id="ham-line-1" class="block w-6 h-0.5 bg-on-background transition-all duration-300"></span>
       <span id="ham-line-2" class="block w-6 h-0.5 bg-on-background transition-all duration-300"></span>
       <span id="ham-line-3" class="block w-4 h-0.5 bg-on-background transition-all duration-300"></span>
@@ -92,7 +93,7 @@
   </div>
 
   <!-- Mobile Drawer Menu -->
-  <div id="mobile-menu" class="md:hidden fixed inset-0 z-40 pointer-events-none">
+  <div id="mobile-menu" class="2xl:hidden fixed inset-0 z-40 pointer-events-none">
     <!-- Backdrop -->
     <div id="mobile-backdrop" onclick="closeMobileMenu()" class="absolute inset-0 bg-black/50 opacity-0 transition-opacity duration-300"></div>
     <!-- Slide-in panel -->
@@ -111,11 +112,12 @@
       <a class="block px-4 py-3 text-on-surface-variant hover:text-primary hover:bg-surface-container-low transition-colors rounded-lg" href="events.html" onclick="closeMobileMenu()">Events</a>
       <a class="block px-4 py-3 text-on-surface-variant hover:text-primary hover:bg-surface-container-low transition-colors rounded-lg" href="gallery.html" onclick="closeMobileMenu()">Gallery</a>
       <a class="block px-4 py-3 text-on-surface-variant hover:text-primary hover:bg-surface-container-low transition-colors rounded-lg" href="bible-school.html" onclick="closeMobileMenu()">Bible School</a>
+      <a class="block px-4 py-3 text-on-surface-variant hover:text-primary hover:bg-surface-container-low transition-colors rounded-lg" href="children.html" onclick="closeMobileMenu()">Children</a>
       <a class="block px-4 py-3 text-on-surface-variant hover:text-primary hover:bg-surface-container-low transition-colors rounded-lg" href="services.html" onclick="closeMobileMenu()">Services</a>
       </nav>
       <div class="p-4 border-t border-surface-container space-y-3 mt-4">
-        <a href="giving.html" class="block w-full text-center px-6 py-3 rounded-lg bg-primary text-white font-bold text-sm hover:opacity-90 transition-all shadow-sm">💝 Give Online</a>
-        <a href="contact.html" class="block w-full text-center px-6 py-3 rounded-lg border-2 border-primary text-primary font-bold text-sm hover:bg-primary hover:text-white transition-all">📞 Contact Us</a>
+        <a href="giving.html" class="block w-full text-center px-6 py-3 rounded-lg bg-primary text-white font-bold text-sm hover:opacity-90 transition-all shadow-sm">ðŸ’ Give Online</a>
+        <a href="contact.html" class="block w-full text-center px-6 py-3 rounded-lg border-2 border-primary text-primary font-bold text-sm hover:bg-primary hover:text-white transition-all">ðŸ“ž Contact Us</a>
       </div>
     </div>
   </div>
@@ -170,7 +172,7 @@
 <!-- Page Hero -->
 <section class="page-hero relative h-[420px] flex items-center justify-center text-center px-margin-mobile md:px-margin-desktop">
   <div class="relative z-10 animate-fade-in">
-    <p class="text-label-caps text-white/70 mb-4 tracking-widest">EST. JUNE 6, 2004 • ABEOKUTA, NIGERIA</p>
+    <p class="text-label-caps text-white/70 mb-4 tracking-widest">EST. JUNE 6, 2004 â€¢ ABEOKUTA, NIGERIA</p>
     <h1 class="text-display-lg text-white mb-4">About The Coming King Ministries</h1>
     <p class="text-body-lg text-white/85 max-w-2xl mx-auto">"To Prepare Saints for the Coming King"</p>
   </div>
@@ -197,7 +199,7 @@
       <h2 class="text-headline-md text-on-background mb-8">The Story of Grace</h2>
       <div class="space-y-6 text-body-lg text-on-surface-variant leading-relaxed">
         <p>The Coming King Ministries was founded on 6th June 2004 by the Late Apostle Daniel Olaide Olabosipo Olatoye O. Daniel, a devoted servant of God, divinely commissioned to proclaim the Gospel of Jesus Christ to mankind and prepare souls for the Second Coming of our Lord Jesus Christ. The Ministry is evangelical in nature; hence, its church arm is known as The Coming King Evangelical Church. From its humble beginning, God has graciously sustained and expanded the Ministry, leading to remarkable growth and spiritual impact.</p>
-        <p>To the glory of God, the Ministry has grown from its Headquarters Church located at Olorunsogo Idi-Aba, Abeokuta to three Administrative Areas, namely: Abeokuta Area, Ijebu Area, and Ibadan Area. Through these Areas and their various Parishes or Centres, the Gospel continues to reach many souls across different communities. In addition to its church ministry, The Coming King Ministries operates a Publishing Department, which produces and distributes Sunday Bible School lessons for spiritual growth and discipleship. The Ministry also runs a Broadcast Ministry known as "And the Word Was God", through which the message of salvation, holiness, revival, restoration and the Kingdom of God is proclaimed to a wider audience through Rockcity 101.9 FM and Family 88.5 FM, Abeokuta.</p>
+        <p>To the glory of God, the Ministry has grown from its Headquarters Church located at Olorunsogo, Idi-Aba, Abeokuta to three Administrative Areas, namely: Abeokuta Area, Ijebu Area, and Ibadan Area. Through these Areas and their various Parishes or Centres, the Gospel continues to reach many souls across different communities. In addition to its church ministry, The Coming King Ministries operates a Publishing Department, which produces and distributes Sunday Bible School lessons for spiritual growth and discipleship. The Ministry also runs a Broadcast Ministry known as "And the Word Was God", through which the message of salvation, holiness, revival, restoration and the Kingdom of God is proclaimed to a wider audience through Rockcity 101.9 FM and Family 88.5 FM, Abeokuta.</p>
         <p>Over the years, these ministries have made significant spiritual impacts within the Body of Christ, across Nigeria, and in other parts of the world, contributing to the advancement of God's Kingdom and the preparation of believers for the return of Christ. Following the glorious transition of the Founder, Late Apostle Olatoye O. Daniel, in April 2024, the leadership of The Coming King Ministries was entrusted to Pastor Akinboye Michael, who now serves as the General Overseer. By the grace of God, the Ministry continues to experience steady growth and expansion under his leadership, while faithfully upholding its core mandate of evangelism, discipleship, sound biblical doctrine, and preparing believers for the imminent return of our Lord Jesus Christ.</p>
       </div>
     </div>
@@ -214,7 +216,7 @@
         <div class="w-full h-px bg-surface-container-high"></div>
         <div class="flex items-start gap-4"><div class="w-16 text-label-md text-primary font-bold flex-shrink-0">2024</div><div class="text-body-md text-on-surface-variant">Founder's glorious transition; Pastor Akinboye Michael assumes General Overseer role</div></div>
         <div class="w-full h-px bg-surface-container-high"></div>
-        <div class="flex items-start gap-4"><div class="w-16 text-label-md text-primary font-bold flex-shrink-0">Now</div><div class="text-body-md text-on-surface-variant">12+ branches across Abeokuta, Ijebu, and Ibadan Areas — expanding God's Kingdom</div></div>
+        <div class="flex items-start gap-4"><div class="w-16 text-label-md text-primary font-bold flex-shrink-0">Now</div><div class="text-body-md text-on-surface-variant">12+ branches across Abeokuta, Ijebu, and Ibadan Areas â€” expanding God's Kingdom</div></div>
       </div>
     </div>
   </div>
@@ -228,18 +230,17 @@
         <span class="material-symbols-outlined text-primary text-sm" style="font-variation-settings:'FILL' 1;">flag</span>
         <span class="text-label-caps text-primary">PURPOSE & DIRECTION</span>
       </div>
-      <h2 class="text-headline-md text-on-background">Mission &amp; Vision</h2>
+      <h2 class="text-headline-md text-on-background">Our Mission</h2>
     </div>
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-      <div class="bg-white rounded-xl p-10 shadow-sm border-t-4 border-primary">
+    <div class="max-w-3xl mx-auto">
+      <div class="bg-white rounded-xl p-10 shadow-sm border-t-4 border-primary text-center">
         <span class="material-symbols-outlined text-primary text-5xl mb-6 block" style="font-variation-settings:'FILL' 1;">flag</span>
-        <h3 class="text-headline-sm text-on-background mb-4">Our Mission</h3>
-        <p class="text-body-lg text-on-surface-variant leading-relaxed">"To prepare saints for the coming King" — equipping every believer with the Word of God, sound doctrine, and a life of holiness; making them ready for the imminent return of our Lord Jesus Christ.</p>
-      </div>
-      <div class="bg-white rounded-xl p-10 shadow-sm border-t-4 border-secondary">
-        <span class="material-symbols-outlined text-secondary text-5xl mb-6 block" style="font-variation-settings:'FILL' 1;">visibility</span>
-        <h3 class="text-headline-sm text-on-background mb-4">Our Vision</h3>
-        <p class="text-body-lg text-on-surface-variant leading-relaxed">To prepare a glorious church — without spot or wrinkle — for the return of Christ. We envision a community of believers who walk in holiness, proclaim the Gospel boldly, and serve as shining lights in their generation.</p>
+        <p class="text-body-lg text-on-surface-variant leading-relaxed mb-4">
+          Our mission is clear: To Prepare Saints for the Coming King, equipping believers with the truth of the Word of God so that our Lord Jesus Christ may meet a glorious Church without spot or wrinkle. We believe in the power of the Holy Spirit, holiness, and evangelism.
+        </p>
+        <p class="text-body-lg text-on-surface-variant leading-relaxed">
+          Whether you are seeking the truth of the Word of God or a believer looking for a spiritual home, you are welcome here. Let us walk this path of righteousness together with our Saviour and Lord, Jesus Christ.
+        </p>
       </div>
     </div>
   </div>
@@ -276,7 +277,7 @@
           <span class="material-symbols-outlined text-primary text-3xl group-hover:text-white transition-all" style="font-variation-settings:'FILL' 1;">radio</span>
         </div>
         <h3 class="text-headline-sm text-on-background mb-3">Broadcast Ministry</h3>
-        <p class="text-body-md text-on-surface-variant leading-relaxed">"And the Word Was God" — our broadcast arm proclaims salvation, holiness, revival, restoration, and the Kingdom of God through Rockcity 101.9 FM and Family 88.5 FM, Abeokuta, reaching thousands of listeners.</p>
+        <p class="text-body-md text-on-surface-variant leading-relaxed">"And the Word Was God" â€” our broadcast arm proclaims salvation, holiness, revival, restoration, and the Kingdom of God through Rockcity 101.9 FM and Family 88.5 FM, Abeokuta, reaching thousands of listeners.</p>
       </div>
     </div>
   </div>
@@ -295,24 +296,24 @@
     </div>
     <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
       <div class="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-all">
-        <div class="overflow-hidden rounded-t-xl" style="height:320px;"><img style="width:100%;height:100%;object-fit:cover;object-position:center 15%;" src="IMG-20260616-WA0032.jpg" alt="Abeokuta Area — Pastor Okewale A. Isaiah"/ loading="lazy"></div>
+        <div class="overflow-hidden rounded-t-xl" style="height:320px;"><img style="width:100%;height:100%;object-fit:cover;object-position:center 15%;" src="IMG-20260616-WA0032.jpg" alt="Abeokuta Area â€” Pastor Okewale A. Isaiah"/ loading="lazy"></div>
         <div class="p-6">
           <div class="flex items-center gap-2 mb-3"><span class="material-symbols-outlined text-primary" style="font-variation-settings:'FILL' 1;">location_on</span><h3 class="text-headline-sm text-on-background">Abeokuta Area</h3></div>
-          <p class="text-body-md text-on-surface-variant">Covering the Headquarters and surrounding parishes in Abeokuta, Ogun State. Led by Pastor Okewale A. Isaiah as Area Pastor.</p>
+          <p class="text-body-md text-on-surface-variant">Covering parishes in Abeokuta and its environs. Led by Pastor Okewale A. Isaiah as Area Pastor.</p>
         </div>
       </div>
       <div class="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-all">
-        <div class="overflow-hidden rounded-t-xl" style="height:320px;"><img style="width:100%;height:100%;object-fit:cover;object-position:center 20%;" src="1781947300578.jpg" alt="Ijebu Area — Pastor Samuel O. Olatoye" loading="lazy"></div>
+        <div class="overflow-hidden rounded-t-xl" style="height:320px;"><img style="width:100%;height:100%;object-fit:cover;object-position:center 20%;" src="1781947300578.jpg" alt="Ijebu Area â€” Pastor Samuel O. Olatoye" loading="lazy"></div>
         <div class="p-6">
           <div class="flex items-center gap-2 mb-3"><span class="material-symbols-outlined text-primary" style="font-variation-settings:'FILL' 1;">location_on</span><h3 class="text-headline-sm text-on-background">Ijebu Area</h3></div>
-          <p class="text-body-md text-on-surface-variant">Covering parishes across Ijebu Igbo and surrounding communities. Led by Pastor Samuel O. Olatoye as Ijebu Area Pastor.</p>
+          <p class="text-body-md text-on-surface-variant">Covering parishes in Ijebu Igbo and its environs. Led by Pastor Samuel O. Olatoye as Ijebu Area Pastor.</p>
         </div>
       </div>
       <div class="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-all">
-        <div class="overflow-hidden rounded-t-xl" style="height:320px;"><img style="width:100%;height:100%;object-fit:cover;object-position:center 20%;" src="1781958223377.jpg" alt="Ibadan Area — Pastor Samuel Olorundare" loading="lazy"></div>
+        <div class="overflow-hidden rounded-t-xl" style="height:320px;"><img style="width:100%;height:100%;object-fit:cover;object-position:center 20%;" src="1781958223377.jpg" alt="Ibadan Area â€” Pastor Samuel Olorundare" loading="lazy"></div>
         <div class="p-6">
           <div class="flex items-center gap-2 mb-3"><span class="material-symbols-outlined text-primary" style="font-variation-settings:'FILL' 1;">location_on</span><h3 class="text-headline-sm text-on-background">Ibadan Area</h3></div>
-          <p class="text-body-md text-on-surface-variant">Covering parishes across Ibadan, Oyo State. Led by Pastor Samuel Olorundare and reaching communities in Omi Adio and beyond.</p>
+          <p class="text-body-md text-on-surface-variant">Covering parishes in Ibadan and its environs. Led by Pastor Samuel Olorundare.</p>
         </div>
       </div>
     </div>
@@ -346,7 +347,8 @@
         <a class="text-body-md text-white/70 hover:text-white hover:underline transition-colors" href="leadership.html">Leadership</a>
         <a class="text-body-md text-white/70 hover:text-white hover:underline transition-colors" href="sermons.html">Sermons</a>
     <a class="text-label-md text-on-surface-variant hover:text-primary transition-colors" href="bible-school.html">Bible School</a>
-        <a class="text-body-md text-white/70 hover:text-white hover:underline transition-colors" href="events.html">Events</a>
+        <a class="text-label-md text-on-surface-variant hover:text-primary transition-colors" href="children.html">Children</a>
+    <a class="text-body-md text-white/70 hover:text-white hover:underline transition-colors" href="events.html">Events</a>
         <a class="text-body-md text-white/70 hover:text-white hover:underline transition-colors" href="gallery.html">Gallery</a>
         <a class="text-body-md text-white/70 hover:text-white hover:underline transition-colors" href="giving.html">Giving</a>
         <a class="text-body-md text-white/70 hover:text-white hover:underline transition-colors" href="contact.html">Contact</a>
@@ -356,19 +358,23 @@
       <h4 class="text-label-md font-bold text-primary uppercase">Headquarters</h4>
       <div class="flex items-start gap-3 text-white/70">
         <span class="material-symbols-outlined text-primary mt-1">location_on</span>
-        <p class="text-body-md">Olorunsogo, Idi-Aba,<br/>Abeokuta, Ogun State, Nigeria</p>
+        <p class="text-body-md">7, Olorunsogo, Idi-Aba,<br/>Abeokuta, Ogun State, Nigeria</p>
       </div>
       <div class="flex items-center gap-3 text-white/70">
         <span class="material-symbols-outlined text-primary">call</span>
-        <div><p class="text-body-md">08064694851</p><p class="text-body-md">08067907017</p></div>
+        <div><p class="text-body-md">08064694851</p><p class="text-body-md">09055274255</p></div>
       </div>
       <div class="flex items-center gap-3 text-white/70">
         <span class="material-symbols-outlined text-primary">mail</span>
         <a href="mailto:TheComingkingMinistriesNigeria@gmail.com" class="text-body-md hover:text-white transition-colors break-all">TheComingkingMinistriesNigeria@gmail.com</a>
       </div>
-      <p class="text-label-md text-white/50 pt-8 border-t border-white/10">© 2026 The Coming King Ministries. All Rights Reserved.<br/>Prepared in Holiness.</p>
+      <p class="text-label-md text-white/50 pt-8 border-t border-white/10">Â© 2026 The Coming King Ministries. All Rights Reserved.<br/>Prepared in Holiness.</p>
     </div>
   </div>
 </footer>
 </body>
 </html>
+
+
+
+

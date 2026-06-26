@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html class="light" lang="en">
 <head>
 <link rel="dns-prefetch" href="//fonts.googleapis.com"/>
@@ -7,7 +7,7 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Sunday Bible School | The Coming King Ministries</title>
-<meta name="description" content="Sunday Bible School lessons from The Coming King Ministries — weekly uploads, PDF downloads and archives."/>
+<meta name="description" content="Sunday Bible School lessons from The Coming King Ministries â€” weekly uploads, PDF downloads and archives."/>
 <script src="https://cdn.tailwindcss.com"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/><link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Inter:wght@400;500;600&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&display=swap" rel="stylesheet"/>
 <script id="tailwind-config">
@@ -18,6 +18,10 @@
   h1,h2,h3,h4,.font-display{font-family:'Montserrat',sans-serif;}
   .material-symbols-outlined{font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24;}
   .page-hero{background:linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.8)),url('https://images.unsplash.com/photo-1481627834876-b7833e8f5570?q=80&w=2128&auto=format&fit=crop');background-size:cover;background-position:center;}
+  .quiz-option { transition: all 0.2s ease; }
+  .quiz-option:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+  .quiz-option.correct { border-color: #16a34a !important; background: #dcfce7 !important; }
+  .quiz-option.wrong { border-color: #dc2626 !important; background: #fee2e2 !important; }
 </style>
 </head>
 <body class="bg-background text-on-background">
@@ -25,19 +29,19 @@
 <!-- Nav -->
 <!-- TopNavBar -->
 <header class="fixed top-0 w-full z-50 bg-white border-b border-surface-container-high shadow-sm">
-  <div class="flex justify-between items-center px-4 md:px-margin-desktop h-16 md:h-20 max-w-[1440px] mx-auto">
+  <div class="flex justify-between items-center px-4 xl:px-8 h-16 md:h-20 max-w-[1440px] mx-auto">
 
     <!-- Logo -->
     <a href="home_page_the_coming_king_ministries.html" class="flex items-center gap-3 flex-shrink-0">
       <img src="IMG_7893.PNG" alt="The Coming King Ministries Logo" class="h-10 w-10 md:h-12 md:w-12 object-contain rounded-full" loading="eager" fetchpriority="high"/>
-      <span class="text-sm md:text-headline-sm font-bold text-primary tracking-tight leading-tight">
+      <span class="text-sm md:text-lg xl:text-headline-sm font-bold text-primary tracking-tight leading-tight">
         <span class="hidden sm:inline">The Coming King Ministries</span>
         <span class="sm:hidden">TCKM</span>
       </span>
     </a>
 
     <!-- Desktop Nav -->
-    <nav class="hidden md:flex items-center gap-6 lg:gap-8">
+    <nav class="hidden 2xl:flex items-center gap-4 2xl:gap-6">
     <a class="text-label-md text-on-surface-variant hover:text-primary transition-colors" href="home_page_the_coming_king_ministries.html">Home</a>
     <a class="text-label-md text-on-surface-variant hover:text-primary transition-colors" href="about.html">About</a>
     <a class="text-label-md text-on-surface-variant hover:text-primary transition-colors" href="leadership.html">Leadership</a>
@@ -45,17 +49,18 @@
     <a class="text-label-md text-on-surface-variant hover:text-primary transition-colors" href="events.html">Events</a>
     <a class="text-label-md text-on-surface-variant hover:text-primary transition-colors" href="gallery.html">Gallery</a>
     <a class="text-label-md text-primary border-b-2 border-primary pb-1" href="bible-school.html">Bible School</a>
+    <a class="text-label-md text-on-surface-variant hover:text-primary transition-colors" href="children.html">Children</a>
     <a class="text-label-md text-on-surface-variant hover:text-primary transition-colors" href="services.html">Services</a>
     </nav>
 
     <!-- Desktop CTA Buttons -->
-    <div class="hidden md:flex items-center gap-3">
+    <div class="hidden 2xl:flex items-center gap-3">
       <a href="giving.html" class="px-5 py-2 rounded-lg bg-primary text-white text-label-md hover:opacity-90 transition-all shadow-sm">Giving</a>
       <a href="contact.html" class="px-5 py-2 rounded-lg border border-primary text-primary text-label-md hover:bg-primary hover:text-white transition-all">Contact</a>
     </div>
 
     <!-- Mobile Hamburger Button -->
-    <button id="mobile-menu-btn" onclick="toggleMobileMenu()" aria-label="Open menu" class="md:hidden flex flex-col gap-1.5 p-2 rounded-lg hover:bg-surface-container transition-colors">
+    <button id="mobile-menu-btn" onclick="toggleMobileMenu()" aria-label="Open menu" class="2xl:hidden flex flex-col gap-1.5 p-2 rounded-lg hover:bg-surface-container transition-colors">
       <span id="ham-line-1" class="block w-6 h-0.5 bg-on-background transition-all duration-300"></span>
       <span id="ham-line-2" class="block w-6 h-0.5 bg-on-background transition-all duration-300"></span>
       <span id="ham-line-3" class="block w-4 h-0.5 bg-on-background transition-all duration-300"></span>
@@ -63,7 +68,7 @@
   </div>
 
   <!-- Mobile Drawer Menu -->
-  <div id="mobile-menu" class="md:hidden fixed inset-0 z-40 pointer-events-none">
+  <div id="mobile-menu" class="2xl:hidden fixed inset-0 z-40 pointer-events-none">
     <!-- Backdrop -->
     <div id="mobile-backdrop" onclick="closeMobileMenu()" class="absolute inset-0 bg-black/50 opacity-0 transition-opacity duration-300"></div>
     <!-- Slide-in panel -->
@@ -82,11 +87,12 @@
       <a class="block px-4 py-3 text-on-surface-variant hover:text-primary hover:bg-surface-container-low transition-colors rounded-lg" href="events.html" onclick="closeMobileMenu()">Events</a>
       <a class="block px-4 py-3 text-on-surface-variant hover:text-primary hover:bg-surface-container-low transition-colors rounded-lg" href="gallery.html" onclick="closeMobileMenu()">Gallery</a>
       <a class="block px-4 py-3 text-primary font-bold border-l-4 border-primary bg-primary/5 rounded-r-lg" href="bible-school.html" onclick="closeMobileMenu()">Bible School</a>
+      <a class="block px-4 py-3 text-on-surface-variant hover:text-primary hover:bg-surface-container-low transition-colors rounded-lg" href="children.html" onclick="closeMobileMenu()">Children</a>
       <a class="block px-4 py-3 text-on-surface-variant hover:text-primary hover:bg-surface-container-low transition-colors rounded-lg" href="services.html" onclick="closeMobileMenu()">Services</a>
       </nav>
       <div class="p-4 border-t border-surface-container space-y-3 mt-4">
-        <a href="giving.html" class="block w-full text-center px-6 py-3 rounded-lg bg-primary text-white font-bold text-sm hover:opacity-90 transition-all shadow-sm">💝 Give Online</a>
-        <a href="contact.html" class="block w-full text-center px-6 py-3 rounded-lg border-2 border-primary text-primary font-bold text-sm hover:bg-primary hover:text-white transition-all">📞 Contact Us</a>
+        <a href="giving.html" class="block w-full text-center px-6 py-3 rounded-lg bg-primary text-white font-bold text-sm hover:opacity-90 transition-all shadow-sm">ðŸ’ Give Online</a>
+        <a href="contact.html" class="block w-full text-center px-6 py-3 rounded-lg border-2 border-primary text-primary font-bold text-sm hover:bg-primary hover:text-white transition-all">ðŸ“ž Contact Us</a>
       </div>
     </div>
   </div>
@@ -142,7 +148,7 @@
     <div>
       <p class="text-label-caps text-white/70 mb-3 tracking-widest">DISCIPLESHIP & GROWTH</p>
       <h1 class="text-display-lg text-white">Sunday Bible School</h1>
-      <p class="text-body-lg text-white/80 mt-3 max-w-xl mx-auto">Weekly lessons for spiritual growth and biblical discipleship. Every Sunday 7:45 – 9:00 AM.</p>
+      <p class="text-body-lg text-white/80 mt-3 max-w-xl mx-auto">Weekly lessons for spiritual growth and biblical discipleship. Every Sunday 7:45 â€“ 9:00 AM.</p>
     </div>
   </section>
 
@@ -165,7 +171,7 @@
           <span class="material-symbols-outlined text-primary text-3xl" style="font-variation-settings:'FILL' 1;">schedule</span>
           <div>
             <p class="text-label-md text-on-surface-variant">Every Sunday</p>
-            <p class="text-headline-sm text-primary font-bold">7:45 AM – 9:00 AM</p>
+            <p class="text-headline-sm text-primary font-bold">7:45 AM â€“ 9:00 AM</p>
           </div>
         </div>
       </div>
@@ -188,7 +194,7 @@
         <div class="bg-surface-container-low rounded-xl p-6 text-center">
           <span class="material-symbols-outlined text-primary text-4xl mb-3 block" style="font-variation-settings:'FILL' 1;">groups</span>
           <h4 class="text-headline-sm text-on-background">All Branches</h4>
-          <p class="text-body-md text-on-surface-variant mt-2">Same lesson across 12+ branches</p>
+          <p class="text-body-md text-on-surface-variant mt-2">same lessons across the world</p>
         </div>
       </div>
     </div>
@@ -222,7 +228,43 @@
     </div>
   </section>
 
-  <!-- Archive CTA -->
+  
+<!-- Sunday Bible Quiz -->
+<section class="py-section-gap px-margin-mobile md:px-margin-desktop bg-surface-container-low">
+  <div class="max-w-[900px] mx-auto">
+    <div class="text-center mb-12">
+      <div class="inline-flex items-center gap-2 px-4 py-1 bg-primary/10 rounded-full mb-6">
+        <span class="material-symbols-outlined text-primary text-sm" style="font-variation-settings:'FILL' 1;">quiz</span>
+        <span class="text-label-caps text-primary">TEST YOUR KNOWLEDGE</span>
+      </div>
+      <h2 class="text-headline-md text-on-background">Sunday Bible Quiz</h2>
+      <p class="text-body-lg text-on-surface-variant max-w-2xl mx-auto mt-4">How well did you study this week's lesson? Take the quiz!</p>
+    </div>
+
+    <div id="sunday-quiz-container">
+      <div id="sunday-no-quiz" class="text-center py-16 bg-white rounded-2xl shadow-sm">
+        <span class="material-symbols-outlined text-6xl text-surface-container-high mb-4">quiz</span>
+        <h3 class="text-headline-sm text-on-background mb-2">No Quiz Available</h3>
+        <p class="text-body-md text-on-surface-variant">Check back soon for a new Sunday Bible Quiz!</p>
+      </div>
+      <div id="sunday-quiz-content" class="hidden">
+        <div class="bg-white rounded-2xl shadow-sm p-8 md:p-10">
+          <div class="flex items-center justify-between mb-8">
+            <div>
+              <h3 id="sunday-quiz-title" class="text-headline-sm text-on-background"></h3>
+              <p id="sunday-quiz-date" class="text-label-md text-on-surface-variant mt-1"></p>
+            </div>
+            <div class="w-14 h-14 bg-primary/10 rounded-full flex items-center justify-center">
+              <span class="material-symbols-outlined text-primary text-2xl" style="font-variation-settings:'FILL' 1;">school</span>
+            </div>
+          </div>
+          <div id="sunday-quiz-questions" class="space-y-8"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Archive CTA -->
   <section class="py-16 px-margin-mobile md:px-margin-desktop bg-secondary text-white text-center">
     <h3 class="text-headline-md text-white mb-4">Access the Full Archive</h3>
     <p class="text-body-lg text-white/80 mb-8 max-w-xl mx-auto">All past Sunday Bible School lessons are available. Contact us via WhatsApp to request specific lesson archives or full year booklets.</p>
@@ -258,8 +300,8 @@
     <div class="space-y-3">
       <h4 class="text-label-md font-bold text-primary uppercase">Contact</h4>
       <p class="text-body-md text-white/70">Olorunsogo, Idi-Aba, Abeokuta, Ogun State</p>
-      <p class="text-body-md text-white/70">08064694851 / 08067907017</p>
-      <p class="text-label-md text-white/50 pt-6 border-t border-white/10">© 2026 The Coming King Ministries.</p>
+      <p class="text-body-md text-white/70">08064694851 / 09055274255</p>
+      <p class="text-label-md text-white/50 pt-6 border-t border-white/10">Â© 2026 The Coming King Ministries.</p>
     </div>
   </div>
 </footer>
@@ -280,7 +322,7 @@ function searchLessons() {
 </script>
 <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-app.js";
-  import { getFirestore, collection, getDocs, query, orderBy } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-firestore.js";
+  import { getFirestore, collection, getDocs, query, orderBy, limit } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-firestore.js";
 
   const firebaseConfig = {
     apiKey: "AIzaSyDmoTnhEFG1QYV7GHL0Ag3ICiGwWidcWkY",
@@ -357,6 +399,61 @@ function searchLessons() {
   }
 
   loadLessons();
+
+  // ===== SUNDAY BIBLE QUIZ =====
+  async function loadSundayQuiz() {
+    try {
+      const q2 = query(collection(db, 'sunday_quizzes'), orderBy('createdAt', 'desc'));
+      const snap = await getDocs(q2);
+      if (snap.empty) {
+        document.getElementById('sunday-no-quiz').classList.remove('hidden');
+        document.getElementById('sunday-quiz-content').classList.add('hidden');
+        return;
+      }
+      const latest = snap.docs[0].data();
+      document.getElementById('sunday-no-quiz').classList.add('hidden');
+      document.getElementById('sunday-quiz-content').classList.remove('hidden');
+      document.getElementById('sunday-quiz-title').textContent = latest.title;
+      document.getElementById('sunday-quiz-date').textContent = 'Posted: ' + (latest.date || '');
+
+      const container = document.getElementById('sunday-quiz-questions');
+      container.innerHTML = '';
+      latest.questions.forEach((qItem, qi) => {
+        let html = `<div class="quiz-question" data-answered="false">
+          <p class="text-body-lg text-on-background font-semibold mb-4"><span class="text-primary font-bold mr-2">Q${qi+1}.</span>${qItem.question}</p>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-3">`;
+        qItem.options.forEach((opt, oi) => {
+          html += `<button onclick="checkSundayAnswer(this, ${oi}, ${qItem.correctAnswer})" class="quiz-option text-left px-5 py-3 rounded-xl border-2 border-surface-container-high bg-white text-body-md text-on-background hover:border-primary cursor-pointer">${String.fromCharCode(65+oi)}. ${opt}</button>`;
+        });
+        html += `</div></div>`;
+        container.innerHTML += html;
+      });
+    } catch (err) {
+      document.getElementById('sunday-no-quiz').classList.remove('hidden');
+      document.getElementById('sunday-quiz-content').classList.add('hidden');
+    }
+  }
+
+  window.checkSundayAnswer = function(btn, selected, correct) {
+    const questionDiv = btn.closest('.quiz-question');
+    if (questionDiv.dataset.answered === 'true') return;
+    questionDiv.dataset.answered = 'true';
+    const btns = questionDiv.querySelectorAll('.quiz-option');
+    btns.forEach((b, i) => {
+      b.style.pointerEvents = 'none';
+      if (i === correct) { b.classList.add('correct'); b.innerHTML = b.innerHTML + ' <span style="margin-left:8px;color:#16a34a;font-weight:bold;">&#10003;</span>'; }
+      if (i === selected && selected !== correct) { b.classList.add('wrong'); b.innerHTML = b.innerHTML + ' <span style="margin-left:8px;color:#dc2626;font-weight:bold;">&#10007;</span>'; }
+    });
+  };
+
+  loadSundayQuiz();
 </script>
 </body>
 </html>
+
+
+
+
+
+
+
