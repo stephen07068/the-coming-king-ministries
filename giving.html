@@ -30,33 +30,35 @@
     <!-- Logo -->
     <a href="home_page_the_coming_king_ministries.html" class="flex items-center gap-3 flex-shrink-0">
       <img src="IMG_7893.PNG" alt="The Coming King Ministries Logo" class="h-10 w-10 md:h-12 md:w-12 object-contain rounded-full" loading="eager" fetchpriority="high"/>
-      <span class="text-sm md:text-lg xl:text-headline-sm font-bold text-primary tracking-tight leading-tight">
+      <span class="text-sm md:text-base lg:text-lg font-bold text-primary tracking-tight leading-tight">
         <span class="hidden sm:inline">The Coming King Ministries</span>
         <span class="sm:hidden">TCKM</span>
       </span>
     </a>
 
     <!-- Desktop Nav -->
-    <nav class="hidden 2xl:flex items-center gap-4 2xl:gap-6">
-    <a class="text-label-md text-on-surface-variant hover:text-primary transition-colors" href="home_page_the_coming_king_ministries.html">Home</a>
-    <a class="text-label-md text-on-surface-variant hover:text-primary transition-colors" href="about.html">About</a>
-    <a class="text-label-md text-on-surface-variant hover:text-primary transition-colors" href="leadership.html">Leadership</a>
-    <a class="text-label-md text-on-surface-variant hover:text-primary transition-colors" href="sermons.html">Sermons</a>
-    <a class="text-label-md text-on-surface-variant hover:text-primary transition-colors" href="events.html">Events</a>
-    <a class="text-label-md text-on-surface-variant hover:text-primary transition-colors" href="gallery.html">Gallery</a>
-    <a class="text-label-md text-on-surface-variant hover:text-primary transition-colors" href="bible-school.html">Bible School</a>
-    <a class="text-label-md text-on-surface-variant hover:text-primary transition-colors" href="children.html">Children</a>
-    <a class="text-label-md text-on-surface-variant hover:text-primary transition-colors" href="services.html">Services</a>
+    <nav class="hidden xl:flex items-center gap-1 xl:gap-2">
+    <a class="text-label-md text-[11px] xl:text-[12px] text-on-surface-variant hover:text-primary transition-colors whitespace-nowrap" href="home_page_the_coming_king_ministries.html">Home</a>
+    <a class="text-label-md text-[11px] xl:text-[12px] text-on-surface-variant hover:text-primary transition-colors whitespace-nowrap" href="about.html">About</a>
+    <a class="text-label-md text-[11px] xl:text-[12px] text-on-surface-variant hover:text-primary transition-colors whitespace-nowrap" href="leadership.html">Leadership</a>
+    <a class="text-label-md text-[11px] xl:text-[12px] text-on-surface-variant hover:text-primary transition-colors whitespace-nowrap" href="sermons.html">Sermons</a>
+    <a class="text-label-md text-[11px] xl:text-[12px] text-on-surface-variant hover:text-primary transition-colors whitespace-nowrap" href="events.html">Events</a>
+    <a class="text-label-md text-[11px] xl:text-[12px] text-on-surface-variant hover:text-primary transition-colors whitespace-nowrap" href="blog.html">Blog</a>
+    <a class="text-label-md text-[11px] xl:text-[12px] text-on-surface-variant hover:text-primary transition-colors whitespace-nowrap" href="gallery.html">Gallery</a>
+    <a class="text-label-md text-[11px] xl:text-[12px] text-on-surface-variant hover:text-primary transition-colors whitespace-nowrap" href="bible-school.html">Bible School</a>
+    <a class="text-label-md text-[11px] xl:text-[12px] text-on-surface-variant hover:text-primary transition-colors whitespace-nowrap" href="children.html">Children</a>
+    <a class="text-label-md text-[11px] xl:text-[12px] text-on-surface-variant hover:text-primary transition-colors whitespace-nowrap" href="youth.html">Youth</a>
+    <a class="text-label-md text-[11px] xl:text-[12px] text-on-surface-variant hover:text-primary transition-colors whitespace-nowrap" href="services.html">Services</a>
     </nav>
 
     <!-- Desktop CTA Buttons -->
-    <div class="hidden 2xl:flex items-center gap-3">
+    <div class="hidden xl:flex items-center gap-2">
       <a href="giving.html" class="px-5 py-2 rounded-lg bg-primary text-white text-label-md hover:opacity-90 transition-all shadow-sm">Giving</a>
       <a href="contact.html" class="px-5 py-2 rounded-lg border border-primary text-primary text-label-md hover:bg-primary hover:text-white transition-all">Contact</a>
     </div>
 
     <!-- Mobile Hamburger Button -->
-    <button id="mobile-menu-btn" onclick="toggleMobileMenu()" aria-label="Open menu" class="2xl:hidden flex flex-col gap-1.5 p-2 rounded-lg hover:bg-surface-container transition-colors">
+    <button id="mobile-menu-btn" onclick="toggleMobileMenu()" aria-label="Open menu" class="xl:hidden flex flex-col gap-1.5 p-2 rounded-lg hover:bg-surface-container transition-colors">
       <span id="ham-line-1" class="block w-6 h-0.5 bg-on-background transition-all duration-300"></span>
       <span id="ham-line-2" class="block w-6 h-0.5 bg-on-background transition-all duration-300"></span>
       <span id="ham-line-3" class="block w-4 h-0.5 bg-on-background transition-all duration-300"></span>
@@ -64,7 +66,7 @@
   </div>
 
   <!-- Mobile Drawer Menu -->
-  <div id="mobile-menu" class="2xl:hidden fixed inset-0 z-40 pointer-events-none">
+  <div id="mobile-menu" class="xl:hidden fixed inset-0 z-40 pointer-events-none">
     <!-- Backdrop -->
     <div id="mobile-backdrop" onclick="closeMobileMenu()" class="absolute inset-0 bg-black/50 opacity-0 transition-opacity duration-300"></div>
     <!-- Slide-in panel -->
@@ -81,9 +83,11 @@
       <a class="block px-4 py-3 text-on-surface-variant hover:text-primary hover:bg-surface-container-low transition-colors rounded-lg" href="leadership.html" onclick="closeMobileMenu()">Leadership</a>
       <a class="block px-4 py-3 text-on-surface-variant hover:text-primary hover:bg-surface-container-low transition-colors rounded-lg" href="sermons.html" onclick="closeMobileMenu()">Sermons</a>
       <a class="block px-4 py-3 text-on-surface-variant hover:text-primary hover:bg-surface-container-low transition-colors rounded-lg" href="events.html" onclick="closeMobileMenu()">Events</a>
+      <a class="block px-4 py-3 text-on-surface-variant hover:text-primary hover:bg-surface-container-low transition-colors rounded-lg" href="blog.html" onclick="closeMobileMenu()">Blog</a>
       <a class="block px-4 py-3 text-on-surface-variant hover:text-primary hover:bg-surface-container-low transition-colors rounded-lg" href="gallery.html" onclick="closeMobileMenu()">Gallery</a>
       <a class="block px-4 py-3 text-on-surface-variant hover:text-primary hover:bg-surface-container-low transition-colors rounded-lg" href="bible-school.html" onclick="closeMobileMenu()">Bible School</a>
       <a class="block px-4 py-3 text-on-surface-variant hover:text-primary hover:bg-surface-container-low transition-colors rounded-lg" href="children.html" onclick="closeMobileMenu()">Children</a>
+      <a class="block px-4 py-3 text-on-surface-variant hover:text-primary hover:bg-surface-container-low transition-colors rounded-lg" href="youth.html" onclick="closeMobileMenu()">Youth</a>
       <a class="block px-4 py-3 text-on-surface-variant hover:text-primary hover:bg-surface-container-low transition-colors rounded-lg" href="services.html" onclick="closeMobileMenu()">Services</a>
       </nav>
       <div class="p-4 border-t border-surface-container space-y-3 mt-4">
@@ -286,9 +290,11 @@
         <a class="text-body-md text-white/70 hover:text-white transition-colors" href="about.html">About</a>
         <a class="text-body-md text-white/70 hover:text-white transition-colors" href="leadership.html">Leadership</a>
         <a class="text-body-md text-white/70 hover:text-white transition-colors" href="sermons.html">Sermons</a>
-    <a class="text-label-md text-on-surface-variant hover:text-primary transition-colors" href="bible-school.html">Bible School</a>
-        <a class="text-label-md text-on-surface-variant hover:text-primary transition-colors" href="children.html">Children</a>
+    <a class="text-label-md text-[11px] xl:text-[12px] text-on-surface-variant hover:text-primary transition-colors whitespace-nowrap" href="bible-school.html">Bible School</a>
+        <a class="text-label-md text-[11px] xl:text-[12px] text-on-surface-variant hover:text-primary transition-colors whitespace-nowrap" href="children.html">Children</a>
+        <a class="text-label-md text-[11px] xl:text-[12px] text-on-surface-variant hover:text-primary transition-colors whitespace-nowrap" href="youth.html">Youth</a>
     <a class="text-body-md text-white/70 hover:text-white transition-colors" href="events.html">Events</a>
+    <a class="text-body-md text-white/70 hover:text-white hover:underline transition-colors" href="blog.html">Blog</a>
         <a class="text-body-md text-white/70 hover:text-white transition-colors" href="gallery.html">Gallery</a>
         <a class="text-body-md text-white/70 hover:text-white transition-colors" href="giving.html">Giving</a>
         <a class="text-body-md text-white/70 hover:text-white transition-colors" href="contact.html">Contact</a>

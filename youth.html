@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html class="light" lang="en">
 <head>
 <link rel="dns-prefetch" href="//fonts.googleapis.com"/>
@@ -6,7 +6,65 @@
 <link rel="dns-prefetch" href="//cdn.tailwindcss.com"/>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Children's Department | The Coming King Ministries</title>
+<title>Youth Department | The Coming King Ministries</title>
+<meta name="description" content="Children's Department of The Coming King Ministries - Raising godly children and preparing the next generation for the Coming King."/>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/><link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Inter:wght@400;500;600&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        colors: {
+          "primary": "#e31b23",
+          "on-primary": "#ffffff",
+          "primary-container": "#ffe0e0",
+          "on-primary-container": "#410002",
+          "secondary": "#2d3132",
+          "on-secondary": "#ffffff",
+          "surface": "#f9f9f9",
+          "on-surface": "#1a1c1d",
+          "surface-variant": "#f1f0f0",
+          "on-surface-variant": "#444748",
+          "outline": "#747778",
+          "background": "#ffffff",
+          "on-background": "#1a1c1d",
+          "surface-container-low": "#f3f3f3",
+          "surface-container": "#ededed",
+          "surface-container-high": "#e7e7e7",
+          "error": "#ba1a1a"
+        },
+        borderRadius: { "DEFAULT": "8px", "lg": "8px", "xl": "12px", "full": "9999px" },
+        spacing: {
+          "margin-desktop": "80px", "safe-area": "16px", "gutter-desktop": "32px",
+          "section-gap": "120px", "margin-mobile": "24px"
+        },
+        fontFamily: {
+          "display": ["Montserrat", "sans-serif"],
+          "body": ["Inter", "sans-serif"],
+          "label": ["Montserrat", "sans-serif"]
+        },
+        fontSize: {
+          "display-lg": ["48px", { lineHeight: "1.1", letterSpacing: "-0.02em", fontWeight: "700" }],
+          "headline-md": ["32px", { lineHeight: "1.3", fontWeight: "600" }],
+          "headline-sm": ["24px", { lineHeight: "1.4", fontWeight: "600" }],
+          "body-lg": ["18px", { lineHeight: "1.7", fontWeight: "400" }],
+          "body-md": ["16px", { lineHeight: "1.6", fontWeight: "400" }],
+          "label-md": ["14px", { lineHeight: "1.4", fontWeight: "600" }],
+          "label-caps": ["12px", { lineHeight: "1.0", letterSpacing: "0.1em", fontWeight: "700" }]
+        }
+      }
+    }
+  }
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+<link rel="dns-prefetch" href="//fonts.googleapis.com"/>
+<link rel="dns-prefetch" href="//fonts.gstatic.com"/>
+<link rel="dns-prefetch" href="//cdn.tailwindcss.com"/>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Youth Department | The Coming King Ministries</title>
 <meta name="description" content="Children's Department of The Coming King Ministries - Raising godly children and preparing the next generation for the Coming King."/>
 <script src="https://cdn.tailwindcss.com"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/><link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Inter:wght@400;500;600&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&display=swap" rel="stylesheet"/>
@@ -63,11 +121,6 @@
   h1, h2, h3, h4, .font-display { font-family: 'Montserrat', sans-serif; }
   @keyframes slideUp { from { transform: translateY(40px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
   .animate-slide-up { animation: slideUp 0.8s cubic-bezier(0.4,0,0.2,1) forwards; }
-  .quiz-option { transition: all 0.2s ease; }
-  .quiz-option:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
-  .quiz-option.selected { border-color: #e31b23; background: #ffe0e0; }
-  .quiz-option.correct { border-color: #16a34a; background: #dcfce7; }
-  .quiz-option.wrong { border-color: #dc2626; background: #fee2e2; }
 </style>
 </head>
 <body class="bg-background text-on-background selection:bg-primary selection:text-white">
@@ -91,8 +144,8 @@
     <a class="text-label-md text-[11px] xl:text-[12px] text-on-surface-variant hover:text-primary transition-colors whitespace-nowrap" href="blog.html">Blog</a>
     <a class="text-label-md text-[11px] xl:text-[12px] text-on-surface-variant hover:text-primary transition-colors whitespace-nowrap" href="gallery.html">Gallery</a>
     <a class="text-label-md text-[11px] xl:text-[12px] text-on-surface-variant hover:text-primary transition-colors whitespace-nowrap" href="bible-school.html">Bible School</a>
-    <a class="text-label-md text-[11px] xl:text-[12px] text-primary border-b-2 border-primary pb-1 whitespace-nowrap" href="children.html">Children</a>
-    <a class="text-label-md text-[11px] xl:text-[12px] text-on-surface-variant hover:text-primary transition-colors whitespace-nowrap" href="youth.html">Youth</a>
+    <a class="text-label-md text-[11px] xl:text-[12px] text-on-surface-variant hover:text-primary transition-colors whitespace-nowrap" href="children.html">Children</a>
+    <a class="text-label-md text-[11px] xl:text-[12px] text-primary border-b-2 border-primary pb-1 whitespace-nowrap" href="youth.html">Youth</a>
     <a class="text-label-md text-[11px] xl:text-[12px] text-on-surface-variant hover:text-primary transition-colors whitespace-nowrap" href="services.html">Services</a>
     </nav>
     <div class="hidden xl:flex items-center gap-2">
@@ -123,8 +176,8 @@
       <a class="block px-4 py-3 text-on-surface-variant hover:text-primary hover:bg-surface-container-low transition-colors rounded-lg" href="blog.html" onclick="closeMobileMenu()">Blog</a>
       <a class="block px-4 py-3 text-on-surface-variant hover:text-primary hover:bg-surface-container-low transition-colors rounded-lg" href="gallery.html" onclick="closeMobileMenu()">Gallery</a>
       <a class="block px-4 py-3 text-on-surface-variant hover:text-primary hover:bg-surface-container-low transition-colors rounded-lg" href="bible-school.html" onclick="closeMobileMenu()">Bible School</a>
-      <a class="block px-4 py-3 text-primary font-bold border-l-4 border-primary bg-primary/5 rounded-r-lg" href="children.html" onclick="closeMobileMenu()">Children</a>
-      <a class="block px-4 py-3 text-on-surface-variant hover:text-primary hover:bg-surface-container-low transition-colors rounded-lg" href="youth.html" onclick="closeMobileMenu()">Youth</a>
+      <a class="block px-4 py-3 text-on-surface-variant hover:text-primary hover:bg-surface-container-low transition-colors rounded-lg" href="children.html" onclick="closeMobileMenu()">Children</a>
+      <a class="block px-4 py-3 text-primary font-bold border-l-4 border-primary bg-primary/5 rounded-r-lg" href="youth.html" onclick="closeMobileMenu()">Youth</a>
       <a class="block px-4 py-3 text-on-surface-variant hover:text-primary hover:bg-surface-container-low transition-colors rounded-lg" href="services.html" onclick="closeMobileMenu()">Services</a>
       </nav>
       <div class="p-4 border-t border-surface-container space-y-3">
@@ -141,8 +194,8 @@
 <section class="relative min-h-[50vh] flex items-center justify-center text-center px-margin-mobile md:px-margin-desktop" style="background: linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?q=80&w=2072&auto=format&fit=crop'); background-size: cover; background-position: center;">
     <div class="animate-slide-up">
       <p class="text-label-caps text-white/70 mb-3 tracking-widest">RAISING THE NEXT GENERATION</p>
-      <h1 class="text-display-lg text-white">Children's Department</h1>
-      <p class="text-body-lg text-white/80 mt-3">Training up children in the way they should go - Proverbs 22:6</p>
+      <h1 class="text-display-lg text-white">Youth Department</h1>
+      <p class="text-body-lg text-white/80 mt-3">Let no man despise thy youth - 1 Timothy 4:12</p>
     </div>
 </section>
 
@@ -151,30 +204,22 @@
   <div class="max-w-[1440px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
     <div>
       <div class="inline-flex items-center gap-2 px-4 py-1 bg-primary/10 rounded-full mb-6">
-        <span class="material-symbols-outlined text-primary text-sm" style="font-variation-settings:'FILL' 1;">child_care</span>
+        <span class="material-symbols-outlined text-primary text-sm" style="font-variation-settings:'FILL' 1;">local_fire_department</span>
         <span class="text-label-caps text-primary">ABOUT THE DEPARTMENT</span>
       </div>
-      <h2 class="text-headline-md text-on-background mb-6">Nurturing Young Hearts for Christ</h2>
-      <p class="text-body-lg text-on-surface-variant leading-relaxed mb-6">The Children's Department of The Coming King Ministries is dedicated to raising godly children who know and love God from an early age. Through interactive Bible lessons, songs of worship, memory verse challenges, and fun activities, we help children build a strong foundation in faith.</p>
-      <p class="text-body-lg text-on-surface-variant leading-relaxed mb-8">Our goal is to prepare the next generation as vessels ready for the Coming King. Every child is valued and nurtured in a safe, loving environment.</p>
+      <h2 class="text-headline-md text-on-background mb-6">Empowering the Next Generation</h2>
+      <p class="text-body-lg text-on-surface-variant leading-relaxed mb-6">The Youth Department of The Coming King Ministries is passionate about guiding young adults in their walk with Christ. We provide a vibrant, spirit-filled environment where youths can grow in the Word, discover their purpose, and build lasting godly friendships.</p>
+      <p class="text-body-lg text-on-surface-variant leading-relaxed mb-8">Through dynamic teachings, prayer vigils, and engaging activities, we are raising a generation of young leaders ready to impact their world for the Coming King.</p>
     </div>
     <div class="space-y-6">
-      <div class="bg-surface-container-low rounded-xl p-6 flex items-start gap-4">
-        <div class="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center flex-shrink-0">
-          <span class="material-symbols-outlined text-primary" style="font-variation-settings:'FILL' 1;">person</span>
-        </div>
-        <div>
-          <h3 class="text-label-md text-primary mb-1">Department Head</h3>
-          <p class="text-headline-sm text-on-background">Evang. Grace O. Gbadebo</p>
-        </div>
-      </div>
+      
       <div class="bg-surface-container-low rounded-xl p-6 flex items-start gap-4">
         <div class="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center flex-shrink-0">
           <span class="material-symbols-outlined text-primary" style="font-variation-settings:'FILL' 1;">schedule</span>
         </div>
         <div>
           <h3 class="text-label-md text-primary mb-1">When</h3>
-          <p class="text-body-md text-on-background">Every Sunday during service</p>
+          <p class="text-body-md text-on-background">Normal services with adults<br><span class="text-primary font-bold mt-1 block text-sm">King's Youth Vigil: 2nd Friday Monthly</span></p>
         </div>
       </div>
       <div class="bg-surface-container-low rounded-xl p-6 flex items-start gap-4">
@@ -183,46 +228,57 @@
         </div>
         <div>
           <h3 class="text-label-md text-primary mb-1">Age Group</h3>
-          <p class="text-body-md text-on-background">All children are welcome</p>
+          <p class="text-body-md text-on-background">Youths and Young Adults</p>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- Children Bible Quiz -->
+<!-- Biblical Notes & Devotions -->
 <section class="py-section-gap px-margin-mobile md:px-margin-desktop bg-surface-container-low">
-  <div class="max-w-[900px] mx-auto">
+  <div class="max-w-[1440px] mx-auto">
     <div class="text-center mb-12">
       <div class="inline-flex items-center gap-2 px-4 py-1 bg-primary/10 rounded-full mb-6">
-        <span class="material-symbols-outlined text-primary text-sm" style="font-variation-settings:'FILL' 1;">quiz</span>
-        <span class="text-label-caps text-primary">TEST YOUR KNOWLEDGE</span>
+        <span class="material-symbols-outlined text-primary text-sm" style="font-variation-settings:'FILL' 1;">menu_book</span>
+        <span class="text-label-caps text-primary">WORD FOR THE YOUTH</span>
       </div>
-      <h2 class="text-headline-md text-on-background">Children Bible Quiz</h2>
-      <p class="text-body-lg text-on-surface-variant max-w-2xl mx-auto mt-4">How well do you know your Bible? Take the latest quiz and find out!</p>
+      <h2 class="text-headline-md text-on-background mb-4">Biblical Notes & Guidance</h2>
+      <p class="text-body-lg text-on-surface-variant max-w-2xl mx-auto">Discover what the scriptures say about living a pure, powerful, and purpose-driven life as a young person in Christ.</p>
     </div>
 
-    <div id="children-quiz-container">
-      <div id="children-no-quiz" class="text-center py-16 bg-white rounded-2xl shadow-sm">
-        <span class="material-symbols-outlined text-6xl text-surface-container-high mb-4">quiz</span>
-        <h3 class="text-headline-sm text-on-background mb-2">No Quiz Available</h3>
-        <p class="text-body-md text-on-surface-variant">Check back soon for a new Children Bible Quiz!</p>
-      </div>
-      <div id="children-quiz-content" class="hidden">
-        <div class="bg-white rounded-2xl shadow-sm p-8 md:p-10">
-          <div class="flex items-center justify-between mb-8">
-            <div>
-              <h3 id="children-quiz-title" class="text-headline-sm text-on-background"></h3>
-              <p id="children-quiz-date" class="text-label-md text-on-surface-variant mt-1"></p>
-            </div>
-            <div class="w-14 h-14 bg-primary/10 rounded-full flex items-center justify-center">
-              <span class="material-symbols-outlined text-primary text-2xl" style="font-variation-settings:'FILL' 1;">child_care</span>
-            </div>
-          </div>
-          <div id="children-quiz-questions" class="space-y-8"></div>
-          
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      
+      <!-- Note 1 -->
+      <div class="bg-white rounded-2xl p-8 shadow-sm hover:shadow-md transition-shadow border border-surface-container">
+        <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mb-6">
+          <span class="material-symbols-outlined text-primary" style="font-variation-settings:'FILL' 1;">favorite</span>
         </div>
+        <h3 class="text-headline-sm text-on-background mb-3">Flee Youthful Lusts</h3>
+        <p class="text-body-md text-on-surface-variant mb-6 flex-grow">"Flee also youthful lusts: but follow righteousness, faith, charity, peace, with them that call on the Lord out of a pure heart."</p>
+        <p class="text-label-md text-primary font-bold">2 Timothy 2:22</p>
       </div>
+
+      <!-- Note 2 -->
+      <div class="bg-white rounded-2xl p-8 shadow-sm hover:shadow-md transition-shadow border border-surface-container">
+        <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mb-6">
+          <span class="material-symbols-outlined text-primary" style="font-variation-settings:'FILL' 1;">directions_walk</span>
+        </div>
+        <h3 class="text-headline-sm text-on-background mb-3">Cleanse Your Way</h3>
+        <p class="text-body-md text-on-surface-variant mb-6 flex-grow">"Wherewithal shall a young man cleanse his way? by taking heed thereto according to thy word."</p>
+        <p class="text-label-md text-primary font-bold">Psalm 119:9</p>
+      </div>
+
+      <!-- Note 3 -->
+      <div class="bg-white rounded-2xl p-8 shadow-sm hover:shadow-md transition-shadow border border-surface-container">
+        <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mb-6">
+          <span class="material-symbols-outlined text-primary" style="font-variation-settings:'FILL' 1;">psychology</span>
+        </div>
+        <h3 class="text-headline-sm text-on-background mb-3">Remember Thy Creator</h3>
+        <p class="text-body-md text-on-surface-variant mb-6 flex-grow">"Remember now thy Creator in the days of thy youth, while the evil days come not, nor the years draw nigh..."</p>
+        <p class="text-label-md text-primary font-bold">Ecclesiastes 12:1</p>
+      </div>
+
     </div>
   </div>
 </section>
@@ -248,119 +304,7 @@
         <a class="text-body-md text-white/70 hover:text-white hover:underline transition-colors" href="leadership.html">Leadership</a>
         <a class="text-body-md text-white/70 hover:text-white hover:underline transition-colors" href="sermons.html">Sermons</a>
         <a class="text-label-md text-[11px] xl:text-[12px] text-on-surface-variant hover:text-primary transition-colors whitespace-nowrap" href="children.html">Children</a>
-        <a class="text-label-md text-[11px] xl:text-[12px] text-on-surface-variant hover:text-primary transition-colors whitespace-nowrap" href="youth.html">Youth</a>
-        <a class="text-body-md text-white/70 hover:text-white hover:underline transition-colors" href="gallery.html">Gallery</a>
-        <a class="text-body-md text-white/70 hover:text-white hover:underline transition-colors" href="giving.html">Giving</a>
-        <a class="text-body-md text-white/70 hover:text-white hover:underline transition-colors" href="contact.html">Contact</a>
-      </div>
-    </div>
-    <div class="space-y-6">
-      <h4 class="text-label-md font-bold text-primary uppercase">Headquarters</h4>
-      <div class="flex items-start gap-3 text-white/70">
-        <span class="material-symbols-outlined text-primary mt-1">location_on</span>
-        <p class="text-body-md">7, Olorunsogo, Idi-Aba,<br/>Abeokuta, Ogun State, Nigeria</p>
-      </div>
-      <div class="flex items-center gap-3 text-white/70">
-        <span class="material-symbols-outlined text-primary">call</span>
-        <div><p class="text-body-md">08064694851</p><p class="text-body-md">09055274255</p></div>
-      </div>
-      <div class="flex items-center gap-3 text-white/70">
-        <span class="material-symbols-outlined text-primary">mail</span>
-        <a href="mailto:TheComingkingMinistriesNigeria@gmail.com" class="text-body-md hover:text-white transition-colors break-all">TheComingkingMinistriesNigeria@gmail.com</a>
-      </div>
-      <p class="text-label-md text-white/50 pt-8 border-t border-white/10">&copy; 2026 The Coming King Ministries. All Rights Reserved.<br/>Prepared in Holiness.</p>
-    </div>
-  </div>
-</footer>
 
-<script>
-  // Mobile menu
-  function toggleMobileMenu() {
-    const menu = document.getElementById('mobile-menu');
-    const backdrop = document.getElementById('mobile-backdrop');
-    const panel = document.getElementById('mobile-panel');
-    menu.classList.toggle('pointer-events-none');
-    backdrop.classList.toggle('opacity-0');
-    panel.classList.toggle('translate-x-full');
-  }
-  function closeMobileMenu() {
-    const menu = document.getElementById('mobile-menu');
-    const backdrop = document.getElementById('mobile-backdrop');
-    const panel = document.getElementById('mobile-panel');
-    menu.classList.add('pointer-events-none');
-    backdrop.classList.add('opacity-0');
-    panel.classList.add('translate-x-full');
-  }
-</script>
-<script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-app.js";
-  import { getFirestore, collection, getDocs, query, orderBy, limit } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-firestore.js";
 
-  const firebaseConfig = {
-    apiKey: "AIzaSyDmoTnhEFG1QYV7GHL0Ag3ICiGwWidcWkY",
-    authDomain: "thecomingkingministries-26250.firebaseapp.com",
-    projectId: "thecomingkingministries-26250",
-    storageBucket: "thecomingkingministries-26250.firebasestorage.app",
-    messagingSenderId: "1060064890115",
-    appId: "1:1060064890115:web:7ae456f7690f596c912d36"
-  };
-
-  const app = initializeApp(firebaseConfig);
-  const db = getFirestore(app);
-
-  async function loadChildrenQuiz() {
-    try {
-      const q = query(collection(db, 'children_quizzes'), orderBy('createdAt', 'desc'), limit(1));
-      const snap = await getDocs(q);
-      if (snap.empty) {
-        document.getElementById('children-no-quiz').classList.remove('hidden');
-        document.getElementById('children-quiz-content').classList.add('hidden');
-        return;
-      }
-      const latest = snap.docs[0].data();
-      document.getElementById('children-no-quiz').classList.add('hidden');
-      document.getElementById('children-quiz-content').classList.remove('hidden');
-      document.getElementById('children-quiz-title').textContent = latest.title;
-      document.getElementById('children-quiz-date').textContent = 'Posted: ' + (latest.date || '');
-
-      const container = document.getElementById('children-quiz-questions');
-      container.innerHTML = '';
-      latest.questions.forEach((qItem, qi) => {
-        let html = `<div class="quiz-question" data-answered="false">
-          <p class="text-body-lg text-on-background font-semibold mb-4"><span class="text-primary font-bold mr-2">Q${qi+1}.</span>${qItem.question}</p>
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-3">`;
-        qItem.options.forEach((opt, oi) => {
-          html += `<button onclick="checkAnswer(this, ${oi}, ${qItem.correctAnswer})" class="quiz-option text-left px-5 py-3 rounded-xl border-2 border-surface-container-high bg-white text-body-md text-on-background hover:border-primary cursor-pointer">${String.fromCharCode(65+oi)}. ${opt}</button>`;
-        });
-        html += `</div></div>`;
-        container.innerHTML += html;
-      });
-    } catch (err) {
-      document.getElementById('children-no-quiz').classList.remove('hidden');
-      document.getElementById('children-quiz-content').classList.add('hidden');
-    }
-  }
-
-  // Instant answer checking
-  window.checkAnswer = function(btn, selected, correct) {
-    const questionDiv = btn.closest('.quiz-question');
-    if (questionDiv.dataset.answered === 'true') return;
-    questionDiv.dataset.answered = 'true';
-    const btns = questionDiv.querySelectorAll('.quiz-option');
-    btns.forEach((b, i) => {
-      b.style.pointerEvents = 'none';
-      if (i === correct) { b.classList.add('correct'); b.innerHTML = b.innerHTML + ' <span style="margin-left:8px;color:#16a34a;font-weight:bold;">&#10003;</span>'; }
-      if (i === selected && selected !== correct) { b.classList.add('wrong'); b.innerHTML = b.innerHTML + ' <span style="margin-left:8px;color:#dc2626;font-weight:bold;">&#10007;</span>'; }
-    });
-  };
-
-  loadChildrenQuiz();
-</script>
 </body>
 </html>
-
-
-
-
-
-

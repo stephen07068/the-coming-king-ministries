@@ -218,6 +218,7 @@
           <option value="sermon-video">Sermon - Video (YouTube)</option>
           <option value="sermon-audio">Sermon - Audio (YouTube)</option>
           <option value="bible">Bible School Lesson</option>
+          <option value="blog">Ministry Blog Post</option>
         </select>
       </div>
       <div>
@@ -597,6 +598,9 @@ function toggleContentFields(select) {
     label.textContent = 'YouTube Video Link';
     hint.textContent = 'Paste the YouTube video link for this sermon';
     input.placeholder = 'https://youtube.com/watch?v=...';
+    // Reset labels
+    document.querySelectorAll('#modal label')[2].textContent = 'Speaker / Pastor';
+    document.querySelectorAll('#modal label')[4].textContent = 'Description';
   } else if (val === 'sermon-audio') {
     sermonField.style.display = 'block';
     bibleField.style.display = 'none';
