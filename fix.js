@@ -1,5 +1,5 @@
 ﻿const fs = require('fs');
-const files = ['home_page_the_coming_king_ministries.html','about.html','leadership.html','sermons.html','events.html','gallery.html','bible-school.html','children.html','services.html','giving.html','contact.html', 'admin-content.html', 'admin-media.html', 'admin-super.html', 'admin-login.html'];
+const files = ['index.html','about.html','leadership.html','sermons.html','events.html','gallery.html','bible-school.html','children.html','services.html','giving.html','contact.html', 'admin-content.html', 'admin-media.html', 'admin-super.html', 'admin-login.html'];
 files.forEach(f => {
   if (fs.existsSync(f)) {
     let txt = fs.readFileSync(f, 'utf8');

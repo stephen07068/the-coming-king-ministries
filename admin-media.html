@@ -87,7 +87,7 @@
       <span class="text-xs text-green-600 font-bold bg-green-50 px-3 py-1 rounded-full flex items-center gap-1">
         <span class="material-symbols-outlined text-[14px]">check_circle</span> Media & Social Access Only
       </span>
-      <a href="home_page_the_coming_king_ministries.html" target="_blank" class="px-4 py-2 border border-outline-variant rounded-lg text-sm text-on-surface-variant hover:bg-surface-container transition-all flex items-center gap-2">
+      <a href="/home" target="_blank" class="px-4 py-2 border border-outline-variant rounded-lg text-sm text-on-surface-variant hover:bg-surface-container transition-all flex items-center gap-2">
         <span class="material-symbols-outlined text-[18px]">open_in_new</span> View Site
       </a>
     </div>
@@ -468,7 +468,7 @@
   // Auth guard
   onAuthStateChanged(auth, async user => {
     if (!user) {
-      window.location.href = '/admin-login.html';
+      window.location.href = '/admin';
     } else {
       let role = localStorage.getItem('tck_role');
       if (!role) {
@@ -491,7 +491,7 @@
 
       if (role !== 'super' && role !== 'super admin' && role !== 'media') {
         alert('Access denied. Media Admin privileges required.');
-        window.location.href = '/admin-login.html';
+        window.location.href = '/admin';
         return;
       }
 
@@ -506,7 +506,7 @@
   window.handleLogout = async function() {
     localStorage.clear();
     await signOut(auth);
-    window.location.href = '/admin-login.html';
+    window.location.href = '/admin';
   };
 
   // ── GALLERY ──────────────────────────────────────────────

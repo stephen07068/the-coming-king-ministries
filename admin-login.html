@@ -72,7 +72,7 @@
 
     <!-- Back to site -->
     <div class="text-center mt-6">
-      <a href="home_page_the_coming_king_ministries.html" class="text-white/40 hover:text-white/70 text-xs transition-colors flex items-center gap-1 justify-center">
+      <a href="/home" class="text-white/40 hover:text-white/70 text-xs transition-colors flex items-center gap-1 justify-center">
         <span class="material-symbols-outlined text-[16px]">arrow_back</span> Back to Website
       </a>
     </div>
@@ -98,9 +98,9 @@
 
   // Role → redirect map
   const roleRedirects = {
-    super: '/admin-super.html',
-    content: '/admin-content.html',
-    media: '/admin-media.html'
+    super: '/admin/super',
+    content: '/admin/content',
+    media: '/admin/media'
   };
 
   window.handleLogin = async function(e) {
@@ -132,7 +132,7 @@
       }
       localStorage.setItem('tck_role', role);
       localStorage.setItem('tck_user', email);
-      window.location.href = roleRedirects[role] || '/admin-super.html';
+      window.location.href = roleRedirects[role] || '/admin/super';
     } catch (err) {
       btn.disabled = false;
       btn.innerHTML = '<span class="material-symbols-outlined text-[20px]">login</span> Sign In';

@@ -2,7 +2,7 @@ const fs = require('fs');
 
 const pages = [
   'about.html', 'bible-school.html', 'contact.html', 'events.html',
-  'gallery.html', 'giving.html', 'home_page_the_coming_king_ministries.html',
+  'gallery.html', 'giving.html', 'index.html',
   'leadership.html', 'sermons.html', 'services.html'
 ];
 
