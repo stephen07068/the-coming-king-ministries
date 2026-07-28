@@ -120,7 +120,7 @@
         <span class="material-symbols-outlined text-primary text-5xl mb-4 block" style="font-variation-settings:'FILL' 1;">add_photo_alternate</span>
         <h3 class="text-headline-sm text-on-background mb-2">Upload Images</h3>
         <p class="text-body-md text-on-surface-variant mb-4">Drag and drop photos here, or click to browse</p>
-        <p class="text-label-caps text-on-surface-variant">JPG, PNG, WEBP — Max 1MB per image</p>
+        <p class="text-label-caps text-on-surface-variant">JPG, PNG, WEBP — Max 500KB per image</p>
         <input type="file" id="file-input" multiple accept="image/*" class="hidden" onchange="validateAndPreview(this)"/>
         <div id="upload-errors" class="mt-4 hidden"></div>
         <div id="upload-previews" class="mt-4 grid grid-cols-4 gap-3 hidden"></div>
@@ -564,11 +564,11 @@
       return;
     }
 
-    const MAX_BYTES = 1 * 1024 * 1024;
+    const MAX_BYTES = 500 * 1024;
     const validFiles = Array.from(input.files).filter(f => f.size <= MAX_BYTES);
     
     if (validFiles.length === 0) {
-      alert('No valid files to upload. Make sure they are under 1MB.');
+      alert('No valid files to upload. Make sure they are under 500KB.');
       return;
     }
 
@@ -910,19 +910,19 @@
 
   // ── IMAGE VALIDATION ─────────────────────────────────────
   window.validateAndPreview = function(input) {
-    const MAX_BYTES = 1 * 1024 * 1024;
+    const MAX_BYTES = 500 * 1024;
     const errorsEl = document.getElementById('upload-errors');
     const previewsEl = document.getElementById('upload-previews');
     errorsEl.innerHTML = ''; previewsEl.innerHTML = '';
     errorsEl.classList.add('hidden'); previewsEl.classList.add('hidden');
     const rejected = [], accepted = [];
     Array.from(input.files).forEach(file => {
-      if (file.size > MAX_BYTES) rejected.push({ name: file.name, size: (file.size/(1024*1024)).toFixed(2) });
+      if (file.size > MAX_BYTES) rejected.push({ name: file.name, size: (file.size/1024).toFixed(0) });
       else accepted.push(file);
     });
     if (rejected.length > 0) {
       errorsEl.classList.remove('hidden');
-      errorsEl.innerHTML = rejected.map(f => `<div class="flex items-center gap-2 p-3 bg-red-50 border border-red-200 rounded-lg text-sm text-red-700 mb-2"><span class="material-symbols-outlined text-red-500 text-[18px]" style="font-variation-settings:'FILL' 1;">cancel</span><span><strong>${f.name}</strong> rejected — Exceeds 1MB limit</span></div>`).join('');
+      errorsEl.innerHTML = rejected.map(f => `<div class="flex items-center gap-2 p-3 bg-red-50 border border-red-200 rounded-lg text-sm text-red-700 mb-2"><span class="material-symbols-outlined text-red-500 text-[18px]" style="font-variation-settings:'FILL' 1;">cancel</span><span><strong>${f.name}</strong> (${f.size}KB) rejected — Exceeds 500KB limit</span></div>`).join('');
     }
     if (accepted.length > 0) {
       previewsEl.classList.remove('hidden');
@@ -931,7 +931,7 @@
         reader.onload = e => {
           const div = document.createElement('div');
           div.className = 'relative rounded-lg overflow-hidden h-24 bg-surface-container';
-          div.innerHTML = `<img src="${e.target.result}" class="w-full h-full object-cover" alt="${file.name}"/><div class="absolute bottom-0 left-0 right-0 bg-black/60 px-2 py-1"><p class="text-white text-[9px] truncate">${file.name}</p><p class="text-green-300 text-[9px]">${(file.size/(1024*1024)).toFixed(2)}MB ✓</p></div>`;
+          div.innerHTML = `<img src="${e.target.result}" class="w-full h-full object-cover" alt="${file.name}"/><div class="absolute bottom-0 left-0 right-0 bg-black/60 px-2 py-1"><p class="text-white text-[9px] truncate">${file.name}</p><p class="text-green-300 text-[9px]">${(file.size/1024).toFixed(0)}KB ✓</p></div>`;
           previewsEl.appendChild(div);
         };
         reader.readAsDataURL(file);
