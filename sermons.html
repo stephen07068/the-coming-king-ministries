@@ -512,7 +512,15 @@ function filterCat(cat) {
           const featuredImg = document.getElementById('featured-img');
           if (featuredTitle) featuredTitle.textContent = d.title || 'Latest Message';
           if (featuredDesc) featuredDesc.textContent = d.description || `Message by ${d.speaker || 'Pastor Akinboye Michael'}`;
-          if (featuredBtn) featuredBtn.href = d.link || '#';
+          if (featuredBtn) {
+            featuredBtn.href = d.link || '#';
+            if (isFacebook) {
+              const label = featuredBtn.querySelector('p');
+              if (label) {
+                label.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg> Watch on Facebook`;
+              }
+            }
+          }
           if (featuredImg) {
             featuredImg.src = thumbUrl;
             if (!isYouTube) {
@@ -541,13 +549,15 @@ function filterCat(cat) {
 
         grid.innerHTML += `
         <div class="sermon-card group cursor-pointer bg-surface-container-low rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-all" data-title="${d.title || ''}" data-cat="${cat}">
-          <div class="relative aspect-video overflow-hidden bg-secondary">
+          <a href="${d.link || '#'}" target="_blank" class="block relative aspect-video overflow-hidden bg-secondary">
             ${thumbHTML}
             <div class="absolute inset-0 bg-primary/20 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-              <span class="material-symbols-outlined text-white text-6xl" style="font-variation-settings:'FILL' 1;">${isVideo ? 'play_circle' : 'headphones'}</span>
+              <div class="w-16 h-16 rounded-full bg-primary/90 flex items-center justify-center shadow-xl group-hover:scale-110 transition-transform">
+                <span class="material-symbols-outlined text-white text-4xl" style="font-variation-settings:'FILL' 1;">${isVideo ? 'play_arrow' : 'headphones'}</span>
+              </div>
             </div>
             <span class="absolute top-3 left-3 bg-primary text-white text-label-caps px-2.5 py-1 rounded-full text-[10px] font-bold capitalize">${d.category || 'Message'}</span>
-          </div>
+          </a>
           <div class="p-6 flex flex-col h-full">
             <h3 class="text-headline-sm text-on-background mb-2 group-hover:text-primary transition-colors line-clamp-2 font-bold">${d.title || ''}</h3>
             <p class="text-on-surface-variant text-body-md mb-3 font-semibold text-primary">${d.speaker || ''}</p>
