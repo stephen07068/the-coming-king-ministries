@@ -405,6 +405,60 @@
     }
   };
 
+    // ── Load Blog Posts ──
+  async function loadBlogList() {
+    const tbody = document.getElementById('blog-tbody');
+    if (!tbody) return;
+    tbody.innerHTML = '<tr><td colspan="5" class="p-4 text-center text-sm text-on-surface-variant">Loading...</td></tr>';
+    try {
+      let snap;
+      try {
+        const q = query(collection(db, 'blog_posts'), orderBy('createdAt', 'desc'));
+        snap = await getDocs(q);
+      } catch (err) {
+        snap = await getDocs(collection(db, 'blog_posts'));
+      }
+      tbody.innerHTML = '';
+      if (snap.empty) {
+        tbody.innerHTML = '<tr><td colspan="5" class="p-4 text-center text-sm text-on-surface-variant">No blog posts published yet.</td></tr>';
+        return;
+      }
+      snap.forEach(d => {
+        const s = d.data();
+        const dateStr = s.date || (s.createdAt ? s.createdAt.toDate().toLocaleDateString('en-US', { month:'short', day:'numeric', year:'numeric' }) : '');
+        const tr = document.createElement('tr');
+        tr.className = 'hover:bg-surface-container-low/20 transition-colors';
+        tr.innerHTML = `
+          <td class="px-6 py-3 font-semibold text-midnight-navy text-sm">${s.title || ''}</td>
+          <td class="px-6 py-3 text-xs text-on-surface-variant">${s.author || 'Ministry'}</td>
+          <td class="px-6 py-3 text-xs text-on-surface-variant">${dateStr}</td>
+          <td class="px-6 py-3"><span class="text-[10px] font-bold px-2 py-1 bg-green-50 text-green-700 rounded-full">PUBLISHED</span></td>
+          <td class="px-6 py-3 flex gap-2">
+            <button onclick="deleteBlogPost('${d.id}', this)" class="p-1.5 text-on-surface-variant hover:text-red-500 flex items-center gap-1 text-xs font-bold"><span class="material-symbols-outlined text-[18px]">delete</span> Delete</button>
+          </td>`;
+        tbody.appendChild(tr);
+      });
+    } catch (e) {
+      console.error('loadBlogList error:', e);
+      tbody.innerHTML = '<tr><td colspan="5" class="p-4 text-center text-sm text-red-500">Error loading blog posts.</td></tr>';
+    }
+  }
+  window.loadBlogList = loadBlogList;
+
+  // ── Delete Blog Post ──
+  window.deleteBlogPost = async function(id, btn) {
+    if (!confirm('Delete this blog post? This cannot be undone.')) return;
+    if (btn) btn.disabled = true;
+    try {
+      await deleteDoc(doc(db, 'blog_posts', id));
+      await loadBlogList();
+    } catch (e) {
+      console.error('deleteBlogPost error:', e);
+      alert('Failed to delete blog post: ' + (e.message || e));
+      if (btn) btn.disabled = false;
+    }
+  };
+
   // Delete Bible Lesson
   window.deleteBibleLesson = async function(id, btn) {
     if (!confirm('Delete this lesson? This cannot be undone.')) return;
@@ -633,7 +687,7 @@
 function showPanel(name) {
   document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
   document.getElementById('panel-' + name).classList.add('active');
-  const titles = {sermons:'Sermon Media', bible:'Bible School Lessons', childrenQuiz:'Children Bible Quiz', sundayQuiz:'Sunday Bible Quiz'};
+  const titles = {sermons:'Sermon Media', bible:'Bible School Lessons', blog:'Ministry Blog Articles', childrenQuiz:'Children Bible Quiz', sundayQuiz:'Sunday Bible Quiz'};
   document.getElementById('panel-title').textContent = titles[name] || 'Content Admin';
   document.getElementById('new-btn').style.display = (name === 'childrenQuiz' || name === 'sundayQuiz') ? 'none' : 'flex';
   document.querySelectorAll('aside nav a').forEach(a => { a.classList.remove('nav-active'); a.classList.add('nav-link'); });
