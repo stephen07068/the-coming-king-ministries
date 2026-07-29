@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html class="light" lang="en">
 <head>
 <link rel="dns-prefetch" href="//fonts.googleapis.com"/>
@@ -179,36 +179,41 @@
     
   async function loadBlogPosts() {
     try {
-      const q = query(collection(db, 'blog_posts'), orderBy('createdAt', 'desc'));
-      const snap = await getDocs(q);
+      let snap;
+      try {
+        const q = query(collection(db, 'blog_posts'), orderBy('createdAt', 'desc'));
+        snap = await getDocs(q);
+      } catch (err) {
+        snap = await getDocs(collection(db, 'blog_posts'));
+      }
       const list = document.getElementById('blog-posts-list');
       const placeholder = document.getElementById('blog-placeholder');
       
       if (snap.empty) {
-        placeholder.style.display = 'block';
+        if (placeholder) placeholder.style.display = 'block';
       } else {
-        placeholder.style.display = 'none';
+        if (placeholder) placeholder.style.display = 'none';
         list.innerHTML = '';
-        snap.forEach(doc => {
-          const data = doc.data();
+        snap.forEach(docSnap => {
+          const data = docSnap.data();
           
           let imgHtml = '';
           if (data.imageUrl) {
             imgHtml = `<div class="w-full h-48 sm:h-56 overflow-hidden bg-surface-container border-b border-surface-container">
-              <img src="${data.imageUrl}" alt="${data.title}" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
+              <img src="${data.imageUrl}" alt="${data.title || 'Blog Image'}" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
             </div>`;
           }
 
-          let contentHtml = data.content.replace(/\n/g, '<br>');
+          let contentHtml = (data.content || data.description || '').replace(/\n/g, '<br>');
           
           const html = `<article class="bg-white rounded-2xl shadow-sm border border-surface-container overflow-hidden hover:shadow-md transition-shadow">
             ${imgHtml}
             <div class="p-6 md:p-8">
               <div class="flex items-center justify-between mb-4">
-                <span class="px-3 py-1 bg-primary/10 text-primary text-[11px] font-bold tracking-wider uppercase rounded-full">${data.author || 'Ministry'}</span>
+                <span class="px-3 py-1 bg-primary/10 text-primary text-[11px] font-bold tracking-wider uppercase rounded-full">${data.author || data.speaker || 'Ministry'}</span>
                 <span class="text-label-md text-on-surface-variant flex items-center gap-1"><span class="material-symbols-outlined text-[16px]">calendar_today</span> ${data.date || ''}</span>
               </div>
-              <h3 class="text-headline-sm text-on-background mb-4 leading-tight">${data.title}</h3>
+              <h3 class="text-headline-sm text-on-background mb-4 leading-tight">${data.title || 'Untitled Post'}</h3>
               <div class="text-body-md text-on-surface-variant leading-relaxed line-clamp-4 mb-6">${contentHtml}</div>
               <button onclick="this.previousElementSibling.classList.toggle('line-clamp-4'); this.textContent = this.textContent === 'Read More' ? 'Read Less' : 'Read More'" class="text-label-md text-primary font-bold hover:underline">Read More</button>
             </div>
@@ -218,7 +223,7 @@
         });
       }
     } catch (err) {
-      console.error(err);
+      console.error('loadBlogPosts error:', err);
     }
   }
 
