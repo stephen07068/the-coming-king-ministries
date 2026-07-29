@@ -547,6 +547,10 @@ function filterCat(cat) {
           </div>
         `;
 
+        const typeBadge = isVideo 
+          ? `<span class="absolute top-3 right-3 bg-red-600 text-white px-2.5 py-1 rounded-full text-[10px] font-bold tracking-wider uppercase shadow-md flex items-center gap-1 z-10"><span class="material-symbols-outlined text-[13px]">videocam</span> VIDEO</span>`
+          : `<span class="absolute top-3 right-3 bg-purple-700 text-white px-2.5 py-1 rounded-full text-[10px] font-bold tracking-wider uppercase shadow-md flex items-center gap-1 z-10"><span class="material-symbols-outlined text-[13px]">headphones</span> AUDIO</span>`;
+
         grid.innerHTML += `
         <div class="sermon-card group cursor-pointer bg-surface-container-low rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-all" data-title="${d.title || ''}" data-cat="${cat}">
           <a href="${d.link || '#'}" target="_blank" class="block relative aspect-video overflow-hidden bg-secondary">
@@ -556,7 +560,8 @@ function filterCat(cat) {
                 <span class="material-symbols-outlined text-white text-4xl" style="font-variation-settings:'FILL' 1;">${isVideo ? 'play_arrow' : 'headphones'}</span>
               </div>
             </div>
-            <span class="absolute top-3 left-3 bg-primary text-white text-label-caps px-2.5 py-1 rounded-full text-[10px] font-bold capitalize">${d.category || 'Message'}</span>
+            <span class="absolute top-3 left-3 bg-primary text-white text-label-caps px-2.5 py-1 rounded-full text-[10px] font-bold capitalize z-10">${d.category || 'Message'}</span>
+            ${typeBadge}
           </a>
           <div class="p-6 flex flex-col h-full">
             <h3 class="text-headline-sm text-on-background mb-2 group-hover:text-primary transition-colors line-clamp-2 font-bold">${d.title || ''}</h3>
@@ -564,8 +569,8 @@ function filterCat(cat) {
             <p class="text-body-md text-on-surface-variant text-sm mb-4 line-clamp-3">${d.description || ''}</p>
             <div class="mt-auto flex items-center justify-between border-t border-surface-container-high pt-4">
               <span class="text-label-md text-on-surface-variant">${dateStr}</span>
-              <a href="${d.link || '#'}" target="_blank" class="${isFacebook ? 'text-blue-600' : 'text-primary'} text-label-md font-bold flex items-center gap-1 hover:underline">
-                ${linkText} <span class="material-symbols-outlined text-sm">open_in_new</span>
+              <a href="${d.link || '#'}" target="_blank" class="${isFacebook ? 'text-blue-600' : (isVideo ? 'text-primary' : 'text-purple-700')} text-label-md font-bold flex items-center gap-1 hover:underline">
+                <span class="material-symbols-outlined text-sm">${isVideo ? (isFacebook ? 'open_in_new' : 'smart_display') : 'headphones'}</span> ${linkText}
               </a>
             </div>
           </div>
