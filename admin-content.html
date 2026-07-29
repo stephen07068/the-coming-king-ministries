@@ -704,14 +704,14 @@ async function loadBlogList() {
 </script>
 
 <script>
-function showPanel(name) {
+function showPanel(name, el) {
   document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
-  document.getElementById('panel-' + name).classList.add('active');
+  const _target = document.getElementById('panel-' + name); if (_target) _target.classList.add('active');
   const titles = {sermons:'Sermon Media', bible:'Bible School Lessons', blog:'Ministry Blog Articles', childrenQuiz:'Children Bible Quiz', sundayQuiz:'Sunday Bible Quiz'};
   document.getElementById('panel-title').textContent = titles[name] || 'Content Admin';
   document.getElementById('new-btn').style.display = (name === 'childrenQuiz' || name === 'sundayQuiz') ? 'none' : 'flex';
   document.querySelectorAll('aside nav a').forEach(a => { a.classList.remove('nav-active'); a.classList.add('nav-link'); });
-  event.currentTarget.classList.add('nav-active'); event.currentTarget.classList.remove('nav-link');
+  const activeEl = el || (window.event && window.event.currentTarget); if (activeEl && activeEl.classList) { activeEl.classList.add('nav-active'); activeEl.classList.remove('nav-link'); }
 }
 function openModal() {
   document.getElementById('modal').classList.remove('hidden');
@@ -720,6 +720,11 @@ function openModal() {
   document.getElementById('content-type-select').value = 'sermon-video';
   document.getElementById('sermon-link-label').textContent = 'YouTube Video Link';
   document.getElementById('sermon-link-hint').textContent = 'Paste the YouTube video link for this sermon';
+}
+function openModalFor(type) {
+  document.getElementById('modal').classList.remove('hidden');
+  const sel = document.getElementById('content-type-select');
+  if (sel) { sel.value = type; toggleContentFields(sel); }
 }
 function closeModal() { document.getElementById('modal').classList.add('hidden'); }
 
