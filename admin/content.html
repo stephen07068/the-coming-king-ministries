@@ -338,6 +338,7 @@
 
       loadSermons();
       loadBibleLessons();
+      loadBlogList();
     }
   });
 
@@ -454,7 +455,7 @@ async function loadBlogList() {
           <td class="px-6 py-3 text-xs text-on-surface-variant">${dateStr}</td>
           <td class="px-6 py-3"><span class="text-[10px] font-bold px-2 py-1 bg-green-50 text-green-700 rounded-full">PUBLISHED</span></td>
           <td class="px-6 py-3 flex gap-2">
-            <button onclick="deleteBlogPost('${d.id}', this)" class="p-1.5 text-on-surface-variant hover:text-red-500 flex items-center gap-1 text-xs font-bold"><span class="material-symbols-outlined text-[18px]">delete</span> Delete</button>
+            <button onclick="deleteBlogPost('${d.id}', this)" class="px-3 py-1 bg-red-50 text-red-600 hover:bg-red-100 rounded-lg text-xs font-bold flex items-center gap-1 cursor-pointer"><span class="material-symbols-outlined text-[16px]">delete</span> Delete</button>
           </td>`;
         tbody.appendChild(tr);
       });
