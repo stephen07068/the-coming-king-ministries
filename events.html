@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html class="light" lang="en">
 <head>
 <link rel="dns-prefetch" href="//fonts.googleapis.com"/>
@@ -148,6 +148,36 @@
           </div>
           <h2 class="text-headline-md text-on-background">What's Coming Up</h2>
           <p class="text-body-md text-on-surface-variant mt-2">Special events and programs announced by the ministry</p>
+      </nav>
+      <div class="p-4 border-t border-surface-container space-y-3 mt-4">
+        <a href="/giving" class="block w-full text-center px-6 py-3 rounded-lg bg-primary text-white font-bold text-sm hover:opacity-90 transition-all shadow-sm">?? Give Online</a>
+        <a href="/contact" class="block w-full text-center px-6 py-3 rounded-lg border-2 border-primary text-primary font-bold text-sm hover:bg-primary hover:text-white transition-all">?? Contact Us</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main class="pt-16 md:pt-20">
+  <!-- Hero -->
+  <section class="page-hero h-72 flex items-center justify-center text-center">
+    <div class="fade-in">
+      <p class="text-label-caps text-white/70 mb-3 tracking-widest">STAY CONNECTED</p>
+      <h1 class="text-display-lg text-white">Events & Programs</h1>
+      <p class="text-body-lg text-white/80 mt-3 max-w-xl mx-auto">Mark your calendar for our upcoming gatherings, revivals and special programs.</p>
+    </div>
+  </section>
+
+  <!-- What's Coming Up — Special Events (posted by Media Admin) -->
+  <section class="py-section-gap px-margin-mobile md:px-margin-desktop bg-white">
+    <div class="max-w-[1440px] mx-auto">
+      <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 gap-4">
+        <div>
+          <div class="inline-flex items-center gap-2 px-4 py-1 bg-primary/10 rounded-full mb-4">
+            <span class="material-symbols-outlined text-primary text-sm" style="font-variation-settings:'FILL' 1;">event</span>
+            <span class="text-label-caps text-primary">UPCOMING</span>
+          </div>
+          <h2 class="text-headline-md text-on-background">What's Coming Up</h2>
+          <p class="text-body-md text-on-surface-variant mt-2">Special events and programs announced by the ministry</p>
         </div>
       </div>
 
@@ -162,6 +192,17 @@
       </div>
     </div>
   </section>
+
+  <!-- CTA -->
+  <section class="py-16 px-margin-mobile md:px-margin-desktop bg-secondary text-white text-center">
+    <h3 class="text-headline-md text-white mb-4">Want to Stay Updated?</h3>
+    <p class="text-body-lg text-white/80 mb-8 max-w-xl mx-auto">Follow us on social media or contact us directly to get the latest event announcements.</p>
+    <div class="flex flex-col md:flex-row items-center justify-center gap-4">
+      <a href="https://www.facebook.com/profile.php?id=100080477388903" target="_blank" class="px-8 py-3 bg-primary text-white rounded-lg text-label-md hover:opacity-90 transition-all">Follow on Facebook</a>
+      <a href="/contact" class="px-8 py-3 border border-white text-white rounded-lg text-label-md hover:bg-white hover:text-secondary transition-all">Contact Us</a>
+    </div>
+  </section>
+</main>
 
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-app.js";
@@ -183,18 +224,31 @@
         const q = query(collection(db, 'events'), orderBy('createdAt', 'desc'));
         const snap = await getDocs(q);
         if (snap.empty) return;
-        placeholder.remove();
+        if (placeholder) placeholder.remove();
         snap.forEach(docSnap => {
           const d = docSnap.data();
           const card = document.createElement('div');
-          card.className = 'flex flex-col md:flex-row bg-white rounded-xl overflow-hidden hover:shadow-xl transition-all border border-surface-container-high';
+          card.className = 'bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all border border-outline-variant flex flex-col';
           card.innerHTML = `
-            ${d.bannerUrl ? `<div class="md:w-1/3 min-h-[140px] overflow-hidden"><img src="${d.bannerUrl}" class="w-full h-full object-cover" alt="${d.title}"/></div>` : `<div class="md:w-1/3 bg-primary flex flex-col items-center justify-center p-8 min-h-[140px]"><span class="text-label-caps text-white/80 font-bold">${d.type || 'EVENT'}</span><span class="text-3xl font-bold text-white mt-1 font-display text-center">${d.date || ''}</span></div>`}
-            <div class="p-8 flex-1">
-              <span class="text-label-caps text-primary">${d.type || 'UPCOMING EVENT'}</span>
-              <h3 class="text-headline-sm text-on-background mb-3 mt-1">${d.title}</h3>
-              ${d.description ? `<p class="text-on-surface-variant text-body-md mb-3">${d.description}</p>` : ''}
-              ${d.date ? `<div class="flex items-center gap-2 text-on-surface-variant"><span class="material-symbols-outlined text-primary">calendar_today</span><span class="text-label-md">${d.date}</span></div>` : ''}
+            ${d.bannerUrl ? `
+              <div class="w-full h-64 md:h-72 overflow-hidden bg-surface-container">
+                <img src="${d.bannerUrl}" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" alt="${d.title}"/>
+              </div>
+            ` : `
+              <div class="w-full h-44 bg-gradient-to-r from-primary to-primary-container flex flex-col items-center justify-center p-6 text-white">
+                <span class="text-label-caps opacity-90 font-bold">${d.type || 'SPECIAL EVENT'}</span>
+                <span class="text-2xl font-bold font-display mt-1">${d.date || 'Upcoming'}</span>
+              </div>
+            `}
+            <div class="p-6 flex-1 flex flex-col justify-between">
+              <div>
+                <div class="flex items-center justify-between gap-2 mb-2">
+                  <span class="text-xs font-bold uppercase tracking-wider text-primary px-3 py-1 bg-primary/10 rounded-full">${d.type || 'UPCOMING EVENT'}</span>
+                  ${d.date ? `<div class="flex items-center gap-1 text-xs text-on-surface-variant font-semibold"><span class="material-symbols-outlined text-primary text-sm">calendar_today</span><span>${d.date}</span></div>` : ''}
+                </div>
+                <h3 class="text-headline-sm font-bold text-on-background mb-2 mt-3">${d.title}</h3>
+                ${d.description ? `<p class="text-on-surface-variant text-body-md line-clamp-3">${d.description}</p>` : ''}
+              </div>
             </div>`;
           list.appendChild(card);
         });
@@ -202,17 +256,6 @@
     }
     loadEvents();
   </script>
-
-  <!-- CTA -->
-  <section class="py-16 px-margin-mobile md:px-margin-desktop bg-secondary text-white text-center">
-    <h3 class="text-headline-md text-white mb-4">Want to Stay Updated?</h3>
-    <p class="text-body-lg text-white/80 mb-8 max-w-xl mx-auto">Follow us on social media or contact us directly to get the latest event announcements.</p>
-    <div class="flex flex-col md:flex-row items-center justify-center gap-4">
-      <a href="https://www.facebook.com/profile.php?id=100080477388903" target="_blank" class="px-8 py-3 bg-primary text-white rounded-lg text-label-md hover:opacity-90 transition-all">Follow on Facebook</a>
-      <a href="/contact" class="px-8 py-3 border border-white text-white rounded-lg text-label-md hover:bg-white hover:text-secondary transition-all">Contact Us</a>
-    </div>
-  </section>
-</main>
 
 <!-- Footer -->
 <footer class="w-full py-16 px-margin-desktop bg-secondary text-white">
@@ -224,7 +267,6 @@
       </div>
       <p class="text-body-md text-white/70">"To Prepare Saints for the Coming King"</p>
     </div>
-    <div class="space-y-3">
       <h4 class="text-label-md font-bold text-primary uppercase">Pages</h4>
       <div class="grid grid-cols-2 gap-2">
         <a class="text-body-md text-white/70 hover:text-white transition-colors" href="/home">Home</a>
