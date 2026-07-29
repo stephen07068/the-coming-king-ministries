@@ -356,31 +356,36 @@
   }
 
   // â”€â”€ Load Bible Lessons from Firestore â”€â”€
+  // Load Bible Lessons from Firestore
   async function loadBibleLessons() {
     const tbody = document.getElementById('bible-tbody');
+    if (!tbody) return;
     tbody.innerHTML = '<tr><td colspan="5" class="p-4 text-center text-sm text-on-surface-variant">Loading...</td></tr>';
     try {
-      const q = query(collection(db, 'bible_school'), orderBy('createdAt', 'desc'));
-      const snap = await getDocs(q);
+      let snap;
+      try {
+        const q = query(collection(db, 'bible_school'), orderBy('createdAt', 'desc'));
+        snap = await getDocs(q);
+      } catch (err) {
+        snap = await getDocs(collection(db, 'bible_school'));
+      }
       tbody.innerHTML = '';
       if (snap.empty) {
-        tbody.innerHTML = '<tr><td colspan="5" class="p-4 text-center text-sm text-on-surface-variant">No lessons yet.</td></tr>';
+        tbody.innerHTML = '<tr><td colspan="5" class="p-4 text-center text-sm text-on-surface-variant">No lessons published yet.</td></tr>';
         return;
       }
       snap.forEach(d => {
         const s = d.data();
-        const dateStr = s.createdAt ? s.createdAt.toDate().toLocaleDateString('en-US', { month:'short', day:'numeric', year:'numeric' }) : '';
+        const dateStr = s.createdAt ? (s.createdAt.toDate ? s.createdAt.toDate().toLocaleDateString('en-US', { month:'short', day:'numeric', year:'numeric' }) : s.createdAt) : '';
         const tr = document.createElement('tr');
         tr.className = 'hover:bg-surface-container-low/20 transition-colors';
         tr.innerHTML = `
           <td class="px-6 py-3 font-semibold text-midnight-navy text-sm">${s.title || ''}</td>
-          <td class="px-6 py-3 text-xs text-on-surface-variant">${s.week || ''}</td>
+          <td class="px-6 py-3 text-xs text-on-surface-variant max-w-xs truncate">${s.week || s.description || ''}</td>
           <td class="px-6 py-3 text-xs text-on-surface-variant">${dateStr}</td>
           <td class="px-6 py-3"><span class="text-[10px] font-bold px-2 py-1 bg-blue-50 text-blue-700 rounded-full">PUBLISHED</span></td>
           <td class="px-6 py-3 flex gap-2">
-            <button class="p-1.5 text-on-surface-variant hover:text-primary"><span class="material-symbols-outlined text-[18px]">edit</span></button>
-            <button class="p-1.5 text-on-surface-variant hover:text-primary"><span class="material-symbols-outlined text-[18px]">picture_as_pdf</span></button>
-            <button onclick="deleteBibleLesson('${d.id}', this)" class="p-1.5 text-on-surface-variant hover:text-red-500"><span class="material-symbols-outlined text-[18px]">delete</span></button>
+            <button onclick="deleteBibleLesson('${d.id}', this)" class="px-3 py-1 bg-red-50 text-red-600 hover:bg-red-100 rounded-lg text-xs font-bold flex items-center gap-1 cursor-pointer"><span class="material-symbols-outlined text-[16px]">delete</span> Delete</button>
           </td>`;
         tbody.appendChild(tr);
       });
@@ -390,23 +395,7 @@
     }
   }
 
-  // â”€â”€ Delete Sermon â”€â”€
-  // Delete Sermon
-  window.deleteSermon = async function(id, btn) {
-    if (!confirm('Delete this sermon? This cannot be undone.')) return;
-    if (btn) btn.disabled = true;
-    try {
-      await deleteDoc(doc(db, 'video_sermons', id));
-      await loadSermons();
-    } catch (e) {
-      console.error('deleteSermon error:', e);
-      alert('Failed to delete sermon: ' + (e.message || e));
-      if (btn) btn.disabled = false;
-    }
-  };
-
-    // ── Load Blog Posts ──
-  async function loadBlogList() {
+async function loadBlogList() {
     const tbody = document.getElementById('blog-tbody');
     if (!tbody) return;
     tbody.innerHTML = '<tr><td colspan="5" class="p-4 text-center text-sm text-on-surface-variant">Loading...</td></tr>';
