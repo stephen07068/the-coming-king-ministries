@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html class="light" lang="en">
 <head>
 <link rel="dns-prefetch" href="//fonts.googleapis.com"/>
@@ -491,43 +491,72 @@ function filterCat(cat) {
         const dateStr = d.createdAt ? d.createdAt.toDate().toLocaleDateString('en-US', {month: 'short', year: 'numeric'}) : '';
         const cat = (d.category || 'all').toLowerCase();
         
-        let thumbUrl = 'IMG_7662.jpg'; 
+        const isFacebook = d.link && (d.link.includes('facebook.com') || d.link.includes('fb.watch') || d.link.includes('fb.com'));
+        let thumbUrl = '/IMG_7893.PNG';
+        let isYouTube = false;
+
         if (d.link && d.link.includes('youtube.com/watch?v=')) {
           const videoId = d.link.split('v=')[1].split('&')[0];
           thumbUrl = `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
+          isYouTube = true;
         } else if (d.link && d.link.includes('youtu.be/')) {
           const videoId = d.link.split('youtu.be/')[1].split('?')[0];
           thumbUrl = `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
+          isYouTube = true;
         }
         
         if (isFirst) {
-           document.getElementById('featured-title').textContent = d.title || 'Latest Message';
-           document.getElementById('featured-desc').textContent = d.description || `Message by ${d.speaker || 'Pastor Akinboye Michael'}`;
-           document.getElementById('featured-btn').href = d.link || '#';
-           document.getElementById('featured-img').src = thumbUrl;
-           isFirst = false;
+          const featuredTitle = document.getElementById('featured-title');
+          const featuredDesc = document.getElementById('featured-desc');
+          const featuredBtn = document.getElementById('featured-btn');
+          const featuredImg = document.getElementById('featured-img');
+          if (featuredTitle) featuredTitle.textContent = d.title || 'Latest Message';
+          if (featuredDesc) featuredDesc.textContent = d.description || `Message by ${d.speaker || 'Pastor Akinboye Michael'}`;
+          if (featuredBtn) featuredBtn.href = d.link || '#';
+          if (featuredImg) {
+            featuredImg.src = thumbUrl;
+            if (!isYouTube) {
+              featuredImg.className = 'w-full h-full object-contain p-8 bg-midnight-navy';
+            }
+          }
+          isFirst = false;
         }
 
         const isVideo = d.type !== 'audio';
-        const icon = isVideo ? 'play_circle' : 'headphones';
-        const linkText = isVideo ? 'Watch' : 'Listen';
+        let linkText = 'Watch';
+        if (isFacebook) {
+          linkText = 'Watch on Facebook';
+        } else if (!isVideo) {
+          linkText = 'Listen';
+        }
+
+        const thumbHTML = isYouTube ? `
+          <img class="w-full h-full object-cover" src="${thumbUrl}" alt="${d.title || 'Sermon'}" loading="lazy">
+        ` : `
+          <div class="w-full h-full bg-gradient-to-br from-secondary via-midnight-navy to-black flex flex-col items-center justify-center p-6 text-center">
+            <img class="h-16 w-16 object-contain rounded-full shadow-lg border-2 border-white/20 mb-2" src="/IMG_7893.PNG" alt="The Coming King Ministries Logo" loading="lazy">
+            <span class="text-[11px] font-bold uppercase tracking-widest text-white/80">The Coming King Ministries</span>
+          </div>
+        `;
 
         grid.innerHTML += `
         <div class="sermon-card group cursor-pointer bg-surface-container-low rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-all" data-title="${d.title || ''}" data-cat="${cat}">
           <div class="relative aspect-video overflow-hidden bg-secondary">
-            <img class="w-full h-full object-cover" src="${thumbUrl}" alt="Sermon" loading="lazy">
+            ${thumbHTML}
             <div class="absolute inset-0 bg-primary/20 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-              <span class="material-symbols-outlined text-white text-6xl" style="font-variation-settings:'FILL' 1;">${icon}</span>
+              <span class="material-symbols-outlined text-white text-6xl" style="font-variation-settings:'FILL' 1;">${isVideo ? 'play_circle' : 'headphones'}</span>
             </div>
-            <span class="absolute top-3 left-3 bg-primary text-white text-label-caps px-2 py-1 rounded capitalize">${d.category || 'Message'}</span>
+            <span class="absolute top-3 left-3 bg-primary text-white text-label-caps px-2.5 py-1 rounded-full text-[10px] font-bold capitalize">${d.category || 'Message'}</span>
           </div>
           <div class="p-6 flex flex-col h-full">
-            <h3 class="text-headline-sm text-on-background mb-2 group-hover:text-primary transition-colors line-clamp-2">${d.title || ''}</h3>
-            <p class="text-on-surface-variant text-body-md mb-3">${d.speaker || ''}</p>
+            <h3 class="text-headline-sm text-on-background mb-2 group-hover:text-primary transition-colors line-clamp-2 font-bold">${d.title || ''}</h3>
+            <p class="text-on-surface-variant text-body-md mb-3 font-semibold text-primary">${d.speaker || ''}</p>
             <p class="text-body-md text-on-surface-variant text-sm mb-4 line-clamp-3">${d.description || ''}</p>
             <div class="mt-auto flex items-center justify-between border-t border-surface-container-high pt-4">
               <span class="text-label-md text-on-surface-variant">${dateStr}</span>
-              <a href="${d.link || '#'}" target="_blank" class="text-primary text-label-md font-bold flex items-center gap-1 hover:underline">${linkText} <span class="material-symbols-outlined text-sm">open_in_new</span></a>
+              <a href="${d.link || '#'}" target="_blank" class="${isFacebook ? 'text-blue-600' : 'text-primary'} text-label-md font-bold flex items-center gap-1 hover:underline">
+                ${linkText} <span class="material-symbols-outlined text-sm">open_in_new</span>
+              </a>
             </div>
           </div>
         </div>`;
