@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html class="light" lang="en">
 <head>
 <link rel="dns-prefetch" href="//fonts.googleapis.com"/>
@@ -276,29 +276,65 @@ document.addEventListener('keydown', e => { if(e.key==='Escape') closeLightbox()
   const app = initializeApp(firebaseConfig);
   const db = getFirestore(app);
 
+  const CACHE_KEY = 'tckm_gallery_v1';
+  const CACHE_TTL = 10 * 60 * 1000; // 10 minutes
+
+  function renderGallery(items) {
+    const grid = document.getElementById('firebase-gallery');
+    if (!grid) return;
+    grid.innerHTML = '';
+    if (!items.length) {
+      grid.innerHTML = '<div class="col-span-full text-center py-16 text-on-surface-variant">No gallery images yet.</div>';
+      return;
+    }
+    items.forEach(function(d, index) {
+      const cat = (d.category || 'all').toLowerCase();
+      const colSpanClass = (index % 5 === 0 || index % 7 === 0) ? 'col-span-2' : '';
+      const div = document.createElement('div');
+      div.className = 'gallery-item h-64 ' + colSpanClass + ' cursor-pointer relative group';
+      div.dataset.cat = cat;
+      div.setAttribute('onclick', 'openLightbox(this)');
+      div.innerHTML = '<img src="' + (d.imageUrl || '') + '" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" alt="' + (d.caption || 'Gallery Image') + '" loading="lazy" decoding="async"><div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4"><p class="text-white text-sm font-bold line-clamp-2">' + (d.caption || '') + '</p></div>';
+      grid.appendChild(div);
+    });
+  }
+
   async function loadGallery() {
     const grid = document.getElementById('firebase-gallery');
     if (!grid) return;
-    
+
+    // Show cached images INSTANTLY while fetching fresh data in background
+    const cached = localStorage.getItem(CACHE_KEY);
+    if (cached) {
+      try {
+        const parsed = JSON.parse(cached);
+        renderGallery(parsed.data);
+        // Cache still fresh — no need to re-fetch
+        if (Date.now() - parsed.ts < CACHE_TTL) return;
+      } catch(e) {
+        localStorage.removeItem(CACHE_KEY);
+      }
+    } else {
+      grid.innerHTML = '<div class="col-span-full text-center py-16"><p class="text-on-surface-variant text-sm">Loading gallery...</p></div>';
+    }
+
     try {
-      const q = query(collection(db, 'gallery'), orderBy('createdAt', 'desc'));
-      const snap = await getDocs(q);
-      
-      let index = 0;
-      snap.forEach(docSnap => {
+      let snap;
+      try {
+        const q = query(collection(db, 'gallery'), orderBy('createdAt', 'desc'));
+        snap = await getDocs(q);
+      } catch(err) {
+        snap = await getDocs(collection(db, 'gallery'));
+      }
+      const items = [];
+      snap.forEach(function(docSnap) {
         const d = docSnap.data();
-        const cat = (d.category || 'all').toLowerCase();
-        const colSpanClass = (index % 5 === 0 || index % 7 === 0) ? 'col-span-2' : '';
-        grid.innerHTML += `
-        <div class="gallery-item h-64 ${colSpanClass} cursor-pointer relative group" data-cat="${cat}" onclick="openLightbox(this)">
-          <img src="${d.imageUrl || ''}" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" alt="${d.caption || 'Gallery Image'}" loading="lazy">
-          <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
-             <p class="text-white text-sm font-bold line-clamp-2">${d.caption || ''}</p>
-          </div>
-        </div>`;
-        index++;
+        items.push({ imageUrl: d.imageUrl || '', caption: d.caption || '', category: d.category || 'all' });
       });
-      
+      try {
+        localStorage.setItem(CACHE_KEY, JSON.stringify({ data: items, ts: Date.now() }));
+      } catch(e) { /* quota exceeded — skip */ }
+      renderGallery(items);
     } catch(e) {
       console.error('Firebase gallery load error:', e);
     }
