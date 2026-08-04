@@ -116,15 +116,23 @@
 
     try {
       const cred = await signInWithEmailAndPassword(auth, email, password);
-      // Look up role in Firestore
-      const roleDoc = await getDoc(doc(db, 'admin_roles', cred.user.uid));
-      let role = 'content'; // default
-      if (roleDoc.exists()) {
-        const rawRole = roleDoc.data().role.toLowerCase().trim();
-        if (rawRole === 'super' || rawRole === 'super admin') role = 'super';
-        else if (rawRole === 'media' || rawRole === 'media admin') role = 'media';
-        else role = 'content';
-      } else {
+      // Look up role in Firestore — if this fails, default gracefully
+      let role = 'content';
+      try {
+        const roleDoc = await getDoc(doc(db, 'admin_roles', cred.user.uid));
+        if (roleDoc.exists()) {
+          const rawRole = roleDoc.data().role.toLowerCase().trim();
+          if (rawRole === 'super' || rawRole === 'super admin') role = 'super';
+          else if (rawRole === 'media' || rawRole === 'media admin') role = 'media';
+          else role = 'content';
+        } else {
+          // Fallback: detect by email
+          if (email.includes('superadmin')) role = 'super';
+          else if (email.includes('media')) role = 'media';
+          else role = 'content';
+        }
+      } catch (roleErr) {
+        console.warn('Could not read admin_roles, using email fallback:', roleErr.code);
         // Fallback: detect by email
         if (email.includes('superadmin')) role = 'super';
         else if (email.includes('media')) role = 'media';
@@ -134,6 +142,7 @@
       localStorage.setItem('tck_user', email);
       window.location.href = roleRedirects[role] || '/admin/super';
     } catch (err) {
+      console.error('Login error:', err.code, err.message);
       btn.disabled = false;
       btn.innerHTML = '<span class="material-symbols-outlined text-[20px]">login</span> Sign In';
       errorEl.classList.remove('hidden');
@@ -142,8 +151,10 @@
         msgEl.textContent = 'Invalid email or password. Please try again.';
       } else if (err.code === 'auth/too-many-requests') {
         msgEl.textContent = 'Too many failed attempts. Please wait a few minutes and try again.';
+      } else if (err.code === 'auth/network-request-failed') {
+        msgEl.textContent = 'Network error. Please check your internet connection and try again.';
       } else {
-        msgEl.textContent = 'Sign in failed. Check your connection and try again.';
+        msgEl.textContent = 'Sign in failed (' + (err.code || 'unknown') + '). Please try again.';
       }
       document.getElementById('password').value = '';
     }
