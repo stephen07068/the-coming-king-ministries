@@ -329,7 +329,7 @@ function searchLessons() {
         }
         
         grid.innerHTML += `
-        <div class="lesson-card bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-all border border-surface-container-high" data-title="${d.title || ''}" data-img="${d.imageUrl || ''}" data-week="${d.week || ''}" onclick="openLessonModal(this)">
+        <div class="lesson-card bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-all border border-surface-container-high" data-title="${d.title || ''}">
           <div class="bg-${colorClass} h-2 w-full opacity-70"></div>
           <div class="p-6 flex flex-col h-full">
             <div class="flex items-start justify-between mb-4">
@@ -343,7 +343,9 @@ function searchLessons() {
             <div class="flex items-center justify-between pt-4 border-t border-surface-container-high">
               <span class="text-label-md text-on-surface-variant">${dateStr}</span>
               ${d.imageUrl ? `
-                <button class="flex items-center gap-2 text-${colorClass} text-label-md font-bold hover:underline cursor-pointer"><span class="material-symbols-outlined text-[18px]">visibility</span> View Lesson</button>
+                <a href="${d.imageUrl}" download="Bible_Lesson_${d.title.replace(/\s+/g,'_')}.jpg" target="_blank" class="flex items-center gap-2 text-${colorClass} text-label-md font-bold hover:underline cursor-pointer">
+                  <span class="material-symbols-outlined text-[18px]">image</span> Download Image
+                </a>
               ` : `
                 <span class="text-on-surface-variant text-label-md">No media</span>
               `}
@@ -431,7 +433,7 @@ function searchLessons() {
         }
         
         grid.innerHTML += `
-        <div class="lesson-card bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-all border border-surface-container-high" data-title="${d.title || ''}" data-img="${d.imageUrl || ''}" data-week="${d.week || ''}" onclick="openLessonModal(this)">
+        <div class="lesson-card bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-all border border-surface-container-high" data-title="${d.title || ''}">
           <div class="bg-${colorClass} h-2 w-full opacity-70"></div>
           <div class="p-6 flex flex-col h-full">
             <div class="flex items-start justify-between mb-4">
@@ -445,7 +447,9 @@ function searchLessons() {
             <div class="flex items-center justify-between pt-4 border-t border-surface-container-high">
               <span class="text-label-md text-on-surface-variant">${dateStr}</span>
               ${d.imageUrl ? `
-                <button class="flex items-center gap-2 text-${colorClass} text-label-md font-bold hover:underline cursor-pointer"><span class="material-symbols-outlined text-[18px]">visibility</span> View Lesson</button>
+                <a href="${d.imageUrl}" download="Bible_Lesson_${d.title.replace(/\s+/g,'_')}.jpg" target="_blank" class="flex items-center gap-2 text-${colorClass} text-label-md font-bold hover:underline cursor-pointer">
+                  <span class="material-symbols-outlined text-[18px]">image</span> Download Image
+                </a>
               ` : `
                 <span class="text-on-surface-variant text-label-md">No media</span>
               `}
