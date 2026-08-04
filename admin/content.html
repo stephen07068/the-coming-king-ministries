@@ -240,7 +240,7 @@
   <div id="panel-quizResponses" class="panel">
     <div class="p-6 border-b border-outline-variant">
       <h3 class="font-display text-lg font-bold text-midnight-navy mb-1">Quiz Responses</h3>
-      <p class="text-xs text-on-surface-variant">See how people are answering your quizzes. Updates in real-time as visitors participate.</p>
+      <p class="text-xs text-on-surface-variant">Shows how many times people answered each question correctly or wrongly.</p>
     </div>
     <div class="p-6">
       <!-- Summary Stats -->
@@ -258,15 +258,16 @@
           <p class="text-xs text-on-surface-variant mt-1">Wrong</p>
         </div>
       </div>
-      <!-- Filter by type -->
-      <div class="flex gap-2 mb-4">
-        <button onclick="loadQuizResponses('all')" id="qr-filter-all" class="px-3 py-1.5 bg-primary text-white text-xs font-bold rounded-lg">All</button>
+      <!-- Filter + Refresh -->
+      <div class="flex gap-2 mb-5">
+        <button onclick="loadQuizResponses('all')" id="qr-filter-all" class="px-3 py-1.5 bg-primary text-white text-xs font-bold rounded-lg">All Quizzes</button>
         <button onclick="loadQuizResponses('children')" id="qr-filter-children" class="px-3 py-1.5 bg-surface-container text-on-surface-variant text-xs font-bold rounded-lg hover:bg-surface-container-high transition-all">Children</button>
         <button onclick="loadQuizResponses('sunday')" id="qr-filter-sunday" class="px-3 py-1.5 bg-surface-container text-on-surface-variant text-xs font-bold rounded-lg hover:bg-surface-container-high transition-all">Sunday</button>
-        <button onclick="loadQuizResponses(currentQrFilter, true)" class="ml-auto px-3 py-1.5 border border-outline-variant text-on-surface-variant text-xs rounded-lg hover:bg-surface-container transition-all flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">refresh</span> Refresh</button>
+        <button onclick="loadQuizResponses(window.currentQrFilter || 'all')" class="ml-auto px-3 py-1.5 border border-outline-variant text-on-surface-variant text-xs rounded-lg hover:bg-surface-container transition-all flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">refresh</span> Refresh</button>
       </div>
-      <div id="qr-list" class="space-y-2 max-h-[500px] overflow-y-auto pr-1">
-        <p class="text-sm text-on-surface-variant text-center py-8">Loading responses...</p>
+      <!-- Per-Question Breakdown -->
+      <div id="qr-list" class="space-y-4 max-h-[560px] overflow-y-auto pr-1">
+        <p class="text-sm text-on-surface-variant text-center py-8">Click "Quiz Responses" to load data...</p>
       </div>
     </div>
   </div>
@@ -744,21 +745,19 @@ async function loadBlogList() {
   // ===== QUIZ RESPONSES =====
   window.currentQrFilter = 'all';
 
-  window.loadQuizResponses = async function(type, silent) {
+  window.loadQuizResponses = async function(type) {
     window.currentQrFilter = type || 'all';
     const list = document.getElementById('qr-list');
     if (!list) return;
-    if (!silent) list.innerHTML = '<p class="text-sm text-on-surface-variant text-center py-8">Loading...</p>';
+    list.innerHTML = '<p class="text-sm text-on-surface-variant text-center py-8">Loading responses...</p>';
 
-    // Update filter buttons
+    // Update filter button styles
     ['all','children','sunday'].forEach(t => {
       const btn = document.getElementById('qr-filter-' + t);
       if (!btn) return;
-      if (t === window.currentQrFilter) {
-        btn.className = 'px-3 py-1.5 bg-primary text-white text-xs font-bold rounded-lg';
-      } else {
-        btn.className = 'px-3 py-1.5 bg-surface-container text-on-surface-variant text-xs font-bold rounded-lg hover:bg-surface-container-high transition-all';
-      }
+      btn.className = (t === window.currentQrFilter)
+        ? 'px-3 py-1.5 bg-primary text-white text-xs font-bold rounded-lg'
+        : 'px-3 py-1.5 bg-surface-container text-on-surface-variant text-xs font-bold rounded-lg hover:bg-surface-container-high transition-all';
     });
 
     try {
@@ -773,42 +772,93 @@ async function loadBlogList() {
       let responses = [];
       snap.forEach(d => responses.push({ id: d.id, ...d.data() }));
 
+      // Filter by quiz type
       if (window.currentQrFilter !== 'all') {
         responses = responses.filter(r => r.quizType === window.currentQrFilter);
       }
 
+      // Update top summary
       const total = responses.length;
-      const correct = responses.filter(r => r.isCorrect).length;
-      const wrong = total - correct;
+      const correctTotal = responses.filter(r => r.isCorrect).length;
+      const wrongTotal = total - correctTotal;
       document.getElementById('qr-total').textContent = total;
-      document.getElementById('qr-correct').textContent = correct;
-      document.getElementById('qr-wrong').textContent = wrong;
+      document.getElementById('qr-correct').textContent = correctTotal;
+      document.getElementById('qr-wrong').textContent = wrongTotal;
 
       if (!total) {
-        list.innerHTML = '<div class="text-center py-12"><span class="material-symbols-outlined text-4xl text-surface-container-high">quiz</span><p class="text-sm text-on-surface-variant mt-2">No responses yet. Share the quiz with your congregation!</p></div>';
+        list.innerHTML = '<div class="text-center py-12"><span class="material-symbols-outlined text-5xl" style="color:#ccc">quiz</span><p class="text-sm text-on-surface-variant mt-3 font-medium">No responses yet.</p><p class="text-xs text-on-surface-variant mt-1">When members answer the quiz on the website, their responses will appear here.</p></div>';
         return;
       }
 
-      list.innerHTML = responses.map(r => {
-        const ts = r.answeredAt && r.answeredAt.toDate ? r.answeredAt.toDate().toLocaleString('en-US', {month:'short', day:'numeric', hour:'2-digit', minute:'2-digit'}) : 'Just now';
-        const badge = r.isCorrect
-          ? '<span class="text-[10px] font-bold text-green-600 bg-green-100 px-2 py-0.5 rounded-full">&#10003; Correct</span>'
-          : '<span class="text-[10px] font-bold text-red-500 bg-red-100 px-2 py-0.5 rounded-full">&#10007; Wrong</span>';
-        const typeTag = r.quizType === 'children'
-          ? '<span class="text-[10px] text-primary bg-primary/10 px-2 py-0.5 rounded-full font-bold">Children</span>'
-          : '<span class="text-[10px] text-secondary bg-secondary/10 px-2 py-0.5 rounded-full font-bold">Sunday</span>';
-        return `<div class="bg-white rounded-xl p-3 border border-outline-variant/40">
-          <div class="flex items-start justify-between gap-2 mb-1">
-            <p class="text-xs font-semibold text-midnight-navy flex-1 leading-snug">${r.question || 'Question'}</p>
-            <div class="flex gap-1 flex-shrink-0">${typeTag}${badge}</div>
+      // Group by quizTitle + question
+      const grouped = {};
+      responses.forEach(r => {
+        const key = (r.quizTitle || 'Unknown Quiz') + '|||' + (r.question || 'Unknown Question');
+        if (!grouped[key]) {
+          grouped[key] = { quizTitle: r.quizTitle || 'Quiz', quizType: r.quizType || '', question: r.question || 'Question', correct: 0, wrong: 0, total: 0 };
+        }
+        grouped[key].total++;
+        if (r.isCorrect) grouped[key].correct++;
+        else grouped[key].wrong++;
+      });
+
+      // Group cards by quiz title
+      const byQuiz = {};
+      Object.values(grouped).forEach(entry => {
+        if (!byQuiz[entry.quizTitle]) byQuiz[entry.quizTitle] = { type: entry.quizType, questions: [] };
+        byQuiz[entry.quizTitle].questions.push(entry);
+      });
+
+      let html = '';
+      Object.entries(byQuiz).forEach(([quizName, quizData]) => {
+        const typeTag = quizData.type === 'children'
+          ? '<span class="text-[10px] text-primary bg-primary/10 px-2 py-0.5 rounded-full font-bold">Children Quiz</span>'
+          : '<span class="text-[10px] text-secondary bg-secondary/10 px-2 py-0.5 rounded-full font-bold">Sunday Quiz</span>';
+
+        html += `<div class="bg-white rounded-2xl border border-outline-variant/50 overflow-hidden shadow-sm mb-4">
+          <div class="flex items-center gap-3 px-4 py-3 bg-surface-container-low border-b border-outline-variant/30">
+            <span class="material-symbols-outlined text-primary text-[18px]" style="font-variation-settings:'FILL' 1">quiz</span>
+            <p class="text-sm font-bold text-midnight-navy flex-1">${quizName}</p>
+            ${typeTag}
           </div>
-          <p class="text-xs text-on-surface-variant">Answered: <span class="font-medium text-on-background">${r.selectedAnswer || '–'}</span></p>
-          <p class="text-[10px] text-on-surface-variant/60 mt-1">${ts} &bull; ${r.quizTitle || ''}</p>
-        </div>`;
-      }).join('');
+          <div class="divide-y divide-outline-variant/20">`;
+
+        quizData.questions.forEach((q, qi) => {
+          const pct = q.total > 0 ? Math.round((q.correct / q.total) * 100) : 0;
+          const barColor = pct >= 60 ? '#16a34a' : pct >= 40 ? '#f59e0b' : '#dc2626';
+          html += `
+            <div class="px-4 py-4">
+              <p class="text-xs font-semibold text-midnight-navy mb-3 leading-snug"><span class="text-primary font-bold mr-1">Q${qi+1}.</span>${q.question}</p>
+              <div class="grid grid-cols-3 gap-3 mb-3">
+                <div class="text-center bg-surface-container-low rounded-lg py-2">
+                  <p class="text-lg font-bold text-on-background">${q.total}</p>
+                  <p class="text-[10px] text-on-surface-variant">Total Answered</p>
+                </div>
+                <div class="text-center bg-green-50 rounded-lg py-2">
+                  <p class="text-lg font-bold text-green-600">${q.correct}</p>
+                  <p class="text-[10px] text-on-surface-variant">&#10003; Correct</p>
+                </div>
+                <div class="text-center bg-red-50 rounded-lg py-2">
+                  <p class="text-lg font-bold text-red-500">${q.wrong}</p>
+                  <p class="text-[10px] text-on-surface-variant">&#10007; Wrong</p>
+                </div>
+              </div>
+              <div class="flex items-center gap-2">
+                <div class="flex-1 bg-surface-container-high rounded-full h-2 overflow-hidden">
+                  <div style="width:${pct}%; background:${barColor}" class="h-2 rounded-full transition-all"></div>
+                </div>
+                <span class="text-xs font-bold" style="color:${barColor}">${pct}% correct</span>
+              </div>
+            </div>`;
+        });
+
+        html += `</div></div>`;
+      });
+
+      list.innerHTML = html;
 
     } catch(e) {
-      list.innerHTML = '<p class="text-sm text-red-500 text-center py-4">Error loading responses.</p>';
+      list.innerHTML = '<p class="text-sm text-red-500 text-center py-4">Error loading responses: ' + e.message + '</p>';
       console.error('loadQuizResponses error:', e);
     }
   };
