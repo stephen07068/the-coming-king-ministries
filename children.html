@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html class="light" lang="en">
 <head>
 <link rel="dns-prefetch" href="//fonts.googleapis.com"/>
@@ -269,6 +269,26 @@
         <a href="mailto:TheComingkingMinistriesNigeria@gmail.com" class="text-body-md hover:text-white transition-colors break-all">TheComingkingMinistriesNigeria@gmail.com</a>
       </div>
       <p class="text-label-md text-white/50 pt-8 border-t border-white/10">&copy; 2026 The Coming King Ministries. All Rights Reserved.<br/>Prepared in Holiness.</p>
+        <a class="text-body-md text-white/70 hover:text-white hover:underline transition-colors" href="/gallery">Gallery</a>
+        <a class="text-body-md text-white/70 hover:text-white hover:underline transition-colors" href="/giving">Giving</a>
+        <a class="text-body-md text-white/70 hover:text-white hover:underline transition-colors" href="/contact">Contact</a>
+      </div>
+    </div>
+    <div class="space-y-6">
+      <h4 class="text-label-md font-bold text-primary uppercase">Headquarters</h4>
+      <div class="flex items-start gap-3 text-white/70">
+        <span class="material-symbols-outlined text-primary mt-1">location_on</span>
+        <p class="text-body-md">7, Olorunsogo, Idi-Aba,<br/>Abeokuta, Ogun State, Nigeria</p>
+      </div>
+      <div class="flex items-center gap-3 text-white/70">
+        <span class="material-symbols-outlined text-primary">call</span>
+        <div><p class="text-body-md">08064694851</p><p class="text-body-md">09055274255</p></div>
+      </div>
+      <div class="flex items-center gap-3 text-white/70">
+        <span class="material-symbols-outlined text-primary">mail</span>
+        <a href="mailto:TheComingkingMinistriesNigeria@gmail.com" class="text-body-md hover:text-white transition-colors break-all">TheComingkingMinistriesNigeria@gmail.com</a>
+      </div>
+      <p class="text-label-md text-white/50 pt-8 border-t border-white/10">&copy; 2026 The Coming King Ministries. All Rights Reserved.<br/>Prepared in Holiness.</p>
     </div>
   </div>
 </footer>
@@ -276,7 +296,7 @@
 
 <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-app.js";
-  import { getFirestore, collection, getDocs, query, orderBy, limit } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-firestore.js";
+  import { getFirestore, collection, getDocs, addDoc, query, orderBy, limit, serverTimestamp } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-firestore.js";
 
   const firebaseConfig = {
     apiKey: "AIzaSyDmoTnhEFG1QYV7GHL0Ag3ICiGwWidcWkY",
@@ -290,6 +310,9 @@
   const app = initializeApp(firebaseConfig);
   const db = getFirestore(app);
 
+  let currentQuizId = null;
+  let currentQuizTitle = '';
+
   async function loadChildrenQuiz() {
     try {
       const q = query(collection(db, 'children_quizzes'), orderBy('createdAt', 'desc'), limit(1));
@@ -299,7 +322,11 @@
         document.getElementById('children-quiz-content').classList.add('hidden');
         return;
       }
-      const latest = snap.docs[0].data();
+      const docSnap = snap.docs[0];
+      const latest = docSnap.data();
+      currentQuizId = docSnap.id;
+      currentQuizTitle = latest.title || 'Children Bible Quiz';
+
       document.getElementById('children-no-quiz').classList.add('hidden');
       document.getElementById('children-quiz-content').classList.remove('hidden');
       document.getElementById('children-quiz-title').textContent = latest.title;
@@ -308,11 +335,11 @@
       const container = document.getElementById('children-quiz-questions');
       container.innerHTML = '';
       latest.questions.forEach((qItem, qi) => {
-        let html = `<div class="quiz-question" data-answered="false">
+        let html = `<div class="quiz-question" data-answered="false" data-question="${encodeURIComponent(qItem.question)}" data-correct="${qItem.correctAnswer}">
           <p class="text-body-lg text-on-background font-semibold mb-4"><span class="text-primary font-bold mr-2">Q${qi+1}.</span>${qItem.question}</p>
           <div class="grid grid-cols-1 md:grid-cols-2 gap-3">`;
         qItem.options.forEach((opt, oi) => {
-          html += `<button onclick="checkAnswer(this, ${oi}, ${qItem.correctAnswer})" class="quiz-option text-left px-5 py-3 rounded-xl border-2 border-surface-container-high bg-white text-body-md text-on-background hover:border-primary cursor-pointer">${String.fromCharCode(65+oi)}. ${opt}</button>`;
+          html += `<button onclick="checkAnswer(this, ${oi}, ${qItem.correctAnswer}, '${encodeURIComponent(opt)}')" class="quiz-option text-left px-5 py-3 rounded-xl border-2 border-surface-container-high bg-white text-body-md text-on-background hover:border-primary cursor-pointer">${String.fromCharCode(65+oi)}. ${opt}</button>`;
         });
         html += `</div></div>`;
         container.innerHTML += html;
@@ -323,8 +350,8 @@
     }
   }
 
-  // Instant answer checking
-  window.checkAnswer = function(btn, selected, correct) {
+  // Answer checking + save response to Firestore
+  window.checkAnswer = function(btn, selected, correct, encodedOption) {
     const questionDiv = btn.closest('.quiz-question');
     if (questionDiv.dataset.answered === 'true') return;
     questionDiv.dataset.answered = 'true';
@@ -334,6 +361,21 @@
       if (i === correct) { b.classList.add('correct'); b.innerHTML = b.innerHTML + ' <span style="margin-left:8px;color:#16a34a;font-weight:bold;">&#10003;</span>'; }
       if (i === selected && selected !== correct) { b.classList.add('wrong'); b.innerHTML = b.innerHTML + ' <span style="margin-left:8px;color:#dc2626;font-weight:bold;">&#10007;</span>'; }
     });
+    // Save response to Firestore
+    const questionText = decodeURIComponent(questionDiv.dataset.question || '');
+    const selectedText = decodeURIComponent(encodedOption || '');
+    const isCorrect = selected === correct;
+    addDoc(collection(db, 'quiz_responses'), {
+      quizId: currentQuizId,
+      quizTitle: currentQuizTitle,
+      quizType: 'children',
+      question: questionText,
+      selectedAnswer: selectedText,
+      selectedIndex: selected,
+      correctIndex: correct,
+      isCorrect: isCorrect,
+      answeredAt: serverTimestamp()
+    }).catch(() => {}); // silently fail if offline
   };
 
   loadChildrenQuiz();

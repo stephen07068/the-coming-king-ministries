@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html class="light" lang="en">
 <head>
 <link rel="dns-prefetch" href="//fonts.googleapis.com"/>
@@ -358,12 +358,118 @@ function searchLessons() {
     } catch(e) {
       console.error(e);
       grid.innerHTML = '<div class="col-span-full py-20 text-center text-red-500">Failed to load lessons.</div>';
+        <a class="text-body-md text-white/70 hover:text-white transition-colors" href="/gallery">Gallery</a>
+        <a class="text-body-md text-white/70 hover:text-white transition-colors" href="/giving">Giving</a>
+        <a class="text-body-md text-white/70 hover:text-white transition-colors" href="/contact">Contact</a>
+      </div>
+    </div>
+    <div class="space-y-3">
+      <h4 class="text-label-md font-bold text-primary uppercase">Contact</h4>
+      <p class="text-body-md text-white/70">Olorunsogo, Idi-Aba, Abeokuta, Ogun State</p>
+      <p class="text-body-md text-white/70">08064694851 / 09055274255</p>
+      <p class="text-label-md text-white/50 pt-6 border-t border-white/10">&copy; 2026 The Coming King Ministries.</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+function searchLessons() {
+  const q = document.getElementById('lesson-search').value.toLowerCase();
+  let found = 0;
+  document.querySelectorAll('.lesson-card').forEach(card => {
+    const title = card.dataset.title.toLowerCase();
+    const text = card.innerText.toLowerCase();
+    const match = title.includes(q) || text.includes(q);
+    card.style.display = match ? 'block' : 'none';
+    if (match) found++;
+  });
+  document.getElementById('no-results').style.display = found === 0 ? 'block' : 'none';
+}
+</script>
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-app.js";
+  import { getFirestore, collection, getDocs, query, orderBy, limit, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-firestore.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyDmoTnhEFG1QYV7GHL0Ag3ICiGwWidcWkY",
+    authDomain: "thecomingkingministries-26250.firebaseapp.com",
+    projectId: "thecomingkingministries-26250",
+    storageBucket: "thecomingkingministries-26250.firebasestorage.app",
+    messagingSenderId: "1060064890115",
+    appId: "1:1060064890115:web:7ae456f7690f596c912d36"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+
+  async function loadLessons() {
+    const grid = document.getElementById('lessons-grid');
+    if (!grid) return;
+    
+    try {
+      const q = query(collection(db, 'bible_school'), orderBy('createdAt', 'desc'));
+      const snap = await getDocs(q);
+      
+      if (snap.empty) {
+        grid.innerHTML = '<div class="col-span-full py-20 text-center"><p class="text-on-surface-variant">No lessons posted yet.</p></div>';
+        return;
+      }
+      
+      grid.innerHTML = '';
+      
+      let index = 0;
+      snap.forEach(docSnap => {
+        const d = docSnap.data();
+        const dateStr = d.createdAt ? d.createdAt.toDate().toLocaleDateString('en-US', {month: 'short', day: 'numeric', year: 'numeric'}) : '';
+        
+        // Alternate colors for visual interest
+        const isPrimary = index % 2 === 0;
+        const colorClass = isPrimary ? 'primary' : 'secondary';
+        
+        let badgeHtml = '';
+        if (index === 0) {
+           badgeHtml = `<span class="text-label-caps text-${colorClass} bg-${colorClass}/10 px-3 py-1 rounded-full">This Week</span>`;
+        }
+        
+        grid.innerHTML += `
+        <div class="lesson-card bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-all border border-surface-container-high" data-title="${d.title || ''}">
+          <div class="bg-${colorClass} h-2 w-full opacity-70"></div>
+          <div class="p-6 flex flex-col h-full">
+            <div class="flex items-start justify-between mb-4">
+              <span class="material-symbols-outlined text-${colorClass} text-4xl" style="font-variation-settings:'FILL' 1;">menu_book</span>
+              ${badgeHtml}
+            </div>
+            <p class="text-label-caps text-on-surface-variant mb-1">${d.week || ''}</p>
+            <h3 class="text-headline-sm text-on-background mb-2">${d.title || ''}</h3>
+            <p class="text-body-md text-on-surface-variant mb-4 flex-1">${d.description || ''}</p>
+            ${d.teacher ? `<p class="text-sm font-semibold text-on-surface-variant mb-4">Teacher: ${d.teacher}</p>` : ''}
+            <div class="flex items-center justify-between pt-4 border-t border-surface-container-high">
+              <span class="text-label-md text-on-surface-variant">${dateStr}</span>
+              ${d.imageUrl ? `
+                <a href="${d.imageUrl}" download="Bible_Lesson_${d.title.replace(/\s+/g,'_')}.jpg" target="_blank" class="flex items-center gap-2 text-${colorClass} text-label-md font-bold hover:underline cursor-pointer">
+                  <span class="material-symbols-outlined text-[18px]">image</span> Download Image
+                </a>
+              ` : `
+                <span class="text-on-surface-variant text-label-md">No media</span>
+              `}
+            </div>
+          </div>
+        </div>`;
+        index++;
+      });
+      
+    } catch(e) {
+      console.error(e);
+      grid.innerHTML = '<div class="col-span-full py-20 text-center text-red-500">Failed to load lessons.</div>';
     }
   }
 
   loadLessons();
 
   // ===== SUNDAY BIBLE QUIZ =====
+  let sundayQuizId = null;
+  let sundayQuizTitle = '';
+
   async function loadSundayQuiz() {
     try {
       const q2 = query(collection(db, 'sunday_quizzes'), orderBy('createdAt', 'desc'));
@@ -373,7 +479,11 @@ function searchLessons() {
         document.getElementById('sunday-quiz-content').classList.add('hidden');
         return;
       }
-      const latest = snap.docs[0].data();
+      const docSnap = snap.docs[0];
+      const latest = docSnap.data();
+      sundayQuizId = docSnap.id;
+      sundayQuizTitle = latest.title || 'Sunday Bible Quiz';
+
       document.getElementById('sunday-no-quiz').classList.add('hidden');
       document.getElementById('sunday-quiz-content').classList.remove('hidden');
       document.getElementById('sunday-quiz-title').textContent = latest.title;
@@ -382,11 +492,11 @@ function searchLessons() {
       const container = document.getElementById('sunday-quiz-questions');
       container.innerHTML = '';
       latest.questions.forEach((qItem, qi) => {
-        let html = `<div class="quiz-question" data-answered="false">
+        let html = `<div class="quiz-question" data-answered="false" data-question="${encodeURIComponent(qItem.question)}" data-correct="${qItem.correctAnswer}">
           <p class="text-body-lg text-on-background font-semibold mb-4"><span class="text-primary font-bold mr-2">Q${qi+1}.</span>${qItem.question}</p>
           <div class="grid grid-cols-1 md:grid-cols-2 gap-3">`;
         qItem.options.forEach((opt, oi) => {
-          html += `<button onclick="checkSundayAnswer(this, ${oi}, ${qItem.correctAnswer})" class="quiz-option text-left px-5 py-3 rounded-xl border-2 border-surface-container-high bg-white text-body-md text-on-background hover:border-primary cursor-pointer">${String.fromCharCode(65+oi)}. ${opt}</button>`;
+          html += `<button onclick="checkSundayAnswer(this, ${oi}, ${qItem.correctAnswer}, '${encodeURIComponent(opt)}')" class="quiz-option text-left px-5 py-3 rounded-xl border-2 border-surface-container-high bg-white text-body-md text-on-background hover:border-primary cursor-pointer">${String.fromCharCode(65+oi)}. ${opt}</button>`;
         });
         html += `</div></div>`;
         container.innerHTML += html;
@@ -397,7 +507,7 @@ function searchLessons() {
     }
   }
 
-  window.checkSundayAnswer = function(btn, selected, correct) {
+  window.checkSundayAnswer = function(btn, selected, correct, encodedOption) {
     const questionDiv = btn.closest('.quiz-question');
     if (questionDiv.dataset.answered === 'true') return;
     questionDiv.dataset.answered = 'true';
@@ -407,6 +517,20 @@ function searchLessons() {
       if (i === correct) { b.classList.add('correct'); b.innerHTML = b.innerHTML + ' <span style="margin-left:8px;color:#16a34a;font-weight:bold;">&#10003;</span>'; }
       if (i === selected && selected !== correct) { b.classList.add('wrong'); b.innerHTML = b.innerHTML + ' <span style="margin-left:8px;color:#dc2626;font-weight:bold;">&#10007;</span>'; }
     });
+    // Save response to Firestore
+    const questionText = decodeURIComponent(questionDiv.dataset.question || '');
+    const selectedText = decodeURIComponent(encodedOption || '');
+    addDoc(collection(db, 'quiz_responses'), {
+      quizId: sundayQuizId,
+      quizTitle: sundayQuizTitle,
+      quizType: 'sunday',
+      question: questionText,
+      selectedAnswer: selectedText,
+      selectedIndex: selected,
+      correctIndex: correct,
+      isCorrect: selected === correct,
+      answeredAt: serverTimestamp()
+    }).catch(() => {});
   };
 
   loadSundayQuiz();

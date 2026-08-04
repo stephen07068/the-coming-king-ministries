@@ -55,6 +55,9 @@
     <a href="#" onclick="showPanel('sundayQuiz', this)" class="nav-link flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm cursor-pointer">
       <span class="material-symbols-outlined text-[20px]">quiz</span> Sunday Bible Quiz
     </a>
+    <a href="#" onclick="showPanel('quizResponses', this)" class="nav-link flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm cursor-pointer">
+      <span class="material-symbols-outlined text-[20px]">bar_chart</span> Quiz Responses
+    </a>
   </nav>
   <div class="p-4 border-t border-outline-variant">
     <div class="flex items-center gap-3 mb-3">
@@ -232,6 +235,42 @@
         </div>
       </div>
     </div>
+
+  <!-- Quiz Responses Panel -->
+  <div id="panel-quizResponses" class="panel">
+    <div class="p-6 border-b border-outline-variant">
+      <h3 class="font-display text-lg font-bold text-midnight-navy mb-1">Quiz Responses</h3>
+      <p class="text-xs text-on-surface-variant">See how people are answering your quizzes. Updates in real-time as visitors participate.</p>
+    </div>
+    <div class="p-6">
+      <!-- Summary Stats -->
+      <div class="grid grid-cols-3 gap-4 mb-6">
+        <div class="bg-surface-container-low rounded-xl p-4 text-center">
+          <p class="text-2xl font-bold text-primary" id="qr-total">–</p>
+          <p class="text-xs text-on-surface-variant mt-1">Total Answers</p>
+        </div>
+        <div class="bg-green-50 rounded-xl p-4 text-center">
+          <p class="text-2xl font-bold text-green-600" id="qr-correct">–</p>
+          <p class="text-xs text-on-surface-variant mt-1">Correct</p>
+        </div>
+        <div class="bg-red-50 rounded-xl p-4 text-center">
+          <p class="text-2xl font-bold text-red-500" id="qr-wrong">–</p>
+          <p class="text-xs text-on-surface-variant mt-1">Wrong</p>
+        </div>
+      </div>
+      <!-- Filter by type -->
+      <div class="flex gap-2 mb-4">
+        <button onclick="loadQuizResponses('all')" id="qr-filter-all" class="px-3 py-1.5 bg-primary text-white text-xs font-bold rounded-lg">All</button>
+        <button onclick="loadQuizResponses('children')" id="qr-filter-children" class="px-3 py-1.5 bg-surface-container text-on-surface-variant text-xs font-bold rounded-lg hover:bg-surface-container-high transition-all">Children</button>
+        <button onclick="loadQuizResponses('sunday')" id="qr-filter-sunday" class="px-3 py-1.5 bg-surface-container text-on-surface-variant text-xs font-bold rounded-lg hover:bg-surface-container-high transition-all">Sunday</button>
+        <button onclick="loadQuizResponses(currentQrFilter, true)" class="ml-auto px-3 py-1.5 border border-outline-variant text-on-surface-variant text-xs rounded-lg hover:bg-surface-container transition-all flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">refresh</span> Refresh</button>
+      </div>
+      <div id="qr-list" class="space-y-2 max-h-[500px] overflow-y-auto pr-1">
+        <p class="text-sm text-on-surface-variant text-center py-8">Loading responses...</p>
+      </div>
+    </div>
+  </div>
+
 </div>
 </main>
 
@@ -702,15 +741,88 @@ async function loadBlogList() {
   loadQuizList('children_quizzes', 'cq');
   loadQuizList('sunday_quizzes', 'sq');
 
+  // ===== QUIZ RESPONSES =====
+  window.currentQrFilter = 'all';
+
+  window.loadQuizResponses = async function(type, silent) {
+    window.currentQrFilter = type || 'all';
+    const list = document.getElementById('qr-list');
+    if (!list) return;
+    if (!silent) list.innerHTML = '<p class="text-sm text-on-surface-variant text-center py-8">Loading...</p>';
+
+    // Update filter buttons
+    ['all','children','sunday'].forEach(t => {
+      const btn = document.getElementById('qr-filter-' + t);
+      if (!btn) return;
+      if (t === window.currentQrFilter) {
+        btn.className = 'px-3 py-1.5 bg-primary text-white text-xs font-bold rounded-lg';
+      } else {
+        btn.className = 'px-3 py-1.5 bg-surface-container text-on-surface-variant text-xs font-bold rounded-lg hover:bg-surface-container-high transition-all';
+      }
+    });
+
+    try {
+      let snap;
+      try {
+        const q = query(collection(db, 'quiz_responses'), orderBy('answeredAt', 'desc'));
+        snap = await getDocs(q);
+      } catch(e) {
+        snap = await getDocs(collection(db, 'quiz_responses'));
+      }
+
+      let responses = [];
+      snap.forEach(d => responses.push({ id: d.id, ...d.data() }));
+
+      if (window.currentQrFilter !== 'all') {
+        responses = responses.filter(r => r.quizType === window.currentQrFilter);
+      }
+
+      const total = responses.length;
+      const correct = responses.filter(r => r.isCorrect).length;
+      const wrong = total - correct;
+      document.getElementById('qr-total').textContent = total;
+      document.getElementById('qr-correct').textContent = correct;
+      document.getElementById('qr-wrong').textContent = wrong;
+
+      if (!total) {
+        list.innerHTML = '<div class="text-center py-12"><span class="material-symbols-outlined text-4xl text-surface-container-high">quiz</span><p class="text-sm text-on-surface-variant mt-2">No responses yet. Share the quiz with your congregation!</p></div>';
+        return;
+      }
+
+      list.innerHTML = responses.map(r => {
+        const ts = r.answeredAt && r.answeredAt.toDate ? r.answeredAt.toDate().toLocaleString('en-US', {month:'short', day:'numeric', hour:'2-digit', minute:'2-digit'}) : 'Just now';
+        const badge = r.isCorrect
+          ? '<span class="text-[10px] font-bold text-green-600 bg-green-100 px-2 py-0.5 rounded-full">&#10003; Correct</span>'
+          : '<span class="text-[10px] font-bold text-red-500 bg-red-100 px-2 py-0.5 rounded-full">&#10007; Wrong</span>';
+        const typeTag = r.quizType === 'children'
+          ? '<span class="text-[10px] text-primary bg-primary/10 px-2 py-0.5 rounded-full font-bold">Children</span>'
+          : '<span class="text-[10px] text-secondary bg-secondary/10 px-2 py-0.5 rounded-full font-bold">Sunday</span>';
+        return `<div class="bg-white rounded-xl p-3 border border-outline-variant/40">
+          <div class="flex items-start justify-between gap-2 mb-1">
+            <p class="text-xs font-semibold text-midnight-navy flex-1 leading-snug">${r.question || 'Question'}</p>
+            <div class="flex gap-1 flex-shrink-0">${typeTag}${badge}</div>
+          </div>
+          <p class="text-xs text-on-surface-variant">Answered: <span class="font-medium text-on-background">${r.selectedAnswer || '–'}</span></p>
+          <p class="text-[10px] text-on-surface-variant/60 mt-1">${ts} &bull; ${r.quizTitle || ''}</p>
+        </div>`;
+      }).join('');
+
+    } catch(e) {
+      list.innerHTML = '<p class="text-sm text-red-500 text-center py-4">Error loading responses.</p>';
+      console.error('loadQuizResponses error:', e);
+    }
+  };
+
 </script>
 
 <script>
 function showPanel(name, el) {
   document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
   const _target = document.getElementById('panel-' + name); if (_target) _target.classList.add('active');
-  const titles = {sermons:'Sermon Media', bible:'Bible School Lessons', blog:'Ministry Blog Articles', childrenQuiz:'Children Bible Quiz', sundayQuiz:'Sunday Bible Quiz'};
+  const titles = {sermons:'Sermon Media', bible:'Bible School Lessons', blog:'Ministry Blog Articles', childrenQuiz:'Children Bible Quiz', sundayQuiz:'Sunday Bible Quiz', quizResponses:'Quiz Responses'};
   document.getElementById('panel-title').textContent = titles[name] || 'Content Admin';
-  document.getElementById('new-btn').style.display = (name === 'childrenQuiz' || name === 'sundayQuiz') ? 'none' : 'flex';
+  document.getElementById('new-btn').style.display = (name === 'childrenQuiz' || name === 'sundayQuiz' || name === 'quizResponses') ? 'none' : 'flex';
+  if (name === 'quizResponses') { loadQuizResponses(window.currentQrFilter || 'all'); }
   document.querySelectorAll('aside nav a').forEach(a => { a.classList.remove('nav-active'); a.classList.add('nav-link'); });
   const activeEl = el || (window.event && window.event.currentTarget); if (activeEl && activeEl.classList) { activeEl.classList.add('nav-active'); activeEl.classList.remove('nav-link'); }
 }
