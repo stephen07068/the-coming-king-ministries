@@ -977,6 +977,7 @@ async function loadBlogList() {
       });
     } catch(e) { list.innerHTML = '<p class="text-xs text-red-500 p-4">Error loading events.</p>'; }
   }
+  window.loadEvents = loadEvents;
 
   window.deleteEvent = async function(id, btn) {
     if (!confirm('Delete this event? This cannot be undone.')) return;

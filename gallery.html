@@ -8,6 +8,11 @@
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Gallery | The Coming King Ministries</title>
 <meta name="description" content="Photos from The Coming King Ministries - worship, events, leadership and community moments."/>
+<!-- Preload first visible gallery images for instant display -->
+<link rel="preload" as="image" href="/IMG_7662.jpg"/>
+<link rel="preload" as="image" href="/IMG_20260616_181816.jpg"/>
+<link rel="preload" as="image" href="/IMG_7666.jpg"/>
+<link rel="preload" as="image" href="/IMG_7673.jpg"/>
 <script src="https://cdn.tailwindcss.com"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/><link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&display=block" rel="stylesheet"/>
 <script id="tailwind-config">
@@ -34,6 +39,9 @@
   .gallery-item{cursor:pointer;overflow:hidden;border-radius:12px;}
   .gallery-item img{width:100%;height:100%;object-fit:cover;transition:transform 0.5s ease;}
   .gallery-item:hover img{transform:scale(1.06);}
+  /* Skeleton shimmer for Firebase images loading */
+  @keyframes shimmer{0%{background-position:-800px 0}100%{background-position:800px 0}}
+  .skeleton{background:linear-gradient(90deg,#e7e7e7 25%,#f0f0f0 50%,#e7e7e7 75%);background-size:800px 100%;animation:shimmer 1.4s infinite linear;border-radius:12px;}
 </style>
 </head>
 <body class="bg-background text-on-background">
@@ -145,35 +153,37 @@
       
       <!-- Permanent local church photos -->
       <div id="gallery-grid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+        <!-- First 4 images: eager + fetchpriority=high for instant load -->
         <div class="gallery-item h-64" data-cat="worship" onclick="openLightbox(this)">
-          <img src="/IMG_7662.jpg" alt="The Coming King Ministries" loading="lazy" class="w-full h-full object-cover rounded-lg">
+          <img src="/IMG_7662.jpg" alt="The Coming King Ministries" loading="eager" fetchpriority="high" decoding="sync" class="w-full h-full object-cover rounded-lg">
         </div>
         <div class="gallery-item h-64" data-cat="leadership" onclick="openLightbox(this)">
-          <img src="/IMG_20260616_181816.png" alt="Pastor & Pastor (Mrs) Akinboye Michael - General Overseer" loading="lazy" class="w-full h-full object-cover rounded-lg">
+          <img src="/IMG_20260616_181816.jpg" alt="Pastor & Pastor (Mrs) Akinboye Michael - General Overseer" loading="eager" fetchpriority="high" decoding="sync" class="w-full h-full object-cover rounded-lg">
         </div>
         <div class="gallery-item h-64" data-cat="leadership" onclick="openLightbox(this)">
-          <img src="/IMG_7666.jpg" alt="The Coming King Ministries Leadership" loading="lazy" class="w-full h-full object-cover rounded-lg">
+          <img src="/IMG_7666.jpg" alt="The Coming King Ministries Leadership" loading="eager" fetchpriority="high" decoding="sync" class="w-full h-full object-cover rounded-lg">
         </div>
         <div class="gallery-item h-64" data-cat="worship" onclick="openLightbox(this)">
-          <img src="/IMG_7673.jpg" alt="The Coming King Ministries" loading="lazy" class="w-full h-full object-cover rounded-lg">
+          <img src="/IMG_7673.jpg" alt="The Coming King Ministries" loading="eager" fetchpriority="high" decoding="sync" class="w-full h-full object-cover rounded-lg">
         </div>
+        <!-- Remaining images: lazy load (below the fold) -->
         <div class="gallery-item h-64" data-cat="leadership" onclick="openLightbox(this)">
-          <img src="/IMG_7676 (1).jpg" alt="The Coming King Ministries Leadership" loading="lazy" class="w-full h-full object-cover rounded-lg">
+          <img src="/IMG_7676 (1).jpg" alt="The Coming King Ministries Leadership" loading="lazy" decoding="async" class="w-full h-full object-cover rounded-lg">
         </div>
         <div class="gallery-item h-64" data-cat="worship" onclick="openLightbox(this)">
-          <img src="/IMG_7678 (1).jpg" alt="The Coming King Ministries" loading="lazy" class="w-full h-full object-cover rounded-lg">
+          <img src="/IMG_7678 (1).jpg" alt="The Coming King Ministries" loading="lazy" decoding="async" class="w-full h-full object-cover rounded-lg">
         </div>
         <div class="gallery-item h-64" data-cat="events" onclick="openLightbox(this)">
-          <img src="/IMG_7678 (2).jpg" alt="The Coming King Ministries" loading="lazy" class="w-full h-full object-cover rounded-lg">
+          <img src="/IMG_7678 (2).jpg" alt="The Coming King Ministries" loading="lazy" decoding="async" class="w-full h-full object-cover rounded-lg">
         </div>
         <div class="gallery-item h-64 col-span-2" data-cat="worship" onclick="openLightbox(this)">
-          <img src="/IMG_7679 (1).jpg" alt="The Coming King Ministries" loading="lazy" class="w-full h-full object-cover rounded-lg">
+          <img src="/IMG_7679 (1).jpg" alt="The Coming King Ministries" loading="lazy" decoding="async" class="w-full h-full object-cover rounded-lg">
         </div>
         <div class="gallery-item h-64" data-cat="events" onclick="openLightbox(this)">
-          <img src="/IMG_7679 (2).jpg" alt="The Coming King Ministries" loading="lazy" class="w-full h-full object-cover rounded-lg">
+          <img src="/IMG_7679 (2).jpg" alt="The Coming King Ministries" loading="lazy" decoding="async" class="w-full h-full object-cover rounded-lg">
         </div>
         <div class="gallery-item h-64" data-cat="worship" onclick="openLightbox(this)">
-          <img src="/IMG_7683 (2).jpg" alt="The Coming King Ministries" loading="lazy" class="w-full h-full object-cover rounded-lg">
+          <img src="/IMG_7683 (2).jpg" alt="The Coming King Ministries" loading="lazy" decoding="async" class="w-full h-full object-cover rounded-lg">
         </div>
       </div>
 
@@ -281,17 +291,14 @@ document.addEventListener('keydown', e => { if(e.key==='Escape') closeLightbox()
   const app = initializeApp(firebaseConfig);
   const db = getFirestore(app);
 
-  const CACHE_KEY = 'tckm_gallery_v1';
-  const CACHE_TTL = 10 * 60 * 1000; // 10 minutes
+  const CACHE_KEY = 'tckm_gallery_v2';
+  const CACHE_TTL = 30 * 60 * 1000; // 30 minutes
 
   function renderGallery(items) {
     const grid = document.getElementById('firebase-gallery');
     if (!grid) return;
     grid.innerHTML = '';
-    if (!items.length) {
-      grid.innerHTML = '<div class="col-span-full text-center py-16 text-on-surface-variant">No gallery images yet.</div>';
-      return;
-    }
+    if (!items.length) return; // silently hide — local photos still show
     items.forEach(function(d, index) {
       const cat = (d.category || 'all').toLowerCase();
       const colSpanClass = (index % 5 === 0 || index % 7 === 0) ? 'col-span-2' : '';
@@ -299,9 +306,23 @@ document.addEventListener('keydown', e => { if(e.key==='Escape') closeLightbox()
       div.className = 'gallery-item h-64 ' + colSpanClass + ' cursor-pointer relative group';
       div.dataset.cat = cat;
       div.setAttribute('onclick', 'openLightbox(this)');
-      div.innerHTML = '<img src="' + (d.imageUrl || '') + '" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" alt="' + (d.caption || 'Gallery Image') + '" loading="lazy" decoding="async"><div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4"><p class="text-white text-sm font-bold line-clamp-2">' + (d.caption || '') + '</p></div>';
+      // First 4 Firebase images get eager loading too
+      const loadAttr = index < 4 ? 'eager' : 'lazy';
+      const priorityAttr = index < 4 ? 'fetchpriority="high"' : '';
+      div.innerHTML = '<img src="' + (d.imageUrl || '') + '" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" alt="' + (d.caption || 'Gallery Image') + '" loading="' + loadAttr + '" ' + priorityAttr + ' decoding="async"><div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4"><p class="text-white text-sm font-bold line-clamp-2">' + (d.caption || '') + '</p></div>';
       grid.appendChild(div);
     });
+  }
+
+  function showSkeletons(count) {
+    const grid = document.getElementById('firebase-gallery');
+    if (!grid) return;
+    grid.innerHTML = '';
+    for (let i = 0; i < count; i++) {
+      const div = document.createElement('div');
+      div.className = 'skeleton h-64 ' + ((i % 5 === 0 || i % 7 === 0) ? 'col-span-2' : '');
+      grid.appendChild(div);
+    }
   }
 
   async function loadGallery() {
@@ -320,7 +341,8 @@ document.addEventListener('keydown', e => { if(e.key==='Escape') closeLightbox()
         localStorage.removeItem(CACHE_KEY);
       }
     } else {
-      grid.innerHTML = '<div class="col-span-full text-center py-16"><p class="text-on-surface-variant text-sm">Loading gallery...</p></div>';
+      // Show animated skeletons instead of plain text while fetching
+      showSkeletons(8);
     }
 
     try {
