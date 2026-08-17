@@ -326,12 +326,12 @@
       </div>
       <div>
         <label class="text-xs font-bold uppercase tracking-wider text-on-surface-variant block mb-2">
-          Event Banner <span class="text-red-500 font-bold">&mdash; Max 100KB</span>
+          Event Banner <span class="text-red-500 font-bold">&mdash; Max 200KB</span>
         </label>
         <div class="border-2 border-dashed border-outline-variant rounded-xl p-5 text-center cursor-pointer hover:border-primary hover:bg-red-50/30 transition-all" onclick="document.getElementById('evt-banner').click()">
           <span class="material-symbols-outlined text-primary text-3xl block mb-2" style="font-variation-settings:'FILL' 1;">add_photo_alternate</span>
           <p class="text-xs text-on-surface-variant">Click to upload event banner</p>
-          <p class="text-[10px] text-on-surface-variant/70 mt-1">JPG, PNG, WEBP &middot; Max 100KB</p>
+          <p class="text-[10px] text-on-surface-variant/70 mt-1">JPG, PNG, WEBP &middot; Max 200KB</p>
         </div>
         <input type="file" id="evt-banner" accept="image/*" class="hidden" onchange="validateEventBanner(this)"/>
         <div id="evt-banner-error" class="hidden mt-2 p-2.5 bg-red-50 border border-red-200 rounded-lg text-xs text-red-600 flex items-center gap-2">
@@ -1019,7 +1019,7 @@ async function loadBlogList() {
     ['evt-banner-error','evt-banner-ok','evt-banner-preview'].forEach(id => document.getElementById(id).classList.add('hidden'));
   };
   window.validateEventBanner = function(input) {
-    const MAX = 100 * 1024;
+    const MAX = 200 * 1024;
     const errEl = document.getElementById('evt-banner-error');
     const okEl = document.getElementById('evt-banner-ok');
     errEl.classList.add('hidden'); okEl.classList.add('hidden');
@@ -1028,7 +1028,7 @@ async function loadBlogList() {
     const sizeKB = (file.size/1024).toFixed(1);
     if (file.size > MAX) {
       errEl.classList.remove('hidden');
-      document.getElementById('evt-banner-error-msg').textContent = `"${file.name}" is ${sizeKB}KB — exceeds 100KB limit.`;
+      document.getElementById('evt-banner-error-msg').textContent = `"${file.name}" is ${sizeKB}KB — exceeds 200KB limit.`;
       input.value = '';
     } else {
       okEl.classList.remove('hidden');

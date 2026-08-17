@@ -214,12 +214,12 @@
           </div>
           <div>
             <label class="text-xs font-bold uppercase tracking-wider text-on-surface-variant block mb-2">
-              Event Banner <span class="text-red-500 font-bold">— Max 100KB</span>
+              Event Banner <span class="text-red-500 font-bold">— Max 200KB</span>
             </label>
             <div class="border-2 border-dashed border-outline-variant rounded-xl p-5 text-center cursor-pointer hover:border-primary hover:bg-red-50/30 transition-all" onclick="document.getElementById('evt-banner').click()">
               <span class="material-symbols-outlined text-primary text-3xl block mb-2" style="font-variation-settings:'FILL' 1;">add_photo_alternate</span>
               <p class="text-xs text-on-surface-variant">Click to upload event banner</p>
-              <p class="text-[10px] text-on-surface-variant/70 mt-1">JPG, PNG, WEBP · Max 100KB</p>
+              <p class="text-[10px] text-on-surface-variant/70 mt-1">JPG, PNG, WEBP · Max 200KB</p>
             </div>
             <input type="file" id="evt-banner" accept="image/*" class="hidden" onchange="validateEventBanner(this)"/>
             <div id="evt-banner-error" class="hidden mt-2 p-2.5 bg-red-50 border border-red-200 rounded-lg text-xs text-red-600 flex items-center gap-2">
@@ -959,7 +959,7 @@
     const file = input.files[0];
     const sizeKB = (file.size/1024).toFixed(1);
     if (file.size > MAX_BYTES) {
-      document.getElementById('evt-banner-error-msg').textContent = `"${file.name}" is ${sizeKB}KB — exceeds the 100KB limit.`;
+      document.getElementById('evt-banner-error-msg').textContent = `"${file.name}" is ${sizeKB}KB — exceeds the 200KB limit.`;
       errEl.classList.remove('hidden'); input.value = '';
     } else {
       document.getElementById('evt-banner-ok-msg').textContent = `"${file.name}" (${sizeKB}KB) — ready ✓`;
