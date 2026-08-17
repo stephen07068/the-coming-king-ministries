@@ -163,6 +163,22 @@
     </div>
   </section>
 
+  <!-- Event Banner Lightbox Modal -->
+  <div id="event-lightbox-modal" class="hidden fixed inset-0 bg-black/85 backdrop-blur-md z-50 flex flex-col items-center justify-center p-4" onclick="closeEventLightbox(event)">
+    <button onclick="closeEventLightbox()" class="absolute top-6 right-6 text-white hover:text-primary p-3 bg-black/60 rounded-full transition-all z-10 hover:scale-110" title="Close">
+      <span class="material-symbols-outlined text-2xl">close</span>
+    </button>
+    <div class="max-w-4xl w-full max-h-[85vh] flex flex-col items-center justify-center" onclick="event.stopPropagation()">
+      <div class="relative max-h-[75vh] w-full flex justify-center">
+        <img id="lightbox-img" src="" alt="Event Banner" class="max-h-[75vh] max-w-full rounded-2xl shadow-2xl object-contain border border-white/20"/>
+      </div>
+      <div class="mt-4 text-center">
+        <h3 id="lightbox-title" class="text-white text-xl font-bold font-display"></h3>
+        <p id="lightbox-subtitle" class="text-white/70 text-xs mt-1"></p>
+      </div>
+    </div>
+  </div>
+
   <!-- CTA -->
   <section class="py-16 px-margin-mobile md:px-margin-desktop bg-secondary text-white text-center">
     <h3 class="text-headline-md text-white mb-4">Want to Stay Updated?</h3>
@@ -187,6 +203,21 @@
     };
     const app = initializeApp(firebaseConfig);
     const db = getFirestore(app);
+
+    window.openEventLightbox = function(imgUrl, title, date) {
+      document.getElementById('lightbox-img').src = imgUrl;
+      document.getElementById('lightbox-title').textContent = title || 'Event Banner';
+      document.getElementById('lightbox-subtitle').textContent = date ? `Date: ${date}` : '';
+      document.getElementById('event-lightbox-modal').classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+    };
+
+    window.closeEventLightbox = function(e) {
+      if (e && e.target !== e.currentTarget && !e.target.closest('button')) return;
+      document.getElementById('event-lightbox-modal').classList.add('hidden');
+      document.body.style.overflow = '';
+    };
+
     async function loadEvents() {
       const list = document.getElementById('upcoming-events-list');
       const placeholder = document.getElementById('events-placeholder');
@@ -197,12 +228,18 @@
         if (placeholder) placeholder.remove();
         snap.forEach(docSnap => {
           const d = docSnap.data();
+          const safeTitle = (d.title || '').replace(/'/g, "\\'");
+          const safeDate = (d.date || '').replace(/'/g, "\\'");
           const card = document.createElement('div');
-          card.className = 'bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all border border-outline-variant flex flex-col';
+          card.className = 'bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all border border-outline-variant flex flex-col group/card';
           card.innerHTML = `
             ${d.bannerUrl ? `
-              <div class="w-full h-64 md:h-72 overflow-hidden bg-surface-container">
-                <img src="${d.bannerUrl}" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" alt="${d.title}"/>
+              <div class="w-full h-80 sm:h-96 md:h-[420px] overflow-hidden bg-surface-container relative group cursor-pointer" onclick="openEventLightbox('${d.bannerUrl.replace(/'/g, "\\'")}', '${safeTitle}', '${safeDate}')">
+                <img src="${d.bannerUrl}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="${d.title}"/>
+                <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center text-white gap-2 p-4">
+                  <span class="material-symbols-outlined text-3xl bg-primary/90 text-white p-3 rounded-full shadow-lg">zoom_in</span>
+                  <span class="text-xs font-bold uppercase tracking-wider bg-black/60 px-3 py-1 rounded-full">Click to view full image</span>
+                </div>
               </div>
             ` : `
               <div class="w-full h-44 bg-gradient-to-r from-primary to-primary-container flex flex-col items-center justify-center p-6 text-white">
@@ -219,6 +256,11 @@
                 <h3 class="text-headline-sm font-bold text-on-background mb-2 mt-3">${d.title}</h3>
                 ${d.description ? `<p class="text-on-surface-variant text-body-md line-clamp-3">${d.description}</p>` : ''}
               </div>
+              ${d.bannerUrl ? `
+                <button onclick="openEventLightbox('${d.bannerUrl.replace(/'/g, "\\'")}', '${safeTitle}', '${safeDate}')" class="mt-5 w-full py-2.5 px-4 border border-primary text-primary hover:bg-primary hover:text-white rounded-xl text-xs font-bold transition-all flex items-center justify-center gap-2 shadow-sm">
+                  <span class="material-symbols-outlined text-[16px]">visibility</span> View Full Image
+                </button>
+              ` : ''}
             </div>`;
           list.appendChild(card);
         });
