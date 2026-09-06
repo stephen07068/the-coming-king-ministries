@@ -187,7 +187,8 @@
               <span class="material-symbols-outlined text-[18px]">add</span> Add Question
             </button>
           </div>
-          <div class="pt-4 border-t border-outline-variant flex justify-end">
+          <div class="pt-4 border-t border-outline-variant flex justify-end gap-3">
+            <button id="cq-cancel-edit-btn" onclick="cancelQuizEdit('cq')" class="hidden px-4 py-2.5 border border-outline-variant text-on-surface-variant text-sm font-bold rounded-lg hover:bg-surface-container transition-all">Cancel Edit</button>
             <button id="cq-pub-btn" onclick="publishQuiz('children_quizzes', 'cq', this)" class="px-6 py-2.5 bg-primary text-white text-sm font-bold rounded-lg hover:opacity-90 transition-all flex items-center gap-2">
               <span class="material-symbols-outlined text-[18px]">publish</span> Publish Quiz
             </button>
@@ -222,7 +223,8 @@
               <span class="material-symbols-outlined text-[18px]">add</span> Add Question
             </button>
           </div>
-          <div class="pt-4 border-t border-outline-variant flex justify-end">
+          <div class="pt-4 border-t border-outline-variant flex justify-end gap-3">
+            <button id="sq-cancel-edit-btn" onclick="cancelQuizEdit('sq')" class="hidden px-4 py-2.5 border border-outline-variant text-on-surface-variant text-sm font-bold rounded-lg hover:bg-surface-container transition-all">Cancel Edit</button>
             <button id="sq-pub-btn" onclick="publishQuiz('sunday_quizzes', 'sq', this)" class="px-6 py-2.5 bg-primary text-white text-sm font-bold rounded-lg hover:opacity-90 transition-all flex items-center gap-2">
               <span class="material-symbols-outlined text-[18px]">publish</span> Publish Quiz
             </button>
@@ -300,7 +302,7 @@
 <div id="event-modal" class="hidden fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-2 sm:p-4 overflow-y-auto">
   <div class="bg-white rounded-2xl w-full max-w-lg shadow-2xl flex flex-col max-h-[90vh] my-auto">
     <div class="p-4 sm:p-6 border-b border-outline-variant flex justify-between items-center flex-shrink-0">
-      <h3 class="font-display text-lg font-bold text-midnight-navy">Post New Event</h3>
+      <h3 id="event-modal-heading" class="font-display text-lg font-bold text-midnight-navy">Post New Event</h3>
       <button onclick="closeEventModal()" class="text-on-surface-variant hover:text-primary"><span class="material-symbols-outlined">close</span></button>
     </div>
     <div class="p-4 sm:p-6 space-y-4 flex-1 overflow-y-auto custom-scrollbar">
@@ -347,7 +349,7 @@
     </div>
     <div class="p-4 sm:p-6 border-t border-outline-variant flex gap-3 justify-end flex-shrink-0 bg-white rounded-b-2xl">
       <button onclick="closeEventModal()" class="px-5 py-2 border border-outline-variant rounded-lg text-sm text-on-surface-variant hover:bg-surface-container transition-all">Cancel</button>
-      <button onclick="publishEvent()" class="px-5 py-2 bg-primary text-white text-sm font-bold rounded-lg hover:opacity-90 transition-all flex items-center gap-2">
+      <button id="event-publish-btn" onclick="publishEvent()" class="px-5 py-2 bg-primary text-white text-sm font-bold rounded-lg hover:opacity-90 transition-all flex items-center gap-2">
         <span class="material-symbols-outlined text-[16px]">publish</span> Publish Event
       </button>
     </div>
@@ -358,7 +360,7 @@
 <div id="modal" class="hidden fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-2 sm:p-4 overflow-y-auto">
   <div class="bg-white rounded-2xl w-full max-w-lg shadow-2xl flex flex-col max-h-[90vh] my-auto">
     <div class="p-4 sm:p-6 border-b border-outline-variant flex justify-between items-center flex-shrink-0">
-      <h3 class="font-display text-lg font-bold text-midnight-navy">New Content Entry</h3>
+      <h3 id="modal-heading" class="font-display text-lg font-bold text-midnight-navy">New Content Entry</h3>
       <button onclick="closeModal()" class="text-on-surface-variant hover:text-primary"><span class="material-symbols-outlined">close</span></button>
     </div>
     <div class="p-4 sm:p-6 space-y-4 flex-1 overflow-y-auto custom-scrollbar">
@@ -372,12 +374,12 @@
         </select>
       </div>
       <div>
-        <label class="text-xs font-bold uppercase tracking-wider text-on-surface-variant block mb-2">Title</label>
-        <input type="text" placeholder="Enter title..." class="w-full px-4 py-2.5 rounded-lg border border-outline-variant text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary"/>
+        <label id="modal-title-label" class="text-xs font-bold uppercase tracking-wider text-on-surface-variant block mb-2">Title</label>
+        <input type="text" id="modal-title" placeholder="Enter title..." class="w-full px-4 py-2.5 rounded-lg border border-outline-variant text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary"/>
       </div>
       <div>
         <label id="modal-speaker-label" class="text-xs font-bold uppercase tracking-wider text-on-surface-variant block mb-2">Speaker / Pastor</label>
-        <input type="text" placeholder="Pastor name..." class="w-full px-4 py-2.5 rounded-lg border border-outline-variant text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary"/>
+        <input type="text" id="modal-speaker" placeholder="Pastor name..." class="w-full px-4 py-2.5 rounded-lg border border-outline-variant text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary"/>
       </div>
       <div>
         <div id="sermon-field">
@@ -394,15 +396,22 @@
           <div id="bible-img-ok" class="hidden mt-2 p-2 bg-green-50 border border-green-200 rounded-lg text-xs text-green-600 flex items-center gap-2">
             <span class="material-symbols-outlined text-[16px]">check_circle</span><span></span>
           </div>
+          <div id="modal-img-preview" class="hidden mt-2 p-2 bg-surface-container-low rounded-xl border border-outline-variant flex items-center gap-3">
+            <img id="modal-img-current" class="w-16 h-12 rounded-lg object-cover border border-outline-variant" src="" alt="Current image">
+            <div class="text-xs">
+              <span class="font-bold text-midnight-navy block">Current image saved</span>
+              <span class="text-[11px] text-on-surface-variant">Choose a new file only if replacing</span>
+            </div>
+          </div>
         </div>
       </div>
       <div>
         <label id="modal-desc-label" class="text-xs font-bold uppercase tracking-wider text-on-surface-variant block mb-2">Description</label>
-        <textarea rows="3" class="w-full px-4 py-2.5 rounded-lg border border-outline-variant text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary resize-none" placeholder="Brief description..."></textarea>
+        <textarea id="modal-desc" rows="3" class="w-full px-4 py-2.5 rounded-lg border border-outline-variant text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary resize-none" placeholder="Brief description..."></textarea>
       </div>
     </div>
     <div class="p-4 sm:p-6 border-t border-outline-variant flex gap-3 justify-end flex-shrink-0 bg-white rounded-b-2xl">
-      <button onclick="closeModal()" class="px-5 py-2 border border-outline-variant rounded-lg text-sm text-on-surface-variant hover:bg-surface-container transition-all">Save Draft</button>
+      <button onclick="closeModal()" class="px-5 py-2 border border-outline-variant rounded-lg text-sm text-on-surface-variant hover:bg-surface-container transition-all">Cancel</button>
       <button id="publish-btn" onclick="publishContent()" class="px-5 py-2 bg-primary text-white text-sm font-bold rounded-lg hover:opacity-90 transition-all">Publish Now</button>
     </div>
   </div>
@@ -411,7 +420,7 @@
 <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-app.js";
   import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-auth.js";
-  import { getFirestore, collection, addDoc, getDocs, deleteDoc, doc, serverTimestamp, query, orderBy } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-firestore.js";
+  import { getFirestore, collection, addDoc, getDocs, deleteDoc, doc, serverTimestamp, query, orderBy, updateDoc, getDoc } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-firestore.js";
 
   const firebaseConfig = {
     apiKey: "AIzaSyDmoTnhEFG1QYV7GHL0Ag3ICiGwWidcWkY",
@@ -425,6 +434,11 @@
   const app = initializeApp(firebaseConfig);
   const auth = getAuth(app);
   const db = getFirestore(app);
+
+  // Edit State Tracking
+  window.editingContentId = null;
+  window.editingContentType = null;
+  window.editingCurrentImageUrl = '';
 
   // Auth guard - redirect to login if not signed in
   onAuthStateChanged(auth, async user => {
@@ -468,7 +482,7 @@
     window.location.href = '/admin';
   };
 
-  // â”€â”€ Load Sermons from Firestore â”€â”€
+  // ── Load Sermons from Firestore ──
   async function loadSermons() {
     const tbody = document.getElementById('sermons-tbody');
     tbody.innerHTML = '<tr><td colspan="6" class="p-4 text-center text-sm text-on-surface-variant">Loading...</td></tr>';
@@ -495,8 +509,8 @@
           <td class="px-6 py-3 text-xs text-on-surface-variant">${s.category || ''}</td>
           <td class="px-6 py-3"><span class="text-[10px] font-bold px-2 py-1 bg-blue-50 text-blue-700 rounded-full">PUBLISHED</span></td>
           <td class="px-6 py-3 flex gap-2">
-            <button class="p-1.5 text-on-surface-variant hover:text-primary"><span class="material-symbols-outlined text-[18px]">edit</span></button>
-            <button onclick="deleteSermon('${d.id}', this)" class="p-1.5 text-on-surface-variant hover:text-red-500"><span class="material-symbols-outlined text-[18px]">delete</span></button>
+            <button onclick="editSermon('${d.id}')" class="px-2.5 py-1 bg-blue-50 text-blue-600 hover:bg-blue-100 rounded-lg text-xs font-bold flex items-center gap-1 cursor-pointer"><span class="material-symbols-outlined text-[15px]">edit</span> Edit</button>
+            <button onclick="deleteSermon('${d.id}', this)" class="px-2.5 py-1 bg-red-50 text-red-600 hover:bg-red-100 rounded-lg text-xs font-bold flex items-center gap-1 cursor-pointer"><span class="material-symbols-outlined text-[15px]">delete</span> Delete</button>
           </td>`;
         tbody.appendChild(tr);
       });
@@ -506,8 +520,7 @@
     }
   }
 
-  // â”€â”€ Load Bible Lessons from Firestore â”€â”€
-  // Load Bible Lessons from Firestore
+  // ── Load Bible Lessons from Firestore ──
   async function loadBibleLessons() {
     const tbody = document.getElementById('bible-tbody');
     if (!tbody) return;
@@ -536,7 +549,8 @@
           <td class="px-6 py-3 text-xs text-on-surface-variant">${dateStr}</td>
           <td class="px-6 py-3"><span class="text-[10px] font-bold px-2 py-1 bg-blue-50 text-blue-700 rounded-full">PUBLISHED</span></td>
           <td class="px-6 py-3 flex gap-2">
-            <button onclick="deleteBibleLesson('${d.id}', this)" class="px-3 py-1 bg-red-50 text-red-600 hover:bg-red-100 rounded-lg text-xs font-bold flex items-center gap-1 cursor-pointer"><span class="material-symbols-outlined text-[16px]">delete</span> Delete</button>
+            <button onclick="editBibleLesson('${d.id}')" class="px-2.5 py-1 bg-blue-50 text-blue-600 hover:bg-blue-100 rounded-lg text-xs font-bold flex items-center gap-1 cursor-pointer"><span class="material-symbols-outlined text-[15px]">edit</span> Edit</button>
+            <button onclick="deleteBibleLesson('${d.id}', this)" class="px-2.5 py-1 bg-red-50 text-red-600 hover:bg-red-100 rounded-lg text-xs font-bold flex items-center gap-1 cursor-pointer"><span class="material-symbols-outlined text-[15px]">delete</span> Delete</button>
           </td>`;
         tbody.appendChild(tr);
       });
@@ -546,7 +560,8 @@
     }
   }
 
-async function loadBlogList() {
+  // ── Load Blog Posts ──
+  async function loadBlogList() {
     const tbody = document.getElementById('blog-tbody');
     if (!tbody) return;
     tbody.innerHTML = '<tr><td colspan="5" class="p-4 text-center text-sm text-on-surface-variant">Loading...</td></tr>';
@@ -574,7 +589,8 @@ async function loadBlogList() {
           <td class="px-6 py-3 text-xs text-on-surface-variant">${dateStr}</td>
           <td class="px-6 py-3"><span class="text-[10px] font-bold px-2 py-1 bg-green-50 text-green-700 rounded-full">PUBLISHED</span></td>
           <td class="px-6 py-3 flex gap-2">
-            <button onclick="deleteBlogPost('${d.id}', this)" class="px-3 py-1 bg-red-50 text-red-600 hover:bg-red-100 rounded-lg text-xs font-bold flex items-center gap-1 cursor-pointer"><span class="material-symbols-outlined text-[16px]">delete</span> Delete</button>
+            <button onclick="editBlogPost('${d.id}')" class="px-2.5 py-1 bg-blue-50 text-blue-600 hover:bg-blue-100 rounded-lg text-xs font-bold flex items-center gap-1 cursor-pointer"><span class="material-symbols-outlined text-[15px]">edit</span> Edit</button>
+            <button onclick="deleteBlogPost('${d.id}', this)" class="px-2.5 py-1 bg-red-50 text-red-600 hover:bg-red-100 rounded-lg text-xs font-bold flex items-center gap-1 cursor-pointer"><span class="material-symbols-outlined text-[15px]">delete</span> Delete</button>
           </td>`;
         tbody.appendChild(tr);
       });
@@ -585,7 +601,7 @@ async function loadBlogList() {
   }
   window.loadBlogList = loadBlogList;
 
-  // ── Delete Blog Post ──
+  // ── Delete Functions ──
   window.deleteBlogPost = async function(id, btn) {
     if (!confirm('Delete this blog post? This cannot be undone.')) return;
     if (btn) btn.disabled = true;
@@ -599,7 +615,6 @@ async function loadBlogList() {
     }
   };
 
-  // Delete Bible Lesson
   window.deleteBibleLesson = async function(id, btn) {
     if (!confirm('Delete this lesson? This cannot be undone.')) return;
     if (btn) btn.disabled = true;
@@ -613,101 +628,217 @@ async function loadBlogList() {
     }
   };
 
-  // Publish Content
+  window.deleteSermon = async function(id, btn) {
+    if (!confirm('Delete this sermon? This cannot be undone.')) return;
+    if (btn) btn.disabled = true;
+    try {
+      await deleteDoc(doc(db, 'video_sermons', id));
+      await loadSermons();
+    } catch (e) {
+      console.error('deleteSermon error:', e);
+      alert('Failed to delete sermon: ' + (e.message || e));
+      if (btn) btn.disabled = false;
+    }
+  };
+
+  // ── Edit Functions ──
+  window.editSermon = async function(id) {
+    try {
+      const snap = await getDoc(doc(db, 'video_sermons', id));
+      if (!snap.exists()) { alert('Sermon not found.'); return; }
+      const s = snap.data();
+      window.editingContentId = id;
+      window.editingContentType = 'sermon';
+
+      document.getElementById('modal-heading').textContent = 'Edit Sermon';
+      document.getElementById('publish-btn').innerHTML = '<span class="material-symbols-outlined text-[16px]">save</span> Save Changes';
+
+      const typeSelect = document.getElementById('content-type-select');
+      typeSelect.value = s.type === 'audio' ? 'sermon-audio' : 'sermon-video';
+      typeSelect.disabled = true;
+      toggleContentFields(typeSelect);
+
+      document.getElementById('modal-title').value = s.title || '';
+      document.getElementById('modal-speaker').value = s.speaker || '';
+      document.getElementById('sermon-link').value = s.link || '';
+      document.getElementById('modal-desc').value = s.description || '';
+
+      const prev = document.getElementById('modal-img-preview');
+      if (prev) prev.classList.add('hidden');
+
+      document.getElementById('modal').classList.remove('hidden');
+    } catch (err) {
+      console.error('editSermon error:', err);
+      alert('Error loading sermon: ' + err.message);
+    }
+  };
+
+  window.editBibleLesson = async function(id) {
+    try {
+      const snap = await getDoc(doc(db, 'bible_school', id));
+      if (!snap.exists()) { alert('Lesson not found.'); return; }
+      const s = snap.data();
+      window.editingContentId = id;
+      window.editingContentType = 'bible';
+      window.editingCurrentImageUrl = s.imageUrl || '';
+
+      document.getElementById('modal-heading').textContent = 'Edit Bible School Lesson';
+      document.getElementById('publish-btn').innerHTML = '<span class="material-symbols-outlined text-[16px]">save</span> Save Changes';
+
+      const typeSelect = document.getElementById('content-type-select');
+      typeSelect.value = 'bible';
+      typeSelect.disabled = true;
+      toggleContentFields(typeSelect);
+
+      document.getElementById('modal-title').value = s.title || '';
+      document.getElementById('modal-speaker').value = s.teacher || s.speaker || '';
+      document.getElementById('modal-desc').value = s.description || s.week || '';
+
+      const prev = document.getElementById('modal-img-preview');
+      const curImg = document.getElementById('modal-img-current');
+      if (s.imageUrl && prev && curImg) {
+        curImg.src = s.imageUrl;
+        prev.classList.remove('hidden');
+      } else if (prev) {
+        prev.classList.add('hidden');
+      }
+
+      document.getElementById('modal').classList.remove('hidden');
+    } catch (err) {
+      console.error('editBibleLesson error:', err);
+      alert('Error loading lesson: ' + err.message);
+    }
+  };
+
+  window.editBlogPost = async function(id) {
+    try {
+      const snap = await getDoc(doc(db, 'blog_posts', id));
+      if (!snap.exists()) { alert('Blog post not found.'); return; }
+      const s = snap.data();
+      window.editingContentId = id;
+      window.editingContentType = 'blog';
+      window.editingCurrentImageUrl = s.imageUrl || '';
+
+      document.getElementById('modal-heading').textContent = 'Edit Ministry Blog Post';
+      document.getElementById('publish-btn').innerHTML = '<span class="material-symbols-outlined text-[16px]">save</span> Save Changes';
+
+      const typeSelect = document.getElementById('content-type-select');
+      typeSelect.value = 'blog';
+      typeSelect.disabled = true;
+      toggleContentFields(typeSelect);
+
+      document.getElementById('modal-title').value = s.title || '';
+      document.getElementById('modal-speaker').value = s.author || s.speaker || '';
+      document.getElementById('modal-desc').value = s.content || s.description || '';
+
+      const prev = document.getElementById('modal-img-preview');
+      const curImg = document.getElementById('modal-img-current');
+      if (s.imageUrl && prev && curImg) {
+        curImg.src = s.imageUrl;
+        prev.classList.remove('hidden');
+      } else if (prev) {
+        prev.classList.add('hidden');
+      }
+
+      document.getElementById('modal').classList.remove('hidden');
+    } catch (err) {
+      console.error('editBlogPost error:', err);
+      alert('Error loading blog post: ' + err.message);
+    }
+  };
+
+  // ── Publish / Update Content ──
   window.publishContent = async function() {
     const pubBtn = document.getElementById('publish-btn');
     const type = document.getElementById('content-type-select').value;
-    const inputs = document.querySelectorAll('#modal input[type="text"]');
-    const title = inputs[0] ? inputs[0].value.trim() : '';
-    const speaker = inputs[1] ? inputs[1].value.trim() : '';
-    const description = document.querySelector('#modal textarea').value.trim();
+    const title = document.getElementById('modal-title').value.trim();
+    const speaker = document.getElementById('modal-speaker').value.trim();
+    const description = document.getElementById('modal-desc').value.trim();
 
     if (!title) { alert('Please enter a title.'); return; }
 
+    const isEditing = Boolean(window.editingContentId);
+    const editId = window.editingContentId;
+
     if (pubBtn) {
       pubBtn.disabled = true;
-      pubBtn.innerHTML = '<span class="material-symbols-outlined text-[16px] animate-spin">progress_activity</span> Publishing...';
+      pubBtn.innerHTML = `<span class="material-symbols-outlined text-[16px] animate-spin">progress_activity</span> ${isEditing ? 'Saving...' : 'Publishing...'}`;
     }
 
     try {
       if (type === 'sermon-video' || type === 'sermon-audio') {
         const link = document.getElementById('sermon-link').value.trim();
-        await addDoc(collection(db, 'video_sermons'), {
-          title,
-          speaker,
-          link,
-          type: type === 'sermon-video' ? 'video' : 'audio',
-          description,
-          createdAt: serverTimestamp()
-        });
-        if (inputs[0]) inputs[0].value = '';
-        if (inputs[1]) inputs[1].value = '';
-        document.getElementById('sermon-link').value = '';
-        document.querySelector('#modal textarea').value = '';
-        closeModal();
-        await loadSermons();
-        alert('✅ Sermon "' + title + '" published successfully!');
+        const data = { title, speaker, link, type: type === 'sermon-video' ? 'video' : 'audio', description };
+        if (isEditing) {
+          data.updatedAt = serverTimestamp();
+          await updateDoc(doc(db, 'video_sermons', editId), data);
+          closeModal();
+          await loadSermons();
+          alert('✅ Sermon updated successfully!');
+        } else {
+          data.createdAt = serverTimestamp();
+          await addDoc(collection(db, 'video_sermons'), data);
+          closeModal();
+          await loadSermons();
+          alert('✅ Sermon published successfully!');
+        }
       } else if (type === 'blog') {
         const fileInput = document.getElementById('bible-img');
-        let imageUrl = '';
+        let imageUrl = isEditing ? (window.editingCurrentImageUrl || '') : '';
         if (fileInput && fileInput.files.length) {
-          imageUrl = await new Promise((resolve, reject) => {
+          imageUrl = await new Promise((resolve) => {
             const reader = new FileReader();
             reader.onload = () => resolve(reader.result);
-            reader.onerror = reject;
             reader.readAsDataURL(fileInput.files[0]);
           });
         }
-        await addDoc(collection(db, 'blog_posts'), {
-          title,
-          author: speaker || 'Ministry',
-          content: description,
-          imageUrl,
-          date: new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }),
-          createdAt: serverTimestamp()
-        });
-        if (inputs[0]) inputs[0].value = '';
-        if (inputs[1]) inputs[1].value = '';
-        if (fileInput) fileInput.value = '';
-        document.querySelector('#modal textarea').value = '';
-        closeModal();
-        alert('✅ Blog post "' + title + '" published successfully!');
+        const data = { title, author: speaker || 'Ministry', content: description, imageUrl };
+        if (isEditing) {
+          data.updatedAt = serverTimestamp();
+          await updateDoc(doc(db, 'blog_posts', editId), data);
+          closeModal();
+          await loadBlogList();
+          alert('✅ Blog post updated successfully!');
+        } else {
+          data.date = new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+          data.createdAt = serverTimestamp();
+          await addDoc(collection(db, 'blog_posts'), data);
+          closeModal();
+          await loadBlogList();
+          alert('✅ Blog post published successfully!');
+        }
       } else {
-        // Bible school lesson - read image as base64
         const fileInput = document.getElementById('bible-img');
-        let imageUrl = '';
+        let imageUrl = isEditing ? (window.editingCurrentImageUrl || '') : '';
         if (fileInput && fileInput.files.length) {
-          imageUrl = await new Promise((resolve, reject) => {
+          imageUrl = await new Promise((resolve) => {
             const reader = new FileReader();
             reader.onload = () => resolve(reader.result);
-            reader.onerror = reject;
             reader.readAsDataURL(fileInput.files[0]);
           });
         }
-        const week = description || '';
-        await addDoc(collection(db, 'bible_school'), {
-          title,
-          teacher: speaker,
-          description,
-          imageUrl,
-          week,
-          createdAt: serverTimestamp()
-        });
-        if (inputs[0]) inputs[0].value = '';
-        if (inputs[1]) inputs[1].value = '';
-        if (fileInput) fileInput.value = '';
-        document.querySelector('#modal textarea').value = '';
-        closeModal();
-        await loadBibleLessons();
-        alert('✅ Bible School Lesson "' + title + '" published successfully!');
+        const data = { title, teacher: speaker, description, imageUrl, week: description };
+        if (isEditing) {
+          data.updatedAt = serverTimestamp();
+          await updateDoc(doc(db, 'bible_school', editId), data);
+          closeModal();
+          await loadBibleLessons();
+          alert('✅ Lesson updated successfully!');
+        } else {
+          data.createdAt = serverTimestamp();
+          await addDoc(collection(db, 'bible_school'), data);
+          closeModal();
+          await loadBibleLessons();
+          alert('✅ Lesson published successfully!');
+        }
       }
     } catch (e) {
       console.error('publishContent error:', e);
-      alert('Failed to publish content: ' + (e.message || e));
+      alert('Failed to save content: ' + (e.message || e));
     } finally {
       if (pubBtn) {
         pubBtn.disabled = false;
-        pubBtn.innerHTML = 'Publish Now';
+        pubBtn.innerHTML = isEditing ? '<span class="material-symbols-outlined text-[16px]">save</span> Save Changes' : 'Publish Now';
       }
     }
   };
@@ -741,23 +872,38 @@ async function loadBlogList() {
     if (questions.length < 3) { alert('Please add at least 3 questions.'); return; }
     if (questions.length > 5) { alert('Maximum 5 questions allowed.'); return; }
 
+    const isEditing = Boolean(window['editing_' + prefix]);
+    const editId = window['editing_' + prefix];
+
     if (pubBtn) {
       pubBtn.disabled = true;
-      pubBtn.innerHTML = '<span class="material-symbols-outlined text-[18px] animate-spin">progress_activity</span> Publishing...';
+      pubBtn.innerHTML = `<span class="material-symbols-outlined text-[18px] animate-spin">progress_activity</span> ${isEditing ? 'Updating...' : 'Publishing...'}`;
     }
 
     try {
-      await addDoc(collection(db, collectionName), {
-        title: title,
-        questions: questions,
-        date: new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }),
-        createdAt: serverTimestamp()
-      });
-      alert('✅ Quiz published successfully!');
-      document.getElementById(prefix + '-title').value = '';
-      document.getElementById(prefix + '-questions-container').innerHTML = '';
-      window.quizCounters = window.quizCounters || {};
-      window.quizCounters[prefix] = 0;
+      if (isEditing) {
+        await updateDoc(doc(db, collectionName, editId), {
+          title: title,
+          questions: questions,
+          updatedAt: serverTimestamp()
+        });
+        alert('✅ Quiz updated successfully!');
+        cancelQuizEdit(prefix);
+      } else {
+        await addDoc(collection(db, collectionName), {
+          title: title,
+          questions: questions,
+          date: new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }),
+          createdAt: serverTimestamp()
+        });
+        alert('✅ Quiz published successfully!');
+        document.getElementById(prefix + '-title').value = '';
+        document.getElementById(prefix + '-questions-container').innerHTML = '';
+        window.quizCounters = window.quizCounters || {};
+        window.quizCounters[prefix] = 0;
+        const addBtn = document.getElementById(prefix + '-add-btn');
+        if (addBtn) addBtn.style.display = 'flex';
+      }
       await loadQuizList(collectionName, prefix);
     } catch (err) {
       console.error('publishQuiz error:', err);
@@ -793,9 +939,14 @@ async function loadBlogList() {
             <p class="text-sm font-semibold text-midnight-navy">${d.title || ''}</p>
             <p class="text-[10px] text-on-surface-variant">${d.date || 'No date'} &bull; ${d.questions ? d.questions.length : 0} questions</p>
           </div>
-          <button onclick="deleteQuiz('${collectionName}', '${docSnap.id}', '${prefix}', this)" class="text-xs text-red-500 hover:underline flex items-center gap-1">
-            <span class="material-symbols-outlined text-[14px]">delete</span> Delete
-          </button>
+          <div class="flex items-center gap-3">
+            <button onclick="editQuiz('${collectionName}', '${docSnap.id}', '${prefix}')" class="text-xs text-blue-600 hover:underline flex items-center gap-1 font-semibold">
+              <span class="material-symbols-outlined text-[14px]">edit</span> Edit
+            </button>
+            <button onclick="deleteQuiz('${collectionName}', '${docSnap.id}', '${prefix}', this)" class="text-xs text-red-500 hover:underline flex items-center gap-1">
+              <span class="material-symbols-outlined text-[14px]">delete</span> Delete
+            </button>
+          </div>
         </div>`;
       });
       listEl.innerHTML = html;
@@ -804,6 +955,73 @@ async function loadBlogList() {
       listEl.innerHTML = '<p class="text-sm text-red-500 text-center py-4">Error loading quizzes.</p>';
     }
   }
+
+  window.editQuiz = async function(collectionName, docId, prefix) {
+    try {
+      const snap = await getDoc(doc(db, collectionName, docId));
+      if (!snap.exists()) { alert('Quiz not found.'); return; }
+      const d = snap.data();
+      window['editing_' + prefix] = docId;
+
+      document.getElementById(prefix + '-title').value = d.title || '';
+      const container = document.getElementById(prefix + '-questions-container');
+      container.innerHTML = '';
+      window.quizCounters = window.quizCounters || {};
+      window.quizCounters[prefix] = 0;
+
+      if (Array.isArray(d.questions)) {
+        d.questions.forEach(q => {
+          addQuizQuestion(prefix);
+          const idx = window.quizCounters[prefix];
+          const qText = document.getElementById(prefix + '-q' + idx + '-text');
+          const qA = document.getElementById(prefix + '-q' + idx + '-a');
+          const qB = document.getElementById(prefix + '-q' + idx + '-b');
+          const qC = document.getElementById(prefix + '-q' + idx + '-c');
+          const qD = document.getElementById(prefix + '-q' + idx + '-d');
+          const qCorrect = document.getElementById(prefix + '-q' + idx + '-correct');
+
+          if (qText) qText.value = q.question || '';
+          if (q.options && q.options.length >= 4) {
+            if (qA) qA.value = q.options[0] || '';
+            if (qB) qB.value = q.options[1] || '';
+            if (qC) qC.value = q.options[2] || '';
+            if (qD) qD.value = q.options[3] || '';
+          }
+          if (qCorrect && q.correctAnswer !== undefined) {
+            qCorrect.value = String(q.correctAnswer);
+          }
+        });
+      }
+
+      const pubBtn = document.getElementById(prefix + '-pub-btn');
+      if (pubBtn) {
+        pubBtn.innerHTML = '<span class="material-symbols-outlined text-[18px]">save</span> Update Quiz';
+      }
+      const cancelBtn = document.getElementById(prefix + '-cancel-edit-btn');
+      if (cancelBtn) {
+        cancelBtn.classList.remove('hidden');
+      }
+
+      document.getElementById(prefix + '-title').scrollIntoView({ behavior: 'smooth', block: 'center' });
+    } catch (err) {
+      console.error('editQuiz error:', err);
+      alert('Error loading quiz: ' + err.message);
+    }
+  };
+
+  window.cancelQuizEdit = function(prefix) {
+    window['editing_' + prefix] = null;
+    document.getElementById(prefix + '-title').value = '';
+    document.getElementById(prefix + '-questions-container').innerHTML = '';
+    window.quizCounters = window.quizCounters || {};
+    window.quizCounters[prefix] = 0;
+    const pubBtn = document.getElementById(prefix + '-pub-btn');
+    if (pubBtn) pubBtn.innerHTML = '<span class="material-symbols-outlined text-[18px]">publish</span> Publish Quiz';
+    const cancelBtn = document.getElementById(prefix + '-cancel-edit-btn');
+    if (cancelBtn) cancelBtn.classList.add('hidden');
+    const addBtn = document.getElementById(prefix + '-add-btn');
+    if (addBtn) addBtn.style.display = 'flex';
+  };
 
   window.deleteQuiz = async function(collectionName, docId, prefix, btn) {
     if (!confirm('Are you sure you want to delete this quiz? This cannot be undone.')) return;
@@ -971,7 +1189,8 @@ async function loadBlogList() {
           </div>
           <span class="text-[10px] font-bold px-2 py-1 bg-blue-50 text-blue-700 rounded-full flex-shrink-0">PUBLISHED</span>
           <div class="flex gap-2 flex-shrink-0">
-            <button onclick="deleteEvent('${docSnap.id}', this)" class="p-1.5 text-on-surface-variant hover:text-red-500 rounded-lg hover:bg-surface-container transition-all"><span class="material-symbols-outlined text-[18px]">delete</span></button>
+            <button onclick="editEvent('${docSnap.id}')" class="p-1.5 text-on-surface-variant hover:text-blue-600 rounded-lg hover:bg-surface-container transition-all" title="Edit Event"><span class="material-symbols-outlined text-[18px]">edit</span></button>
+            <button onclick="deleteEvent('${docSnap.id}', this)" class="p-1.5 text-on-surface-variant hover:text-red-500 rounded-lg hover:bg-surface-container transition-all" title="Delete Event"><span class="material-symbols-outlined text-[18px]">delete</span></button>
           </div>`;
         list.appendChild(card);
       });
@@ -987,6 +1206,52 @@ async function loadBlogList() {
     } catch(e) { alert('Delete failed: ' + e.message); }
   };
 
+  window.editingEventId = null;
+  window.editingEventBannerUrl = '';
+
+  window.editEvent = async function(id) {
+    try {
+      const snap = await getDoc(doc(db, 'events', id));
+      if (!snap.exists()) { alert('Event not found.'); return; }
+      const d = snap.data();
+      window.editingEventId = id;
+      window.editingEventBannerUrl = d.bannerUrl || '';
+
+      document.getElementById('event-modal-heading').textContent = 'Edit Event';
+      const pubBtn = document.getElementById('event-publish-btn');
+      if (pubBtn) pubBtn.innerHTML = '<span class="material-symbols-outlined text-[16px]">save</span> Save Changes';
+
+      document.getElementById('evt-title').value = d.title || '';
+      document.getElementById('evt-date').value = d.date || '';
+      document.getElementById('evt-type').value = d.type || 'One-Time';
+      document.getElementById('evt-desc').value = d.description || '';
+
+      const previewDiv = document.getElementById('evt-banner-preview');
+      const previewImg = document.getElementById('evt-banner-img');
+      const okEl = document.getElementById('evt-banner-ok');
+      const errEl = document.getElementById('evt-banner-error');
+      if (errEl) errEl.classList.add('hidden');
+
+      if (d.bannerUrl && previewDiv && previewImg) {
+        previewImg.src = d.bannerUrl;
+        previewDiv.classList.remove('hidden');
+        if (okEl) {
+          okEl.classList.remove('hidden');
+          const okMsg = document.getElementById('evt-banner-ok-msg');
+          if (okMsg) okMsg.textContent = 'Current banner saved (choose new file only to replace)';
+        }
+      } else {
+        if (previewDiv) previewDiv.classList.add('hidden');
+        if (okEl) okEl.classList.add('hidden');
+      }
+
+      document.getElementById('event-modal').classList.remove('hidden');
+    } catch (err) {
+      console.error('editEvent error:', err);
+      alert('Error loading event: ' + err.message);
+    }
+  };
+
   window.publishEvent = async function() {
     const title = document.getElementById('evt-title').value.trim();
     const date = document.getElementById('evt-date').value;
@@ -994,30 +1259,67 @@ async function loadBlogList() {
     const desc = document.getElementById('evt-desc').value.trim();
     const bannerFile = document.getElementById('evt-banner').files[0];
     if (!title) { alert('Please enter an event title.'); return; }
-    const btn = document.querySelector('#event-modal button[onclick="publishEvent()"]');
-    btn.disabled = true; btn.textContent = 'Publishing...';
+
+    const isEditing = Boolean(window.editingEventId);
+    const editId = window.editingEventId;
+    const btn = document.getElementById('event-publish-btn') || document.querySelector('#event-modal button[onclick="publishEvent()"]');
+    if (btn) {
+      btn.disabled = true;
+      btn.innerHTML = `<span class="material-symbols-outlined text-[16px] animate-spin">progress_activity</span> ${isEditing ? 'Saving...' : 'Publishing...'}`;
+    }
+
     try {
-      let bannerUrl = '';
+      let bannerUrl = isEditing ? (window.editingEventBannerUrl || '') : '';
       if (bannerFile) {
         const reader = new FileReader();
         bannerUrl = await new Promise(res => { reader.onload = e => res(e.target.result); reader.readAsDataURL(bannerFile); });
       }
-      await addDoc(collection(db, 'events'), { title, date, type, description: desc, bannerUrl, createdAt: serverTimestamp() });
-      closeEventModal();
-      loadEvents();
-      alert('✅ "' + title + '" published successfully!');
+      const data = { title, date, type, description: desc, bannerUrl };
+      if (isEditing) {
+        data.updatedAt = serverTimestamp();
+        await updateDoc(doc(db, 'events', editId), data);
+        closeEventModal();
+        loadEvents();
+        alert('✅ Event "' + title + '" updated successfully!');
+      } else {
+        data.createdAt = serverTimestamp();
+        await addDoc(collection(db, 'events'), data);
+        closeEventModal();
+        loadEvents();
+        alert('✅ Event "' + title + '" published successfully!');
+      }
     } catch(e) {
-      alert('Failed to publish: ' + e.message);
-    } finally { btn.disabled = false; btn.innerHTML = '<span class="material-symbols-outlined text-[16px]">publish</span> Publish Event'; }
+      alert('Failed to save event: ' + e.message);
+    } finally {
+      if (btn) {
+        btn.disabled = false;
+        btn.innerHTML = isEditing ? '<span class="material-symbols-outlined text-[16px]">save</span> Save Changes' : '<span class="material-symbols-outlined text-[16px]">publish</span> Publish Event';
+      }
+    }
   };
 
-  window.openEventModal = () => document.getElementById('event-modal').classList.remove('hidden');
+  window.openEventModal = function() {
+    window.editingEventId = null;
+    window.editingEventBannerUrl = '';
+    const heading = document.getElementById('event-modal-heading');
+    if (heading) heading.textContent = 'Post New Event';
+    const btn = document.getElementById('event-publish-btn');
+    if (btn) btn.innerHTML = '<span class="material-symbols-outlined text-[16px]">publish</span> Publish Event';
+    ['evt-title','evt-date','evt-desc'].forEach(id => { const el = document.getElementById(id); if (el) el.value = ''; });
+    const bInput = document.getElementById('evt-banner'); if (bInput) bInput.value = '';
+    ['evt-banner-error','evt-banner-ok','evt-banner-preview'].forEach(id => { const el = document.getElementById(id); if (el) el.classList.add('hidden'); });
+    document.getElementById('event-modal').classList.remove('hidden');
+  };
+
   window.closeEventModal = function() {
     document.getElementById('event-modal').classList.add('hidden');
-    ['evt-title','evt-date','evt-desc'].forEach(id => document.getElementById(id).value = '');
-    document.getElementById('evt-banner').value = '';
-    ['evt-banner-error','evt-banner-ok','evt-banner-preview'].forEach(id => document.getElementById(id).classList.add('hidden'));
+    window.editingEventId = null;
+    window.editingEventBannerUrl = '';
+    ['evt-title','evt-date','evt-desc'].forEach(id => { const el = document.getElementById(id); if (el) el.value = ''; });
+    const bInput = document.getElementById('evt-banner'); if (bInput) bInput.value = '';
+    ['evt-banner-error','evt-banner-ok','evt-banner-preview'].forEach(id => { const el = document.getElementById(id); if (el) el.classList.add('hidden'); });
   };
+
   window.validateEventBanner = function(input) {
     const MAX = 200 * 1024;
     const errEl = document.getElementById('evt-banner-error');
@@ -1057,19 +1359,43 @@ function showPanel(name, el) {
   const activeEl = el || (window.event && window.event.currentTarget); if (activeEl && activeEl.classList) { activeEl.classList.add('nav-active'); activeEl.classList.remove('nav-link'); }
 }
 function openModal() {
+  window.editingContentId = null;
+  window.editingContentType = null;
+  window.editingCurrentImageUrl = '';
+  const heading = document.getElementById('modal-heading');
+  if (heading) heading.textContent = 'New Content Entry';
+  const pubBtn = document.getElementById('publish-btn');
+  if (pubBtn) pubBtn.innerHTML = 'Publish Now';
+  const tInput = document.getElementById('modal-title'); if (tInput) tInput.value = '';
+  const sInput = document.getElementById('modal-speaker'); if (sInput) sInput.value = '';
+  const lInput = document.getElementById('sermon-link'); if (lInput) lInput.value = '';
+  const dInput = document.getElementById('modal-desc'); if (dInput) dInput.value = '';
+  const fInput = document.getElementById('bible-img'); if (fInput) fInput.value = '';
+  const prev = document.getElementById('modal-img-preview'); if (prev) prev.classList.add('hidden');
+  const errEl = document.getElementById('bible-img-error'); if (errEl) errEl.classList.add('hidden');
+  const okEl = document.getElementById('bible-img-ok'); if (okEl) okEl.classList.add('hidden');
+
+  const sel = document.getElementById('content-type-select');
+  if (sel) {
+    sel.disabled = false;
+    sel.value = 'sermon-video';
+    toggleContentFields(sel);
+  }
   document.getElementById('modal').classList.remove('hidden');
-  document.getElementById('bible-field').style.display = 'none';
-  document.getElementById('sermon-field').style.display = 'block';
-  document.getElementById('content-type-select').value = 'sermon-video';
-  document.getElementById('sermon-link-label').textContent = 'YouTube Video Link';
-  document.getElementById('sermon-link-hint').textContent = 'Paste the YouTube video link for this sermon';
 }
 function openModalFor(type) {
-  document.getElementById('modal').classList.remove('hidden');
+  openModal();
   const sel = document.getElementById('content-type-select');
   if (sel) { sel.value = type; toggleContentFields(sel); }
 }
-function closeModal() { document.getElementById('modal').classList.add('hidden'); }
+function closeModal() {
+  document.getElementById('modal').classList.add('hidden');
+  window.editingContentId = null;
+  window.editingContentType = null;
+  window.editingCurrentImageUrl = '';
+  const sel = document.getElementById('content-type-select');
+  if (sel) sel.disabled = false;
+}
 
 function toggleContentFields(select) {
   const val = select.value;
