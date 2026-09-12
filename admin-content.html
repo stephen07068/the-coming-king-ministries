@@ -717,7 +717,7 @@
       const s = snap.data();
       window.editingContentId = id;
       window.editingContentType = 'blog';
-      window.editingCurrentImageUrl = s.imageUrl || '';
+      window.editingCurrentImageUrl = '';
 
       document.getElementById('modal-heading').textContent = 'Edit Ministry Blog Post';
       document.getElementById('publish-btn').innerHTML = '<span class="material-symbols-outlined text-[16px]">save</span> Save Changes';
@@ -732,13 +732,7 @@
       document.getElementById('modal-desc').value = s.content || s.description || '';
 
       const prev = document.getElementById('modal-img-preview');
-      const curImg = document.getElementById('modal-img-current');
-      if (s.imageUrl && prev && curImg) {
-        curImg.src = s.imageUrl;
-        prev.classList.remove('hidden');
-      } else if (prev) {
-        prev.classList.add('hidden');
-      }
+      if (prev) prev.classList.add('hidden');
 
       document.getElementById('modal').classList.remove('hidden');
     } catch (err) {
@@ -783,16 +777,11 @@
           alert('✅ Sermon published successfully!');
         }
       } else if (type === 'blog') {
-        const fileInput = document.getElementById('bible-img');
-        let imageUrl = isEditing ? (window.editingCurrentImageUrl || '') : '';
-        if (fileInput && fileInput.files.length) {
-          imageUrl = await new Promise((resolve) => {
-            const reader = new FileReader();
-            reader.onload = () => resolve(reader.result);
-            reader.readAsDataURL(fileInput.files[0]);
-          });
-        }
-        const data = { title, author: speaker || 'Ministry', content: description, imageUrl };
+        const data = {
+          title,
+          author: speaker || 'Ministry',
+          content: description
+        };
         if (isEditing) {
           data.updatedAt = serverTimestamp();
           await updateDoc(doc(db, 'blog_posts', editId), data);
@@ -1405,24 +1394,35 @@ function toggleContentFields(select) {
   const hint = document.getElementById('sermon-link-hint');
   const input = document.getElementById('sermon-link');
 
+  const speakerLabel = document.getElementById('modal-speaker-label') || document.querySelectorAll('#modal label')[2];
+  const descLabel = document.getElementById('modal-desc-label') || document.querySelectorAll('#modal label')[4];
+
   if (val === 'sermon-video') {
     sermonField.style.display = 'block';
     bibleField.style.display = 'none';
     label.textContent = 'YouTube Video Link';
     hint.textContent = 'Paste the YouTube video link for this sermon';
     input.placeholder = 'https://youtube.com/watch?v=...';
-    // Reset labels
-    document.querySelectorAll('#modal label')[2].textContent = 'Speaker / Pastor';
-    document.querySelectorAll('#modal label')[4].textContent = 'Description';
+    if (speakerLabel) speakerLabel.textContent = 'Speaker / Pastor';
+    if (descLabel) descLabel.textContent = 'Description';
   } else if (val === 'sermon-audio') {
     sermonField.style.display = 'block';
     bibleField.style.display = 'none';
     label.textContent = 'YouTube Audio Link';
     hint.textContent = 'Paste the YouTube link for the audio sermon recording';
     input.placeholder = 'https://youtube.com/watch?v=...';
+    if (speakerLabel) speakerLabel.textContent = 'Speaker / Pastor';
+    if (descLabel) descLabel.textContent = 'Description';
+  } else if (val === 'blog') {
+    sermonField.style.display = 'none';
+    bibleField.style.display = 'none';
+    if (speakerLabel) speakerLabel.textContent = 'Author';
+    if (descLabel) descLabel.textContent = 'Article Content';
   } else {
     sermonField.style.display = 'none';
     bibleField.style.display = 'block';
+    if (speakerLabel) speakerLabel.textContent = 'Teacher / Speaker';
+    if (descLabel) descLabel.textContent = 'Lesson Content / Outline';
   }
 }
 
